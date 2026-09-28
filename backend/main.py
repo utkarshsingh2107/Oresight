@@ -1,10 +1,22 @@
-"""OreSight FastAPI Backend — Phase 7.
+"""OreSight FastAPI Backend — Phase 7 + Remote Sensing.
 
 Pure API/presentation layer. Reads existing Phase 1–6 output files from
 models/output/ and exposes them as JSON endpoints for the React frontend.
 
 No model logic lives here. No retraining. No recalculation.
-All intelligence is produced by: PRISM → EAR → PULSE → RISK+SHAP → NUDGE.
+All intelligence is produced by:
+  REMOTE_SENSING → PRISM → EAR → PULSE → RISK+SHAP → NUDGE.
+
+Two-track architecture:
+  TRACK 1 — Reserve Identification  (Space + Geology)
+    remote_sensing.py  → satellite surface indicators, prospectivity targets
+    prism.py           → Ordinary Kriging geological reserve estimation
+
+  TRACK 2 — Production Intelligence (Operations + AI/ML)
+    ear.py       → Operational accessibility constraints
+    pulse.py     → LightGBM quantile production forecast
+    risk_shap.py → Risk classification + SHAP root-cause attribution
+    nudge.py     → PuLP counterfactual prescriptive optimization
 
 Startup:
     uvicorn backend.main:app --reload
@@ -31,11 +43,12 @@ _OUT         = _ROOT / "models" / "output"
 
 # Expected output files (keyed by phase slug)
 _OUTPUT_FILES: dict[str, list[Path]] = {
-    "prism":     [_OUT / "reserve_summary.json", _OUT / "reserve_blocks.csv"],
-    "ear":       [_OUT / "ear_summary.json",     _OUT / "ear_blocks.csv"],
-    "pulse":     [_OUT / "pulse_summary.json",   _OUT / "pulse_forecast.csv"],
-    "risk_shap": [_OUT / "risk_summary.json",    _OUT / "shap_importance.csv"],
-    "nudge":     [_OUT / "nudge_recommendation.json", _OUT / "nudge_candidates.csv"],
+    "remote_sensing": [_OUT / "satellite_indicators.json", _OUT / "satellite_grid.csv"],
+    "prism":          [_OUT / "reserve_summary.json",      _OUT / "reserve_blocks.csv"],
+    "ear":            [_OUT / "ear_summary.json",          _OUT / "ear_blocks.csv"],
+    "pulse":          [_OUT / "pulse_summary.json",        _OUT / "pulse_forecast.csv"],
+    "risk_shap":      [_OUT / "risk_summary.json",         _OUT / "shap_importance.csv"],
+    "nudge":          [_OUT / "nudge_recommendation.json", _OUT / "nudge_candidates.csv"],
 }
 
 # ---------------------------------------------------------------------------
@@ -101,11 +114,14 @@ def _phase_healthy(phase: str) -> bool:
 app = FastAPI(
     title="OreSight API",
     description=(
-        "Mine reserve intelligence API. Exposes outputs from PRISM, EAR, "
-        "PULSE, RISK+SHAP, and NUDGE modules. "
+        "Mine reserve intelligence API — two-track architecture.\n\n"
+        "**TRACK 1 — Reserve Identification (Space + Geology):**\n"
+        "Remote sensing surface indicators + Ordinary Kriging geological reserve.\n\n"
+        "**TRACK 2 — Production Intelligence (Operations + AI/ML):**\n"
+        "Accessible reserve → LightGBM forecast → SHAP risk attribution → PuLP optimization.\n\n"
         "**SYNTHETIC DEMO-01 data — not real MOIL operational data.**"
     ),
-    version="0.1.0",
+    version="0.2.0",
     docs_url="/docs",
     redoc_url="/redoc",
 )
@@ -135,6 +151,7 @@ class RootResponse(BaseModel):
 
 
 class PhaseHealth(BaseModel):
+    remote_sensing: bool
     prism: bool
     ear: bool
     pulse: bool
@@ -252,6 +269,7 @@ def health():
     return HealthResponse(
         status="healthy",
         phases=PhaseHealth(
+            remote_sensing=_phase_healthy("remote_sensing"),
             prism=_phase_healthy("prism"),
             ear=_phase_healthy("ear"),
             pulse=_phase_healthy("pulse"),
@@ -451,3 +469,53 @@ def nudge_candidates():
     df = df.sort_values("rank")
     records = df.where(df.notna(), other=None).to_dict(orient="records")
     return _clean({"candidates": records, "count": len(records)})
+
+
+# ---------------------------------------------------------------------------
+# Remote Sensing / Space Technology routes  (Track 1 — Reserve Identification)
+# ---------------------------------------------------------------------------
+
+@app.get("/api/satellite", summary="Satellite surface indicator summary")
+def satellite():
+    """Surface indicator summary from the Remote Sensing module.
+
+    Returns mine-level statistics for all synthetic spectral layers:
+    NDVI, Iron Oxide Index, Clay/Alteration Index, Soil Moisture,
+    and Composite Prospectivity Score.
+
+    Also returns the top-5 surface anomaly targets — grid cells with the
+    strongest surface evidence — ranked by composite prospectivity score.
+
+    IMPORTANT DISCLAIMER
+    --------------------
+    This prototype uses *synthetic, calibrated* surface indicators, NOT real
+    satellite imagery. The spatial patterns are seeded from the borehole grade
+    distribution.  The architecture is integration-ready for:
+      - ESA Copernicus Sentinel-2 MSI (10–20 m)
+      - ISRO Bhuvan Resourcesat-2A LISS-IV (2.5 m)
+      - USGS Landsat-8/9 OLI (30 m)
+
+    Surface indicators provide spatial context only. They do NOT directly
+    detect subsurface manganese ore. Subsurface evidence comes from boreholes
+    and Ordinary Kriging (see /api/prism).
+    """
+    raw = _require_json(_OUT / "satellite_indicators.json")
+    return _clean(raw)
+
+
+@app.get("/api/satellite/grid", summary="Satellite surface indicator spatial grid")
+def satellite_grid():
+    """Return the full spatial indicator grid for map visualisation.
+
+    208 grid cells at 50 m resolution covering the DEMO-01 mine area.
+    Each cell has: grid_x, grid_y, ndvi, iron_oxide_idx, clay_alter_idx,
+    soil_moisture, prosp_score, grade_proxy_mn, surface_target (bool).
+
+    Use prosp_score for choropleth colouring and surface_target to highlight
+    anomaly cells on the map.
+
+    DISCLAIMER: Synthetic prototype data — not real satellite imagery.
+    """
+    df  = _require_csv(_OUT / "satellite_grid.csv")
+    records = df.where(df.notna(), other=None).to_dict(orient="records")
+    return _clean({"grid": records, "count": len(records), "resolution_m": 50})

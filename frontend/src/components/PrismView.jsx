@@ -102,19 +102,65 @@ export default function PrismView({ prism }) {
   return (
     <div className="stage-view">
       <div style={{ marginBottom: 'var(--gap-lg)' }}>
-        <div className="section-label">PRISM — Geological Reserve</div>
-        <h2 style={{ marginBottom: 6 }}>What geological ore exists?</h2>
-        <p style={{ color: 'var(--text-secondary)', maxWidth: 720, fontSize: '0.9rem' }}>
-          PRISM estimates the spatial distribution of manganese grade from sparse borehole observations,
-          then classifies each block in the 3D mine model as ore or waste based on the Mn cutoff grade.
+        <div className="section-label">RESERVE IDENTIFICATION — Geology + Space</div>
+        <h2 style={{ marginBottom: 6 }}>What ore exists and where is it?</h2>
+        <p style={{ color: 'var(--text-secondary)', maxWidth: 760, fontSize: '0.9rem' }}>
+          Reserve identification combines two complementary evidence streams: subsurface borehole and
+          assay data (interpreted through Ordinary Kriging) and surface spatial indicators derived from
+          satellite imagery. Together they build an integrated understanding of the deposit.
         </p>
+      </div>
+
+      {/* Two-evidence integration banner */}
+      <div style={{
+        display: 'grid', gridTemplateColumns: '1fr auto 1fr auto 1fr',
+        gap: 0, marginBottom: 'var(--gap-lg)',
+        background: 'var(--bg-card-alt)', border: '1px solid var(--border)',
+        borderRadius: 'var(--radius-md)', overflow: 'hidden',
+      }}>
+        <EvidenceBlock
+          icon="🛰"
+          label="Space-Based Evidence"
+          color="var(--purple)"
+          items={['Spectral surface anomalies', 'Iron oxide & clay indices', 'Vegetation stress patterns', 'Terrain / DEM analysis']}
+          badge="Satellite / Remote Sensing"
+          badgeColor="rgba(188,140,255,.15)"
+        />
+        <div style={{ width: 1, background: 'var(--border)' }} />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'var(--gap-md)', flexDirection: 'column', gap: 6 }}>
+          <div style={{ fontSize: '1.4rem' }}>⊕</div>
+          <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textAlign: 'center', maxWidth: 120 }}>
+            Integrated spatial reserve understanding
+          </p>
+        </div>
+        <div style={{ width: 1, background: 'var(--border)' }} />
+        <EvidenceBlock
+          icon="⛏"
+          label="Geological Evidence"
+          color="var(--green)"
+          items={['Borehole composites & assays', 'Mn / Fe / SiO₂ grade data', 'Spatial kriging interpolation', '3D block model classification']}
+          badge="Boreholes / PRISM Kriging"
+          badgeColor="rgba(63,185,80,.12)"
+        />
+      </div>
+
+      {/* Disclaimer */}
+      <div style={{
+        background: 'rgba(88,166,255,.04)', border: '1px solid rgba(88,166,255,.15)',
+        borderRadius: 'var(--radius-sm)', padding: '8px 14px',
+        fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: 'var(--gap-lg)', lineHeight: 1.6,
+      }}>
+        <em>
+          Satellite observations provide surface indicators and spatial context; subsurface reserve
+          estimation is supported by geological, borehole and assay data.
+        </em>
       </div>
 
       <div className="grid-2" style={{ gap: 'var(--gap-lg)', alignItems: 'start' }}>
         {/* ── 3D block model ── */}
         <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
           <div style={{ padding: 'var(--gap-md)', borderBottom: '1px solid var(--border)' }}>
-            <span style={{ fontWeight: 600 }}>3D Mine Block Model</span>
+            <span style={{ fontWeight: 600 }}>3D Mine Block Model — Kriging Reserve Estimate</span>
             <span className="text-muted text-small" style={{ marginLeft: 8 }}>
               Rotate · Zoom · Hover for block details
             </span>
@@ -176,6 +222,8 @@ export default function PrismView({ prism }) {
             <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
               Geological reserve is estimated from borehole composites, not direct measurement.
               Grade continuity is modelled spatially — nearby blocks tend to have similar Mn grades.
+              Surface spectral anomalies (Iron Oxide Index, Clay Index) from satellite data
+              correlate with these grade patterns and provide additional spatial context.
             </p>
           </div>
         </div>
@@ -198,6 +246,30 @@ function KrigRow({ k, v }) {
     <div className="flex-between" style={{ padding: '3px 0', borderBottom: '1px solid var(--border-light)' }}>
       <span style={{ color: 'var(--text-muted)' }}>{k}</span>
       <span style={{ fontWeight: 600 }}>{v}</span>
+    </div>
+  )
+}
+
+function EvidenceBlock({ icon, label, color, items, badge, badgeColor }) {
+  return (
+    <div style={{ padding: 'var(--gap-md)', display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+        <span style={{ fontSize: '1.2rem' }}>{icon}</span>
+        <span style={{ fontWeight: 700, fontSize: '0.88rem', color }}>{label}</span>
+      </div>
+      {items.map((item, i) => (
+        <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 6 }}>
+          <span style={{ color, marginTop: 1, fontSize: '0.75rem' }}>▸</span>
+          <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>{item}</span>
+        </div>
+      ))}
+      <div style={{
+        marginTop: 6, padding: '3px 10px', borderRadius: 12,
+        background: badgeColor, fontSize: '0.7rem', color, fontWeight: 600,
+        display: 'inline-block', alignSelf: 'flex-start',
+      }}>
+        {badge}
+      </div>
     </div>
   )
 }

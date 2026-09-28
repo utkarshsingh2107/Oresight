@@ -17,15 +17,19 @@ async function get(path) {
   return res.json()
 }
 
-export const getOverview        = () => get('/api/overview')
-export const getPrism           = () => get('/api/prism')
-export const getPrismBlocks     = () => get('/api/prism/blocks')
-export const getEar             = () => get('/api/ear')
-export const getEarBlocks       = () => get('/api/ear/blocks')
-export const getPulse           = () => get('/api/pulse')
-export const getRisk            = () => get('/api/risk')
-export const getShap            = () => get('/api/shap')
-export const getNudge           = () => get('/api/nudge')
-export const getNudgeCandidates = () => get('/api/nudge/candidates')
+export const getOverview          = () => get('/api/overview')
+export const getPrism             = () => get('/api/prism')
+export const getPrismBlocks       = () => get('/api/prism/blocks')
+export const getEar               = () => get('/api/ear')
+export const getEarBlocks         = () => get('/api/ear/blocks')
+export const getPulse             = () => get('/api/pulse')
+export const getRisk              = () => get('/api/risk')
+export const getShap              = () => get('/api/shap')
+export const getNudge             = () => get('/api/nudge')
+export const getNudgeCandidates   = () => get('/api/nudge/candidates')
+
+// Track 1 — Space Technology / Remote Sensing
+export const getSatellite         = () => get('/api/satellite')
+export const getSatelliteGrid     = () => get('/api/satellite/grid')
 
 export const API_BASE = BASE

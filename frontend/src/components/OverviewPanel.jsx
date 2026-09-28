@@ -20,35 +20,72 @@ export default function OverviewPanel({ overview, onNavigate }) {
       <div style={{ marginBottom: 'var(--gap-lg)' }}>
         <h1 style={{ marginBottom: 4 }}>Mine Decision Intelligence</h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-          From geological reserve to the best operational action — DEMO-01, synthetic data.
+          Space + geological reserve identification → accessible reserve → production forecast → operational action.
+          DEMO-01, synthetic calibrated data.
         </p>
+      </div>
+
+      {/* Two-track architecture banner */}
+      <div style={{
+        display: 'grid', gridTemplateColumns: '1fr 40px 1fr',
+        gap: 0, marginBottom: 'var(--gap-lg)',
+        background: 'var(--bg-card-alt)', border: '1px solid var(--border)',
+        borderRadius: 'var(--radius-md)', overflow: 'hidden',
+      }}>
+        {/* Track 1 */}
+        <div style={{ padding: 'var(--gap-md)' }}>
+          <p style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--purple)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 6 }}>
+            Track 1 — Reserve Identification
+          </p>
+          <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+            🛰 Satellite surface indicators · ⛏ Borehole assays · Ordinary Kriging
+            → Spatial reserve understanding
+          </p>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>+</div>
+        {/* Track 2 */}
+        <div style={{ padding: 'var(--gap-md)', borderLeft: '1px solid var(--border)' }}>
+          <p style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 6 }}>
+            Track 2 — Production Intelligence
+          </p>
+          <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+            ⚙ Operations · Equipment · Weather · Manpower
+            → Forecast → Risk → SHAP → Optimization → Action
+          </p>
+        </div>
       </div>
 
       {/* Pipeline flow — clickable */}
       <div className="card" style={{ marginBottom: 'var(--gap-lg)', background: 'var(--bg-card-alt)' }}>
         <div style={{ display: 'flex', alignItems: 'stretch', overflowX: 'auto', gap: 0 }}>
           <FlowStage
-            stage="prism" label="PRISM" question="What exists?" onClick={onNavigate}
-            value={`${(p.declared_reserve_t/1e6).toFixed(2)} Mt`} sub="Declared reserve"
+            stage="satellite" label="SPACE" question="Surface signals?" onClick={onNavigate}
+            value="5 targets" sub="Surface anomalies"
+            color="var(--purple)"
+          />
+          <FlowArrow />
+          <FlowStage
+            stage="prism" label="RESERVE" question="What ore exists?" onClick={onNavigate}
+            value={`${(p.declared_reserve_t/1e6).toFixed(2)} Mt`} sub="Geological reserve"
             color="var(--accent)"
           />
           <FlowArrow />
           <FlowStage
-            stage="ear" label="EAR" question="What is accessible?" onClick={onNavigate}
+            stage="ear" label="ACCESS" question="What is minable?" onClick={onNavigate}
             value={`${(e.effective_accessible_reserve_t/1e6).toFixed(2)} Mt`}
             sub={`${(e.accessibility_ratio*100).toFixed(0)}% accessible`}
             color="var(--green)"
           />
           <FlowArrow />
           <FlowStage
-            stage="pulse" label="PULSE" question="What can we produce?" onClick={onNavigate}
+            stage="pulse" label="FORECAST" question="What can we produce?" onClick={onNavigate}
             value={`${(pu.expected_production_t/1e3).toFixed(1)} kt`}
             sub={`−${fmtT(pu.expected_shortfall_t)} t shortfall`}
             color="var(--accent)"
           />
           <FlowArrow />
           <FlowStage
-            stage="nudge" label="NUDGE" question="What should we do?" onClick={onNavigate}
+            stage="nudge" label="ACTION" question="What should we do?" onClick={onNavigate}
             value={n.action_name}
             sub={`+${fmtT(n.expected_production_gain_t)} t gain`}
             color="var(--green)" isAction

@@ -1,0 +1,123 @@
+{
+  "module": "remote_sensing",
+  "mine_id": "DEMO-01",
+  "provenance": "Synthetic calibrated surface indicators for DEMO-01. Spatial patterns derived from borehole grade distribution via IDW. NOT derived from real satellite imagery. Architecture is integration-ready for Sentinel-2 / ISRO Bhuvan / Landsat.",
+  "status": "prototype_synthetic",
+  "integration_ready": [
+    "Sentinel-2 MSI (ESA Copernicus)",
+    "ISRO Bhuvan Resourcesat-2A",
+    "Landsat-8/9 OLI (USGS)"
+  ],
+  "grid_resolution_m": 50,
+  "grid_cells": 208,
+  "surface_targets_flagged": 5,
+  "layer_statistics": {
+    "ndvi": {
+      "mean": 0.451,
+      "std": 0.082,
+      "description": "Normalised Difference Vegetation Index \u2014 depressed over mineralised zones"
+    },
+    "iron_oxide_idx": {
+      "mean": 0.411,
+      "std": 0.108,
+      "description": "Iron oxide spectral index \u2014 elevated over Fe-Mn gossans and altered soils"
+    },
+    "clay_alter_idx": {
+      "mean": 0.412,
+      "std": 0.078,
+      "description": "Clay / alteration index \u2014 hydroxyl absorption in SWIR bands"
+    },
+    "soil_moisture": {
+      "mean": 0.384,
+      "std": 0.059,
+      "description": "Soil moisture proxy \u2014 NDWI-derived surface water content"
+    },
+    "prosp_score": {
+      "mean": 0.446,
+      "std": 0.085,
+      "description": "Composite surface prospectivity score (0\u20131); higher = stronger surface anomaly"
+    }
+  },
+  "top_surface_targets": [
+    {
+      "rank": 1,
+      "grid_x": 225.0,
+      "grid_y": 320.0,
+      "prosp_score": 0.7034,
+      "iron_oxide_idx": 0.7223,
+      "clay_alter_idx": 0.6188,
+      "ndvi": 0.2084,
+      "soil_moisture": 0.2154,
+      "grade_proxy_mn": 37.75
+    },
+    {
+      "rank": 2,
+      "grid_x": 25.0,
+      "grid_y": 320.0,
+      "prosp_score": 0.6707,
+      "iron_oxide_idx": 0.6962,
+      "clay_alter_idx": 0.6141,
+      "ndvi": 0.2909,
+      "soil_moisture": 0.2783,
+      "grade_proxy_mn": 33.85
+    },
+    {
+      "rank": 3,
+      "grid_x": 125.0,
+      "grid_y": 420.0,
+      "prosp_score": 0.6672,
+      "iron_oxide_idx": 0.6992,
+      "clay_alter_idx": 0.6228,
+      "ndvi": 0.3219,
+      "soil_moisture": 0.3028,
+      "grade_proxy_mn": 33.0
+    },
+    {
+      "rank": 4,
+      "grid_x": 375.0,
+      "grid_y": 220.0,
+      "prosp_score": 0.6444,
+      "iron_oxide_idx": 0.6392,
+      "clay_alter_idx": 0.5528,
+      "ndvi": 0.2192,
+      "soil_moisture": 0.2179,
+      "grade_proxy_mn": 33.41
+    },
+    {
+      "rank": 5,
+      "grid_x": 75.0,
+      "grid_y": 320.0,
+      "prosp_score": 0.6436,
+      "iron_oxide_idx": 0.6595,
+      "clay_alter_idx": 0.5859,
+      "ndvi": 0.301,
+      "soil_moisture": 0.2836,
+      "grade_proxy_mn": 31.76
+    }
+  ],
+  "key_disclaimer": "Surface indicators provide spatial context and surface evidence only. They do NOT directly detect subsurface manganese ore. Subsurface reserve estimation is based on borehole composites and Ordinary Kriging (PRISM module). These two evidence streams are complementary, not substitutes.",
+  "data_sources_implemented": [
+    "Synthetic borehole-calibrated surface indicators"
+  ],
+  "data_sources_integration_ready": [
+    "ESA Copernicus Sentinel-2 Level-2A (10\u201320 m multispectral)",
+    "ISRO Bhuvan Resourcesat-2A LISS-IV (2.5 m)",
+    "USGS Landsat-8/9 OLI (30 m)",
+    "SRTM / ALOS DEM (30 m terrain)"
+  ],
+  "processing_stack_implemented": [
+    "NumPy",
+    "Pandas"
+  ],
+  "processing_stack_integration_ready": [
+    "GDAL",
+    "Rasterio",
+    "GeoPandas",
+    "Google Earth Engine Python API"
+  ],
+  "geological_integration": {
+    "borehole_count": 80,
+    "ore_boreholes": 24,
+    "declared_reserve_t": 48271696.4
+  }
+}

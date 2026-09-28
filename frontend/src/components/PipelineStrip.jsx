@@ -1,11 +1,12 @@
 import React from 'react'
 
 const STAGES = [
-  { id: 'overview', label: 'Overview',  q: 'Executive summary' },
-  { id: 'prism',    label: 'PRISM',     q: 'What exists?' },
-  { id: 'ear',      label: 'EAR',       q: 'What is accessible?' },
-  { id: 'pulse',    label: 'PULSE',     q: 'What can we produce?' },
-  { id: 'nudge',    label: 'NUDGE',     q: 'What should we do?' },
+  { id: 'overview',   label: 'Overview',       q: 'Executive summary' },
+  { id: 'satellite',  label: 'Space & GIS',    q: 'Surface indicators' },
+  { id: 'prism',      label: 'Reserve ID',     q: 'What ore exists?' },
+  { id: 'ear',        label: 'Accessibility',  q: 'What is minable?' },
+  { id: 'pulse',      label: 'Forecast',       q: 'What can we produce?' },
+  { id: 'nudge',      label: 'Action',         q: 'What should we do?' },
 ]
 
 export default function PipelineStrip({ activeStage, onSelect }) {
