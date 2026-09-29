@@ -16,12 +16,46 @@ export default function NudgeView({ nudge, nudgeCands }) {
   return (
     <div className="stage-view">
       <div style={{ marginBottom: 'var(--gap-lg)' }}>
-        <div className="section-label">NUDGE — Prescriptive Optimization</div>
-        <h2 style={{ marginBottom: 6 }}>What should we do to reduce the shortfall?</h2>
-        <p style={{ color: 'var(--text-secondary)', maxWidth: 720, fontSize: '0.9rem' }}>
-          NUDGE evaluates {nudge.optimization?.candidates_evaluated ?? cands.length} feasible operational interventions
-          and selects the one with the greatest modelled shortfall reduction.
+        <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase',
+          letterSpacing: '0.08em', color: 'var(--orange)', marginBottom: 4 }}>
+          ⚡ DECIDE — Decision Engine
+        </div>
+        <h2 style={{ marginBottom: 6 }}>What should we do?</h2>
+        <p style={{ color: 'var(--text-secondary)', maxWidth: 760, fontSize: '0.9rem' }}>
+          The decision engine is the final layer of the space-enabled intelligence pipeline.
+          It evaluates {nudge.optimization?.candidates_evaluated ?? cands.length} feasible
+          operational interventions and selects the one with the greatest modelled shortfall reduction.
         </p>
+      </div>
+
+      {/* OBSERVE → INTERPRET → PREDICT → DECIDE flow */}
+      <div className="card" style={{ marginBottom: 'var(--gap-lg)', background: 'var(--bg-card-alt)' }}>
+        <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase',
+          letterSpacing: '0.07em', color: 'var(--text-muted)', marginBottom: 'var(--gap-md)' }}>
+          Intelligence Pipeline — Decision derived from integrated spatial, geological and operational intelligence
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 0 }}>
+          {[
+            { phase: 'OBSERVE',    icon: '🛰', label: 'Earth Observation',   sub: 'Satellite / EO',          color: 'var(--purple)' },
+            { phase: 'INTERPRET',  icon: '⛏', label: 'Resource Mapping',     sub: 'Geology + Kriging',       color: 'var(--accent)' },
+            { phase: 'PREDICT',    icon: '📈', label: 'Production Forecast',  sub: 'LightGBM + uncertainty',  color: 'var(--yellow)' },
+            { phase: 'DECIDE',     icon: '⚡', label: 'Decision Engine',       sub: 'MILP / NUDGE',            color: 'var(--orange)' },
+          ].map((s, i) => (
+            <div key={s.phase} style={{
+              padding: '12px 10px', textAlign: 'center',
+              borderLeft: i > 0 ? '1px solid var(--border-light)' : 'none',
+              background: i === 3 ? 'rgba(240,136,62,.06)' : 'transparent',
+            }}>
+              <div style={{ fontSize: '0.62rem', fontWeight: 700, color: s.color,
+                textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 4 }}>
+                {s.phase}
+              </div>
+              <div style={{ fontSize: '1.4rem', marginBottom: 4 }}>{s.icon}</div>
+              <p style={{ fontWeight: 700, fontSize: '0.82rem', marginBottom: 2 }}>{s.label}</p>
+              <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{s.sub}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* ─── Before / after ─── */}
@@ -119,6 +153,7 @@ export default function NudgeView({ nudge, nudgeCands }) {
       <div style={{ marginTop: 'var(--gap-lg)', background: 'rgba(88,166,255,.04)', border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', padding: 'var(--gap-md)' }}>
         <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
           <strong style={{ color: 'var(--text-primary)' }}>Decision support only.</strong>{' '}
+          Decision derived from integrated spatial, geological and operational intelligence.
           NUDGE evaluates modelled counterfactual scenarios and identifies the intervention with the largest
           expected shortfall reduction. Final operational decisions remain with the mine manager.
           Results are based on synthetic DEMO-01 data and do not represent actual MOIL operational data.

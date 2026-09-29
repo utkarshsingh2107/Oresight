@@ -1,110 +1,174 @@
 {
-  "module": "remote_sensing",
+  "module": "space_intelligence",
   "mine_id": "DEMO-01",
-  "provenance": "Synthetic calibrated surface indicators for DEMO-01. Spatial patterns derived from borehole grade distribution via IDW. NOT derived from real satellite imagery. Architecture is integration-ready for Sentinel-2 / ISRO Bhuvan / Landsat.",
+  "eo_platform": "Simulated Earth Observation \u2014 DEMO-01",
+  "provenance": "Synthetic calibrated EO indicators. Spatial patterns derived from borehole grade distribution via IDW. NOT real satellite imagery. Integration-ready for Sentinel-2 / ISRO Bhuvan / Landsat-8 / SRTM DEM.",
   "status": "prototype_synthetic",
-  "integration_ready": [
-    "Sentinel-2 MSI (ESA Copernicus)",
-    "ISRO Bhuvan Resourcesat-2A",
-    "Landsat-8/9 OLI (USGS)"
-  ],
   "grid_resolution_m": 50,
   "grid_cells": 208,
-  "surface_targets_flagged": 5,
+  "surface_targets": 5,
+  "mean_mineralisation": 0.4458,
+  "mean_confidence": 0.6793,
+  "integration_ready": [
+    "ESA Copernicus Sentinel-2 MSI (10\u201320 m, 13 bands)",
+    "ISRO Bhuvan Resourcesat-2A LISS-IV (2.5 m, 4 bands)",
+    "USGS Landsat-8/9 OLI (30 m, 11 bands)",
+    "SRTM / ALOS Digital Elevation Model (30 m)",
+    "Sentinel-1 SAR (10 m, C-band, all-weather)"
+  ],
   "layer_statistics": {
     "ndvi": {
       "mean": 0.451,
-      "std": 0.082,
-      "description": "Normalised Difference Vegetation Index \u2014 depressed over mineralised zones"
+      "std": 0.0819,
+      "min": 0.2084,
+      "max": 0.6131,
+      "description": "Vegetation anomaly \u2014 depressed over mineralised/altered zones"
     },
     "iron_oxide_idx": {
-      "mean": 0.411,
-      "std": 0.108,
-      "description": "Iron oxide spectral index \u2014 elevated over Fe-Mn gossans and altered soils"
+      "mean": 0.4108,
+      "std": 0.1082,
+      "min": 0.2348,
+      "max": 0.7223,
+      "description": "Iron oxide spectral index \u2014 elevated over Fe-Mn gossans"
     },
     "clay_alter_idx": {
-      "mean": 0.412,
-      "std": 0.078,
-      "description": "Clay / alteration index \u2014 hydroxyl absorption in SWIR bands"
+      "mean": 0.4121,
+      "std": 0.0784,
+      "min": 0.2706,
+      "max": 0.6228,
+      "description": "Clay/alteration index \u2014 hydroxyl absorption in SWIR"
     },
     "soil_moisture": {
-      "mean": 0.384,
-      "std": 0.059,
-      "description": "Soil moisture proxy \u2014 NDWI-derived surface water content"
+      "mean": 0.3837,
+      "std": 0.0592,
+      "min": 0.2154,
+      "max": 0.5053,
+      "description": "NDWI-derived soil moisture \u2014 drainage anomaly proxy"
     },
-    "prosp_score": {
-      "mean": 0.446,
-      "std": 0.085,
-      "description": "Composite surface prospectivity score (0\u20131); higher = stronger surface anomaly"
+    "surface_reflectance": {
+      "mean": 0.2505,
+      "std": 0.0486,
+      "min": 0.1652,
+      "max": 0.3827,
+      "description": "Broadband surface albedo \u2014 bare soil / rock exposure"
+    },
+    "slope_deg": {
+      "mean": 13.8331,
+      "std": 4.4018,
+      "min": 6.55,
+      "max": 26.55,
+      "description": "DEM-derived slope (degrees) \u2014 terrain steepness"
+    },
+    "spectral_anomaly": {
+      "mean": 0.289,
+      "std": 0.2082,
+      "min": 0.0,
+      "max": 1.0,
+      "description": "Multiband deviation from scene background"
+    },
+    "mineralisation_score": {
+      "mean": 0.4458,
+      "std": 0.0852,
+      "min": 0.3167,
+      "max": 0.7034,
+      "description": "Composite EO mineralisation score (0\u20131)"
+    },
+    "satellite_confidence": {
+      "mean": 0.6793,
+      "std": 0.2123,
+      "min": 0.3,
+      "max": 1.0,
+      "description": "Observation confidence (1 = cloud-free, high quality)"
     }
   },
-  "top_surface_targets": [
+  "top_eo_targets": [
     {
       "rank": 1,
+      "latitude": 21.83,
+      "longitude": 80.348302,
       "grid_x": 225.0,
       "grid_y": 320.0,
-      "prosp_score": 0.7034,
+      "elevation_m": 210.1,
+      "mineralisation_score": 0.7034,
       "iron_oxide_idx": 0.7223,
       "clay_alter_idx": 0.6188,
       "ndvi": 0.2084,
-      "soil_moisture": 0.2154,
+      "spectral_anomaly": 1.0,
+      "slope_deg": 26.31,
+      "satellite_confidence": 0.3,
       "grade_proxy_mn": 37.75
     },
     {
       "rank": 2,
+      "latitude": 21.83,
+      "longitude": 80.346361,
       "grid_x": 25.0,
       "grid_y": 320.0,
-      "prosp_score": 0.6707,
+      "elevation_m": 204.3,
+      "mineralisation_score": 0.6707,
       "iron_oxide_idx": 0.6962,
       "clay_alter_idx": 0.6141,
       "ndvi": 0.2909,
-      "soil_moisture": 0.2783,
+      "spectral_anomaly": 0.9401,
+      "slope_deg": 23.26,
+      "satellite_confidence": 0.689,
       "grade_proxy_mn": 33.85
     },
     {
       "rank": 3,
+      "latitude": 21.830901,
+      "longitude": 80.347331,
       "grid_x": 125.0,
       "grid_y": 420.0,
-      "prosp_score": 0.6672,
+      "elevation_m": 204.1,
+      "mineralisation_score": 0.6672,
       "iron_oxide_idx": 0.6992,
       "clay_alter_idx": 0.6228,
       "ndvi": 0.3219,
-      "soil_moisture": 0.3028,
+      "spectral_anomaly": 0.9629,
+      "slope_deg": 19.95,
+      "satellite_confidence": 0.589,
       "grade_proxy_mn": 33.0
     },
     {
       "rank": 4,
+      "latitude": 21.829099,
+      "longitude": 80.349757,
       "grid_x": 375.0,
       "grid_y": 220.0,
-      "prosp_score": 0.6444,
+      "elevation_m": 212.7,
+      "mineralisation_score": 0.6444,
       "iron_oxide_idx": 0.6392,
       "clay_alter_idx": 0.5528,
       "ndvi": 0.2192,
-      "soil_moisture": 0.2179,
+      "spectral_anomaly": 0.7108,
+      "slope_deg": 23.02,
+      "satellite_confidence": 0.613,
       "grade_proxy_mn": 33.41
     },
     {
       "rank": 5,
+      "latitude": 21.83,
+      "longitude": 80.346846,
       "grid_x": 75.0,
       "grid_y": 320.0,
-      "prosp_score": 0.6436,
+      "elevation_m": 201.5,
+      "mineralisation_score": 0.6436,
       "iron_oxide_idx": 0.6595,
       "clay_alter_idx": 0.5859,
       "ndvi": 0.301,
-      "soil_moisture": 0.2836,
+      "spectral_anomaly": 0.8144,
+      "slope_deg": 26.55,
+      "satellite_confidence": 0.752,
       "grade_proxy_mn": 31.76
     }
   ],
-  "key_disclaimer": "Surface indicators provide spatial context and surface evidence only. They do NOT directly detect subsurface manganese ore. Subsurface reserve estimation is based on borehole composites and Ordinary Kriging (PRISM module). These two evidence streams are complementary, not substitutes.",
-  "data_sources_implemented": [
-    "Synthetic borehole-calibrated surface indicators"
-  ],
-  "data_sources_integration_ready": [
-    "ESA Copernicus Sentinel-2 Level-2A (10\u201320 m multispectral)",
-    "ISRO Bhuvan Resourcesat-2A LISS-IV (2.5 m)",
-    "USGS Landsat-8/9 OLI (30 m)",
-    "SRTM / ALOS DEM (30 m terrain)"
-  ],
+  "geological_integration": {
+    "borehole_count": 80,
+    "ore_boreholes": 24,
+    "declared_reserve_t": 48271696.4
+  },
+  "key_disclaimer": "EO surface indicators provide spatial and spectral intelligence only. They do NOT directly detect subsurface manganese ore. Subsurface evidence is provided by borehole assays and Ordinary Kriging. Both evidence streams are fused in the Resource Mapping stage.",
   "processing_stack_implemented": [
     "NumPy",
     "Pandas"
@@ -114,10 +178,5 @@
     "Rasterio",
     "GeoPandas",
     "Google Earth Engine Python API"
-  ],
-  "geological_integration": {
-    "borehole_count": 80,
-    "ore_boreholes": 24,
-    "declared_reserve_t": 48271696.4
-  }
+  ]
 }

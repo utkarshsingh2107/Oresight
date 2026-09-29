@@ -68,12 +68,53 @@ export default function PulseView({ pulse, risk, shap }) {
   return (
     <div className="stage-view">
       <div style={{ marginBottom: 'var(--gap-lg)' }}>
-        <div className="section-label">PULSE — Production Forecast</div>
-        <h2 style={{ marginBottom: 6 }}>How much can we realistically produce?</h2>
-        <p style={{ color: 'var(--text-secondary)', maxWidth: 720, fontSize: '0.9rem' }}>
-          PULSE uses a LightGBM model trained on 3 years of historical operational data to forecast
-          production over the next 30 days with uncertainty bands.
+        <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase',
+          letterSpacing: '0.08em', color: 'var(--yellow)', marginBottom: 4 }}>
+          📈 PREDICT — Production Forecast
+        </div>
+        <h2 style={{ marginBottom: 6 }}>What can we realistically produce?</h2>
+        <p style={{ color: 'var(--text-secondary)', maxWidth: 760, fontSize: '0.9rem' }}>
+          Production forecast intelligence combines accessible resource, historical production,
+          equipment availability, development progress, and weather into a probabilistic
+          30-day forecast with P10/P50/P90 uncertainty bands.
         </p>
+      </div>
+
+      {/* Data Fusion card */}
+      <div className="card" style={{ marginBottom: 'var(--gap-lg)', background: 'var(--bg-card-alt)' }}>
+        <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase',
+          letterSpacing: '0.07em', color: 'var(--text-muted)', marginBottom: 'var(--gap-md)' }}>
+          Data Fusion — Forecast Inputs
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 8 }}>
+          {[
+            { icon: '📦', label: 'Spatial\nAccessibility', src: 'Spatial Model',      color: 'var(--accent)' },
+            { icon: '📋', label: 'Production\nHistory',    src: 'Operational History', color: 'var(--green)' },
+            { icon: '🔧', label: 'Equipment\nTelemetry',   src: 'Operational History', color: 'var(--yellow)' },
+            { icon: '🌧', label: 'Weather /\nRainfall',    src: 'Weather / EO',        color: 'var(--accent)' },
+            { icon: '👷', label: 'Manpower &\nDevelopment',src: 'Operational History', color: 'var(--purple)' },
+          ].map(f => (
+            <div key={f.label} style={{ textAlign: 'center', padding: '8px 4px' }}>
+              <div style={{ fontSize: '1.2rem', marginBottom: 4 }}>{f.icon}</div>
+              <p style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-primary)',
+                lineHeight: 1.3, marginBottom: 4, whiteSpace: 'pre-line' }}>{f.label}</p>
+              <span style={{
+                fontSize: '0.6rem', fontWeight: 700, textTransform: 'uppercase',
+                color: f.color, background: `${f.color}15`, padding: '1px 6px',
+                borderRadius: 8, letterSpacing: '0.04em',
+              }}>
+                {f.src}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div style={{ marginTop: 'var(--gap-sm)', paddingTop: 'var(--gap-sm)',
+          borderTop: '1px solid var(--border-light)', textAlign: 'center' }}>
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+            → <strong style={{ color: 'var(--yellow)' }}>LightGBM Quantile Regression</strong>
+            {' '}· 38 features · 30-day horizon · P10 / P50 / P90 uncertainty bands
+          </span>
+        </div>
       </div>
 
       {/* ─── Section A: Forecast chart ─── */}
@@ -163,10 +204,11 @@ export default function PulseView({ pulse, risk, shap }) {
       {/* ─── Section C: SHAP — why is production at risk? ─── */}
       <div className="card">
         <div style={{ marginBottom: 'var(--gap-md)' }}>
-          <h3>Why is production at risk?</h3>
+          <h3>What spatial and operational factors influence production uncertainty?</h3>
           <p className="text-muted text-small" style={{ marginTop: 4 }}>
-            The model attributes forecast uncertainty to the following operational factors.
-            Actionable items can be addressed through operational decisions.
+            The forecast model attributes production uncertainty to the following factors.
+            Contextual factors include weather and terrain-driven variables;
+            actionable factors are within operational control.
           </p>
         </div>
 

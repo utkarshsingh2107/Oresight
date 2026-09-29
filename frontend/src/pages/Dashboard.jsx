@@ -41,14 +41,19 @@ export default function Dashboard() {
       <Header onRefresh={load} loading={loading} />
 
       <main className="page-wrapper">
-        {/* Synthetic data disclaimer */}
+        {/* Demo disclaimer */}
         <div role="note" aria-label="Demo disclaimer" style={{
           background: 'rgba(210,153,34,.06)', border: '1px solid rgba(210,153,34,.2)',
-          borderRadius: 'var(--radius-sm)', padding: '6px 12px',
-          fontSize: '0.75rem', color: 'rgba(210,153,34,.8)', marginBottom: 'var(--gap-md)',
+          borderRadius: 'var(--radius-sm)', padding: '6px 14px',
+          fontSize: '0.75rem', color: 'rgba(210,153,34,.85)', marginBottom: 'var(--gap-md)',
+          display: 'flex', alignItems: 'center', gap: 8,
         }}>
-          Demo Mode — Synthetic calibrated data (DEMO-01). Architecture is integration-ready
-          for real MOIL operational data, Sentinel-2, and ISRO Bhuvan satellite feeds.
+          <span>⚠</span>
+          <span>
+            <strong>DEMO MODE</strong> — Synthetic calibrated data (DEMO-01).
+            Earth-observation layers are simulated for demonstration.
+            Architecture is integration-ready for Sentinel-2, Sentinel-1, DEM and other real Earth-observation feeds.
+          </span>
         </div>
 
         {loading && !data && <LoadingSpinner />}

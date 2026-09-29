@@ -28,8 +28,9 @@ export const getShap              = () => get('/api/shap')
 export const getNudge             = () => get('/api/nudge')
 export const getNudgeCandidates   = () => get('/api/nudge/candidates')
 
-// Track 1 — Space Technology / Remote Sensing
+// Track 1 — Space Technology / Earth Observation
 export const getSatellite         = () => get('/api/satellite')
 export const getSatelliteGrid     = () => get('/api/satellite/grid')
+export const getSatelliteObs      = () => get('/api/satellite/observations')
 
 export const API_BASE = BASE

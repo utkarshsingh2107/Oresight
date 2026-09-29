@@ -43,7 +43,8 @@ _OUT         = _ROOT / "models" / "output"
 
 # Expected output files (keyed by phase slug)
 _OUTPUT_FILES: dict[str, list[Path]] = {
-    "remote_sensing": [_OUT / "satellite_indicators.json", _OUT / "satellite_grid.csv"],
+    "remote_sensing": [_OUT / "satellite_indicators.json", _OUT / "satellite_grid.csv",
+                       _OUT / "satellite_observations.json"],
     "prism":          [_OUT / "reserve_summary.json",      _OUT / "reserve_blocks.csv"],
     "ear":            [_OUT / "ear_summary.json",          _OUT / "ear_blocks.csv"],
     "pulse":          [_OUT / "pulse_summary.json",        _OUT / "pulse_forecast.csv"],
@@ -503,19 +504,36 @@ def satellite():
     return _clean(raw)
 
 
-@app.get("/api/satellite/grid", summary="Satellite surface indicator spatial grid")
+@app.get("/api/satellite/grid", summary="EO spatial indicator grid (choropleth)")
 def satellite_grid():
-    """Return the full spatial indicator grid for map visualisation.
+    """Full spatial EO indicator grid — 208 cells at 50 m resolution.
 
-    208 grid cells at 50 m resolution covering the DEMO-01 mine area.
-    Each cell has: grid_x, grid_y, ndvi, iron_oxide_idx, clay_alter_idx,
-    soil_moisture, prosp_score, grade_proxy_mn, surface_target (bool).
+    Columns: grid_x, grid_y, latitude, longitude, elevation_m, ndvi,
+    iron_oxide_idx, clay_alter_idx, soil_moisture, surface_reflectance,
+    slope_deg, aspect_deg, spectral_anomaly, mineralisation_score,
+    cloud_cover, satellite_confidence, surface_target.
 
-    Use prosp_score for choropleth colouring and surface_target to highlight
-    anomaly cells on the map.
+    Use mineralisation_score for choropleth colouring; surface_target
+    to highlight anomaly cells.
 
-    DISCLAIMER: Synthetic prototype data — not real satellite imagery.
+    DISCLAIMER: Synthetic EO — not real satellite imagery.
     """
-    df  = _require_csv(_OUT / "satellite_grid.csv")
+    df = _require_csv(_OUT / "satellite_grid.csv")
     records = df.where(df.notna(), other=None).to_dict(orient="records")
     return _clean({"grid": records, "count": len(records), "resolution_m": 50})
+
+
+@app.get("/api/satellite/observations", summary="Structured EO observation records")
+def satellite_observations():
+    """Structured per-cell EO observation records with full column schema.
+
+    Matches the satellite_observations.csv schema:
+    cell_id, latitude, longitude, elevation_m, iron_oxide_idx,
+    clay_alter_idx, ndvi, surface_reflectance, slope_deg, aspect_deg,
+    spectral_anomaly, mineralisation_score, cloud_cover,
+    satellite_confidence, is_target.
+
+    DISCLAIMER: Synthetic EO — not real satellite imagery.
+    """
+    raw = _require_json(_OUT / "satellite_observations.json")
+    return _clean(raw)
