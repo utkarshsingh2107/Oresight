@@ -1,3 +1,12 @@
+/**
+ * PrismView — Resource Mapping section
+ *
+ * TECHNICAL NOTE:
+ * Earth Observation provides surface spatial context and anomaly indicators.
+ * Borehole assays provide subsurface Mn grade observations.
+ * Ordinary Kriging interpolates the borehole-derived grades across the 3D block model.
+ * EO data is NOT directly fed into Kriging — it provides independent surface evidence.
+ */
 import React, { useEffect, useRef, useState } from 'react'
 import { getPrismBlocks } from '../services/api.js'
 
@@ -28,14 +37,14 @@ export default function PrismView({ prism }) {
 
       const trace_ore = {
         type: 'scatter3d', mode: 'markers',
-        name: `Mineralised block (Mn ≥ ${CUTOFF}%)`,
+        name: `Mineralised (Mn ≥ ${CUTOFF}%)`,
         x: ore.map(b => b.x), y: ore.map(b => b.y), z: ore.map(b => b.z),
         text: ore.map(b =>
           `<b>${b.block_id}</b><br>` +
           `Easting: ${b.x} m · Northing: ${b.y} m · Elev: ${b.z} m<br>` +
-          `Mn grade: ${b.estimated_mn_pct?.toFixed(1)}%<br>` +
+          `Kriging Mn estimate: ${b.estimated_mn_pct?.toFixed(1)}%<br>` +
           `Tonnage: ${Math.round(b.tonnage_t).toLocaleString()} t<br>` +
-          `Kriging uncertainty: ±${b.kriging_variance?.toFixed(0)}`
+          `Kriging variance: ${b.kriging_variance?.toFixed(0)}`
         ),
         hovertemplate: '%{text}<extra></extra>',
         marker: {
@@ -58,7 +67,7 @@ export default function PrismView({ prism }) {
         name: 'Sub-cutoff block',
         x: waste.map(b => b.x), y: waste.map(b => b.y), z: waste.map(b => b.z),
         text: waste.map(b =>
-          `<b>${b.block_id}</b><br>Mn: ${b.estimated_mn_pct?.toFixed(1)}% (below cutoff)`
+          `<b>${b.block_id}</b><br>Kriging Mn: ${b.estimated_mn_pct?.toFixed(1)}% (below ${CUTOFF}% cutoff)`
         ),
         hovertemplate: '%{text}<extra></extra>',
         marker: { size: 2.5, color: '#21262d', opacity: 0.22 },
@@ -92,138 +101,202 @@ export default function PrismView({ prism }) {
 
   if (!prism) return null
 
+  const v = prism.variogram ?? {}
+
   return (
     <div className="stage-view">
 
-      {/* Header */}
+      {/* ── Section header ── */}
       <div style={{ marginBottom: 'var(--gap-lg)' }}>
         <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase',
           letterSpacing: '0.08em', color: 'var(--accent)', marginBottom: 4 }}>
           🗺 INTERPRET — Resource Mapping
         </div>
         <h2 style={{ marginBottom: 6 }}>Where are the mineralised zones?</h2>
-        <p style={{ color: 'var(--text-secondary)', maxWidth: 760, fontSize: '0.9rem' }}>
-          Earth observation data identifies surface spectral anomalies, while borehole assays provide
-          subsurface validation. Spatial interpolation (Ordinary Kriging) combines both evidence
-          streams to estimate mineralised zones across the full 3D spatial resource model.
+        <p style={{ color: 'var(--text-secondary)', maxWidth: 760, fontSize: '0.9rem', lineHeight: 1.65 }}>
+          Earth observation provides surface spatial indicators, while borehole assays provide
+          subsurface grade evidence. Ordinary Kriging interpolates borehole-derived Mn grades
+          across the 3D block model to estimate the spatial distribution of mineralisation.
         </p>
       </div>
 
-      {/* Evidence Fusion indicator */}
+      {/* ── Evidence flow — vertical, technically correct ── */}
       <div className="card" style={{ marginBottom: 'var(--gap-lg)', background: 'var(--bg-card-alt)' }}>
         <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase',
           letterSpacing: '0.07em', color: 'var(--text-muted)', marginBottom: 'var(--gap-md)' }}>
-          Evidence Fusion
+          How the resource model is built
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr auto 1fr auto 1fr', alignItems: 'center', gap: 0 }}>
-          <FusionBlock icon="🛰" label="Satellite Evidence" color="var(--purple)"
-            items={['Spectral anomalies', 'Iron oxide index', 'Clay alteration', 'NDVI stress']}
-            source="Earth Observation" />
-          <FusionOp op="+" />
-          <FusionBlock icon="⛏" label="Borehole Evidence" color="var(--green)"
-            items={['Mn / Fe / SiO₂', 'Assay composites', 'Depth / collar z', 'Spatial coordinates']}
-            source="Borehole + Assay" />
-          <FusionOp op="+" />
-          <FusionBlock icon="📐" label="Spatial Model" color="var(--accent)"
-            items={['Ordinary Kriging', 'Spherical variogram', 'Z-anisotropy ×5', '20-NN estimation']}
-            source="Spatial Model" />
-          <FusionOp op="=" />
-          <FusionBlock icon="🗺" label="Resource Intelligence" color="var(--orange)"
-            items={[`${(prism.declared_reserve_t/1e6).toFixed(2)} Mt modelled`, `${prism.ore_blocks} mineralised blocks`, `${prism.average_mn_pct}% avg Mn`]}
-            source="Spatial Model" highlight />
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 40px 1fr 40px 1fr 40px 1fr', alignItems: 'center', gap: 0 }}>
+
+          {/* EO — surface context only */}
+          <EvidenceCol
+            icon="🛰" label="Earth Observation"
+            role="Surface spatial context"
+            color="var(--purple)"
+            items={['Surface spectral anomalies', 'Iron oxide index', 'Clay alteration index', 'NDVI / terrain']}
+            note="Prioritises where to investigate"
+          />
+
+          <FlowArrow label="informs" />
+
+          {/* Borehole — direct subsurface grades */}
+          <EvidenceCol
+            icon="⛏" label="Borehole + Assay"
+            role="Subsurface grade evidence"
+            color="var(--green)"
+            items={['Mn / Fe / SiO₂ assays', 'Composite grades', 'Depth / collar coords', 'Spatial sample locations']}
+            note="Direct subsurface measurement"
+          />
+
+          <FlowArrow label="input to" />
+
+          {/* Kriging */}
+          <EvidenceCol
+            icon="📐" label="Ordinary Kriging"
+            role="Spatial interpolation"
+            color="var(--accent)"
+            items={['Spherical variogram fit', '20 nearest neighbours', 'Grade estimated per block', 'Kriging variance output']}
+            note="Interpolates borehole grades"
+          />
+
+          <FlowArrow label="produces" />
+
+          {/* Resource model */}
+          <EvidenceCol
+            icon="🗺" label="Resource Model"
+            role="Modelled mineral resource"
+            color="var(--orange)"
+            items={[
+              `${(prism.declared_reserve_t / 1e6).toFixed(2)} Mt modelled`,
+              `${prism.ore_blocks} mineralised blocks`,
+              `${prism.average_mn_pct}% average Mn`,
+              `${prism.mn_cutoff_pct}% Mn cutoff`,
+            ]}
+            note="Passes to Accessibility stage"
+            highlight
+          />
+        </div>
+
+        {/* Accuracy note */}
+        <div style={{
+          marginTop: 'var(--gap-md)', paddingTop: 'var(--gap-sm)',
+          borderTop: '1px solid var(--border-light)',
+          fontSize: '0.72rem', color: 'var(--text-muted)', lineHeight: 1.6,
+          fontStyle: 'italic', textAlign: 'center',
+        }}>
+          EO provides independent surface evidence; resource estimation is derived from
+          borehole assays and spatial interpolation. Synthetic DEMO-01 data — not real MOIL mine data.
         </div>
       </div>
 
-      {/* EO disclaimer */}
-      <div style={{
-        background: 'rgba(88,166,255,.04)', border: '1px solid rgba(88,166,255,.15)',
-        borderRadius: 'var(--radius-sm)', padding: '8px 14px',
-        fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: 'var(--gap-lg)', lineHeight: 1.6,
-      }}>
-        <em>
-          Satellite observations provide surface indicators and spatial context;
-          subsurface reserve estimation is supported by geological, borehole and assay data.
-          Results are based on synthetic DEMO-01 data calibrated to realistic Balaghat-type geology.
-        </em>
-      </div>
-
+      {/* ── Main content: 3D model + stats ── */}
       <div className="grid-2" style={{ gap: 'var(--gap-lg)', alignItems: 'start' }}>
 
-        {/* 3D Spatial Resource Model */}
+        {/* 3D block model */}
         <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
           <div style={{ padding: 'var(--gap-md)', borderBottom: '1px solid var(--border)',
             display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <span style={{ fontWeight: 600 }}>3D Spatial Resource Model</span>
-              <span className="text-muted text-small" style={{ marginLeft: 8 }}>Rotate · Zoom · Hover</span>
+              <span style={{ fontWeight: 600 }}>3D Resource Block Model</span>
+              <span style={{ marginLeft: 8, fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                Rotate · Zoom · Hover for values
+              </span>
             </div>
-            <SourceBadge label="Spatial Model" />
+            <SourceBadge label="Borehole + Kriging" />
           </div>
+
           {loadErr ? (
             <p style={{ padding: 'var(--gap-md)', color: 'var(--risk-high)' }}>
               Could not load block data: {loadErr}
             </p>
           ) : !blocks ? (
             <p style={{ padding: 'var(--gap-md)', color: 'var(--text-muted)', textAlign: 'center' }}>
-              Loading spatial model…
+              Loading resource model…
             </p>
           ) : (
             <div ref={plotRef} style={{ height: 420 }} />
           )}
-          <div style={{ padding: '8px 14px', borderTop: '1px solid var(--border)', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-            Colour: blue → green → orange with increasing Mn grade. Sub-cutoff blocks in dark grey.
+
+          <div style={{ padding: '8px 14px', borderTop: '1px solid var(--border)',
+            fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+            Colour scale: blue → green → orange with increasing Kriging-estimated Mn grade.
+            Sub-cutoff blocks (Mn &lt; {CUTOFF}%) shown in dark grey.
             {' '}{prism.total_blocks?.toLocaleString()} total blocks · {prism.ore_blocks} mineralised.
           </div>
         </div>
 
-        {/* Stats column */}
+        {/* Stats + Kriging params */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-md)' }}>
 
+          {/* Resource summary */}
           <div className="card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--gap-md)' }}>
-              <div className="section-label">Spatially Modelled Mineral Resource</div>
-              <SourceBadge label="Spatial Model" />
+              <span className="section-label">Modelled Mineral Resource</span>
+              <SourceBadge label="Borehole + Kriging" />
             </div>
-            <div className="big-number" style={{ color: 'var(--accent)', marginBottom: 4 }}>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--accent)', lineHeight: 1, marginBottom: 4 }}>
               {(prism.declared_reserve_t / 1e6).toFixed(2)} Mt
             </div>
-            <p className="text-muted text-small">Spatially modelled mineral resource (synthetic)</p>
-            <hr style={{ border: 'none', borderTop: '1px solid var(--border)', margin: 'var(--gap-md) 0' }} />
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--gap-md)' }}>
-              <StatItem label="Total blocks"      value={prism.total_blocks?.toLocaleString()} />
-              <StatItem label="Mineralised blocks"value={prism.ore_blocks}     color="var(--accent)" />
-              <StatItem label="Sub-cutoff blocks" value={prism.waste_blocks} />
-              <StatItem label="Average Mn"        value={`${prism.average_mn_pct}%`} color="var(--green)" />
-              <StatItem label="Mn cutoff"         value={`${prism.mn_cutoff_pct}%`} />
-              <StatItem label="Max Mn"            value={`${prism.max_estimated_mn_pct?.toFixed(1)}%`} />
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: 'var(--gap-md)' }}>
+              Spatially modelled mineral resource — not a reserve statement
+            </p>
+            <hr style={{ border: 'none', borderTop: '1px solid var(--border)', marginBottom: 'var(--gap-md)' }} />
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--gap-sm)' }}>
+              <StatItem label="Total blocks"       value={prism.total_blocks?.toLocaleString()} />
+              <StatItem label="Mineralised blocks" value={prism.ore_blocks}      color="var(--accent)" />
+              <StatItem label="Sub-cutoff blocks"  value={prism.waste_blocks} />
+              <StatItem label="Average Mn grade"   value={`${prism.average_mn_pct}%`} color="var(--green)" />
+              <StatItem label="Mn cutoff applied"  value={`${prism.mn_cutoff_pct}%`} />
+              {prism.max_estimated_mn_pct != null && (
+                <StatItem label="Max Mn (estimated)" value={`${Number(prism.max_estimated_mn_pct).toFixed(1)}%`} />
+              )}
             </div>
           </div>
 
+          {/* Kriging parameters — only fields confirmed in API response */}
           <div className="card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--gap-sm)' }}>
-              <div className="section-label">Spatial Interpolation Model</div>
+              <span className="section-label">Kriging Model Parameters</span>
               <SourceBadge label="Spatial Model" />
             </div>
-            <p className="text-muted text-small" style={{ marginBottom: 'var(--gap-sm)' }}>
-              Ordinary Kriging · Spherical variogram · 20 nearest neighbours
+            <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: 'var(--gap-sm)', lineHeight: 1.5 }}>
+              Ordinary Kriging with a spherical variogram, using 20 nearest-neighbour boreholes
+              per block to estimate Mn grade and kriging variance.
             </p>
-            {prism.variogram && (
+            {v.nugget != null ? (
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, fontSize: '0.8rem' }}>
-                <KrigRow k="Nugget"       v={prism.variogram.nugget?.toFixed(2)} />
-                <KrigRow k="Sill"         v={prism.variogram.sill?.toFixed(2)} />
-                <KrigRow k="Range"        v={`${prism.variogram.range?.toFixed(0)} m`} />
-                <KrigRow k="Z-anisotropy" v="×5" />
+                <KrigRow k="Nugget"  v={Number(v.nugget).toFixed(2)} />
+                <KrigRow k="Sill"    v={Number(v.sill).toFixed(2)} />
+                <KrigRow k="Range"   v={`${Number(v.range).toFixed(0)} m`} />
+                <KrigRow k="Partial" v={Number(v.partial).toFixed(2)} />
               </div>
+            ) : (
+              <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                Variogram parameters not available in current summary.
+              </p>
             )}
           </div>
 
-          <div className="card" style={{ background: 'rgba(88,166,255,.03)', borderColor: 'var(--border-light)' }}>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-              Resource estimate is derived from borehole composites and spatial interpolation —
-              not direct measurement. EO-derived surface anomalies (Iron Oxide Index, Clay Index)
-              correlate with grade patterns and provide independent spatial evidence.
-              Results are based on synthetic DEMO-01 data.
+          {/* Key clarification card */}
+          <div style={{
+            background: 'rgba(88,166,255,.04)', border: '1px solid rgba(88,166,255,.18)',
+            borderRadius: 'var(--radius-md)', padding: 'var(--gap-md)',
+          }}>
+            <p style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase',
+              letterSpacing: '0.06em', color: 'var(--accent)', marginBottom: 8 }}>
+              How this connects to Space Intelligence
             </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <StoryRow icon="🛰" color="var(--purple)"
+                text="Satellite data tells us WHERE surface anomalies and spatial patterns exist." />
+              <StoryRow icon="⛏" color="var(--green)"
+                text="Boreholes tell us WHAT is present below the surface." />
+              <StoryRow icon="📐" color="var(--accent)"
+                text="Kriging uses the borehole grades to estimate the 3D resource distribution." />
+              <StoryRow icon="📍" color="var(--orange)"
+                text="OreSight passes this resource model to Accessibility to determine what can realistically be mined." />
+            </div>
           </div>
         </div>
       </div>
@@ -231,36 +304,59 @@ export default function PrismView({ prism }) {
   )
 }
 
-/* ── helpers ──────────────────────────────────────────────────── */
-function FusionBlock({ icon, label, color, items, source, highlight }) {
+/* ── sub-components ──────────────────────────────────────────── */
+
+function EvidenceCol({ icon, label, role, color, items, note, highlight }) {
   return (
     <div style={{
-      padding: '10px 12px',
-      background: highlight ? `${color}0d` : 'transparent',
-      border: highlight ? `1px solid ${color}30` : '1px solid var(--border-light)',
+      padding: '12px 10px', textAlign: 'center',
+      background: highlight ? `${color}0c` : 'transparent',
+      border: `1px solid ${highlight ? color + '30' : 'var(--border-light)'}`,
       borderRadius: 'var(--radius-sm)',
-      textAlign: 'center',
     }}>
-      <div style={{ fontSize: '1.1rem', marginBottom: 3 }}>{icon}</div>
-      <p style={{ fontSize: '0.72rem', fontWeight: 700, color, marginBottom: 4, lineHeight: 1.3 }}>{label}</p>
+      <div style={{ fontSize: '1.2rem', marginBottom: 4 }}>{icon}</div>
+      <p style={{ fontSize: '0.72rem', fontWeight: 700, color, lineHeight: 1.3, marginBottom: 3 }}>
+        {label}
+      </p>
+      <p style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', marginBottom: 6,
+        fontStyle: 'italic', lineHeight: 1.3 }}>
+        {role}
+      </p>
       {items.map(item => (
-        <p key={item} style={{ fontSize: '0.68rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>{item}</p>
+        <p key={item} style={{ fontSize: '0.65rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>{item}</p>
       ))}
-      <div style={{
-        marginTop: 6, fontSize: '0.6rem', fontWeight: 700, textTransform: 'uppercase',
-        letterSpacing: '0.05em', color, background: `${color}15`,
-        padding: '1px 6px', borderRadius: 8, display: 'inline-block',
-      }}>
-        SOURCE: {source}
-      </div>
+      {note && (
+        <div style={{
+          marginTop: 6, fontSize: '0.6rem', fontWeight: 700, textTransform: 'uppercase',
+          letterSpacing: '0.04em', color, background: `${color}15`,
+          padding: '2px 6px', borderRadius: 8, display: 'inline-block',
+        }}>
+          {note}
+        </div>
+      )}
     </div>
   )
 }
 
-function FusionOp({ op }) {
+function FlowArrow({ label }) {
   return (
-    <div style={{ textAlign: 'center', padding: '0 6px', color: 'var(--text-muted)', fontWeight: 700, fontSize: '1.1rem' }}>
-      {op}
+    <div style={{ textAlign: 'center', padding: '0 4px' }}>
+      <div style={{ color: 'var(--text-muted)', fontSize: '1.1rem', marginBottom: 2 }}>→</div>
+      {label && (
+        <p style={{ fontSize: '0.58rem', color: 'var(--text-muted)', textTransform: 'uppercase',
+          letterSpacing: '0.04em', lineHeight: 1.2 }}>
+          {label}
+        </p>
+      )}
+    </div>
+  )
+}
+
+function StoryRow({ icon, color, text }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+      <span style={{ fontSize: '1rem', flexShrink: 0 }}>{icon}</span>
+      <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{text}</p>
     </div>
   )
 }
@@ -268,7 +364,7 @@ function FusionOp({ op }) {
 function SourceBadge({ label }) {
   return (
     <span style={{
-      fontSize: '0.62rem', fontWeight: 700, textTransform: 'uppercase',
+      fontSize: '0.6rem', fontWeight: 700, textTransform: 'uppercase',
       letterSpacing: '0.05em', color: 'var(--purple)', background: 'rgba(188,140,255,.12)',
       padding: '2px 7px', borderRadius: 10, whiteSpace: 'nowrap',
     }}>
@@ -281,7 +377,7 @@ function StatItem({ label, value, color }) {
   return (
     <div>
       <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginBottom: 2 }}>{label}</p>
-      <p style={{ fontWeight: 700, color: color ?? 'var(--text-primary)', fontSize: '1.02rem' }}>{value}</p>
+      <p style={{ fontWeight: 700, color: color ?? 'var(--text-primary)', fontSize: '1rem' }}>{value ?? '—'}</p>
     </div>
   )
 }
