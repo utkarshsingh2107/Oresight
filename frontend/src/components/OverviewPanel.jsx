@@ -6,51 +6,6 @@ const RISK_COLORS = {
   HIGH: 'var(--risk-high)', CRITICAL: 'var(--risk-critical)',
 }
 
-/* ── OBSERVE → INTERPRET → PREDICT → DECIDE pipeline ─────────── */
-const PIPELINE_STEPS = [
-  {
-    id: 'satellite', phase: 'OBSERVE',
-    icon: '🛰', color: 'var(--purple)',
-    title: 'Earth Observation',
-    desc:  'Satellite spectral intelligence',
-  },
-  {
-    id: 'prism', phase: 'INTERPRET',
-    icon: '⛏', color: 'var(--accent)',
-    title: 'Resource Mapping',
-    desc:  'Geological + EO fusion',
-  },
-  {
-    id: 'ear', phase: 'ASSESS',
-    icon: '📍', color: 'var(--green)',
-    title: 'Accessibility',
-    desc:  'Terrain + operational constraints',
-  },
-  {
-    id: 'pulse', phase: 'PREDICT',
-    icon: '📈', color: 'var(--yellow)',
-    title: 'Production Forecast',
-    desc:  'LightGBM P10/P50/P90',
-  },
-  {
-    id: 'nudge', phase: 'DECIDE',
-    icon: '⚡', color: 'var(--orange)',
-    title: 'Decision Engine',
-    desc:  'MILP optimisation',
-  },
-]
-
-/* ── System architecture flow (compact) ─────────────────────── */
-const ARCH_LAYERS = [
-  { icon: '🛰', label: 'EARTH OBSERVATION',    sub: 'Sentinel-2 · Bhuvan · DEM · Spectral data',      color: 'var(--purple)' },
-  { icon: '🗺', label: 'SPATIAL INTELLIGENCE', sub: 'Spectral indices · Terrain · Anomaly detection',  color: 'var(--accent)' },
-  { icon: '⛏', label: 'GEOLOGICAL FUSION',     sub: 'Boreholes · Assays · Kriging · Block model',      color: 'var(--green)' },
-  { icon: '📦', label: 'RESOURCE INTELLIGENCE',sub: 'Mineralised zones · Spatially modelled resource', color: 'var(--yellow)' },
-  { icon: '⚙', label: 'OPERATIONAL INTEL',     sub: 'Accessibility · Equipment · Weather',             color: 'var(--orange)' },
-  { icon: '📈', label: 'PREDICTIVE INTEL',     sub: 'LightGBM · P10-P50-P90 · Risk & SHAP',           color: 'var(--red)' },
-  { icon: '⚡', label: 'DECISION INTEL',        sub: 'MILP / NUDGE · Recommended actions',              color: 'var(--purple)' },
-]
-
 export default function OverviewPanel({ overview, onNavigate }) {
   if (!overview) return null
   const p  = overview.prism
@@ -63,205 +18,308 @@ export default function OverviewPanel({ overview, onNavigate }) {
   return (
     <div className="stage-view">
 
-      {/* ── Hero heading ── */}
+      {/* ── Hero ── */}
       <div style={{ marginBottom: 'var(--gap-lg)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-          <span style={{ fontSize: '1.4rem' }}>🛰</span>
+          <span style={{ fontSize: '1.3rem' }}>🛰</span>
           <h1 style={{ marginBottom: 0 }}>Space-Enabled Mine Intelligence</h1>
         </div>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', maxWidth: 760 }}>
-          Earth observation and spatial intelligence identify where mineral resources are.
-          Geological fusion estimates the resource. Operational AI forecasts production,
-          quantifies risk, and recommends the optimal intervention.
+        <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', maxWidth: 720 }}>
+          Integrates Earth-observation data, geological evidence and operational AI to identify
+          resources, assess accessibility, forecast production and support mine decisions.
         </p>
       </div>
 
-      {/* ── System architecture compact diagram ── */}
+      {/* ── Evidence chain — ONE compact card ── */}
       <div className="card" style={{ marginBottom: 'var(--gap-lg)', background: 'var(--bg-card-alt)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 'var(--gap-md)' }}>
-          <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-muted)' }}>
-            System Architecture
-          </span>
-          <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
-          <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>DEMO-01 · Synthetic EO data</span>
+        <div style={{ display: 'flex', alignItems: 'stretch', gap: 0 }}>
+
+          {/* Space intelligence */}
+          <div style={{
+            flex: 1, padding: '12px 16px',
+            borderRight: '1px solid var(--border)',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+              <span style={{ fontSize: '1rem' }}>🛰</span>
+              <span style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--purple)' }}>
+                SPACE INTELLIGENCE
+              </span>
+            </div>
+            <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+              Satellite spectral indicators · Terrain / DEM · Spatial anomaly detection
+            </p>
+            <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: 6, fontStyle: 'italic' }}>
+              Provides surface spatial context
+            </p>
+          </div>
+
+          {/* Plus / fusion operator */}
+          <div style={{ display: 'flex', alignItems: 'center', padding: '0 16px',
+            color: 'var(--text-muted)', fontSize: '1.2rem', fontWeight: 300 }}>
+            +
+          </div>
+
+          {/* Geological validation */}
+          <div style={{
+            flex: 1, padding: '12px 16px',
+            borderRight: '1px solid var(--border)',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+              <span style={{ fontSize: '1rem' }}>⛏</span>
+              <span style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--green)' }}>
+                GEOLOGICAL VALIDATION
+              </span>
+            </div>
+            <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+              Boreholes · Assays · Kriging · 3D block model
+            </p>
+            <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: 6, fontStyle: 'italic' }}>
+              Subsurface reserve estimation
+            </p>
+          </div>
+
+          {/* Arrow */}
+          <div style={{ display: 'flex', alignItems: 'center', padding: '0 12px',
+            color: 'var(--text-muted)', fontSize: '1.1rem' }}>
+            →
+          </div>
+
+          {/* Result */}
+          <div style={{ flex: 1, padding: '12px 16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+              <span style={{ fontSize: '1rem' }}>📦</span>
+              <span style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--orange)' }}>
+                RESOURCE INTELLIGENCE
+              </span>
+            </div>
+            <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+              Spatially modelled mineral resource · Accessible reserve · Production forecast
+            </p>
+            <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: 6, fontStyle: 'italic' }}>
+              Integrated evidence output
+            </p>
+          </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'stretch', gap: 0, overflowX: 'auto' }}>
-          {ARCH_LAYERS.map((layer, i) => (
-            <React.Fragment key={layer.label}>
+
+        {/* Disclaimer line */}
+        <div style={{
+          marginTop: 10, paddingTop: 10, borderTop: '1px solid var(--border-light)',
+          fontSize: '0.7rem', color: 'var(--text-muted)', textAlign: 'center', fontStyle: 'italic',
+        }}>
+          Satellite observations provide surface indicators and spatial context only —
+          subsurface reserve estimation is supported by borehole and assay data.
+        </div>
+      </div>
+
+      {/* ── 6 KPI metrics ── */}
+      <div style={{
+        display: 'grid', gridTemplateColumns: 'repeat(3,1fr)',
+        gap: 'var(--gap-md)', marginBottom: 'var(--gap-lg)',
+      }}>
+
+        {/* Geological resource */}
+        <KpiCard
+          label="Geological Resource"
+          source="Spatial Model"
+          sourceColor="var(--accent)"
+          onClick={() => onNavigate('prism')}
+        >
+          <BigVal value={`${(p.declared_reserve_t / 1e6).toFixed(2)} Mt`} color="var(--accent)" />
+          <SubVal text={`${p.ore_blocks} mineralised blocks · avg Mn ${p.average_mn_pct}%`} />
+        </KpiCard>
+
+        {/* Accessible resource */}
+        <KpiCard
+          label="Accessible Resource"
+          source="EAR Analysis"
+          sourceColor="var(--green)"
+          onClick={() => onNavigate('ear')}
+        >
+          <BigVal value={`${(e.effective_accessible_reserve_t / 1e6).toFixed(2)} Mt`} color="var(--green)" />
+          <div style={{ marginTop: 6 }}>
+            <div style={{ background: 'var(--border)', borderRadius: 3, height: 5, overflow: 'hidden' }}>
               <div style={{
-                flex: 1, minWidth: 110, padding: '10px 8px', textAlign: 'center',
-                borderLeft: i === 0 ? 'none' : '1px solid var(--border-light)',
-              }}>
-                <div style={{ fontSize: '1.1rem', marginBottom: 4 }}>{layer.icon}</div>
-                <p style={{ fontSize: '0.68rem', fontWeight: 700, color: layer.color,
-                  textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1.3, marginBottom: 3 }}>
-                  {layer.label}
-                </p>
-                <p style={{ fontSize: '0.65rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>
-                  {layer.sub}
-                </p>
-              </div>
-              {i < ARCH_LAYERS.length - 1 && (
-                <div style={{ display: 'flex', alignItems: 'center', color: 'var(--text-muted)', fontSize: '0.8rem', padding: '0 2px', flexShrink: 0 }}>↓</div>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-        <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: 8, fontStyle: 'italic', textAlign: 'center' }}>
-          Integration-ready: Sentinel-2 · Sentinel-1 SAR · ISRO Bhuvan · Landsat · SRTM DEM
-        </p>
-      </div>
-
-      {/* ── OBSERVE → INTERPRET → PREDICT → DECIDE clickable pipeline ── */}
-      <div className="card" style={{ marginBottom: 'var(--gap-lg)' }}>
-        <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase',
-          letterSpacing: '0.08em', color: 'var(--text-muted)', marginBottom: 'var(--gap-md)' }}>
-          Intelligence Pipeline — click any stage to explore
-        </div>
-        <div style={{ display: 'flex', alignItems: 'stretch', overflowX: 'auto', gap: 0 }}>
-          {PIPELINE_STEPS.map((s, i) => (
-            <React.Fragment key={s.id}>
-              {i > 0 && (
-                <div style={{ display: 'flex', alignItems: 'center', color: 'var(--text-muted)', fontSize: '1rem', padding: '0 4px', flexShrink: 0 }}>→</div>
-              )}
-              <button
-                onClick={() => onNavigate(s.id)}
-                style={{
-                  flex: 1, background: 'none', border: 'none',
-                  borderRadius: 'var(--radius-sm)', padding: 'var(--gap-md) var(--gap-sm)',
-                  textAlign: 'center', cursor: 'pointer', minWidth: 120,
-                  transition: 'background 0.15s',
-                }}
-                onMouseEnter={e => e.currentTarget.style.background = `rgba(88,166,255,.05)`}
-                onMouseLeave={e => e.currentTarget.style.background = 'none'}
-                aria-label={`Navigate to ${s.title}`}
-              >
-                <div style={{ fontSize: '0.62rem', fontWeight: 700, color: s.color,
-                  textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 4 }}>
-                  {s.phase}
-                </div>
-                <div style={{ fontSize: '1.3rem', marginBottom: 4 }}>{s.icon}</div>
-                <p style={{ fontWeight: 700, fontSize: '0.82rem', color: 'var(--text-primary)', marginBottom: 2 }}>
-                  {s.title}
-                </p>
-                <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{s.desc}</p>
-              </button>
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-
-      {/* ── KPI cards ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--gap-md)', marginBottom: 'var(--gap-lg)' }}>
-
-        {/* Resource */}
-        <div className="card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--gap-sm)' }}>
-            <div className="section-label">Mineral Resource</div>
-            <SourceBadge label="Spatial Model" color="var(--accent)" />
-          </div>
-          <div style={{ display: 'flex', gap: 'var(--gap-lg)', marginTop: 4 }}>
-            <div>
-              <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Modelled resource</p>
-              <p style={{ fontWeight: 800, fontSize: '1.35rem', color: 'var(--accent)' }}>
-                {(p.declared_reserve_t / 1e6).toFixed(2)} Mt
-              </p>
+                width: `${(e.accessibility_ratio * 100).toFixed(1)}%`,
+                height: '100%', background: 'var(--green)', borderRadius: 3,
+              }} />
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', color: 'var(--text-muted)' }}>→</div>
-            <div>
-              <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Accessible</p>
-              <p style={{ fontWeight: 800, fontSize: '1.35rem', color: 'var(--green)' }}>
-                {(e.effective_accessible_reserve_t / 1e6).toFixed(2)} Mt
-              </p>
-            </div>
+            <SubVal text={`${(e.accessibility_ratio * 100).toFixed(1)}% of modelled resource accessible`} />
           </div>
-          <p className="text-muted text-small" style={{ marginTop: 'var(--gap-sm)' }}>
-            {(e.accessibility_ratio * 100).toFixed(1)}% accessible under current constraints
-          </p>
-        </div>
+        </KpiCard>
 
-        {/* Forecast */}
-        <div className="card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--gap-sm)' }}>
-            <div className="section-label">30-Day Production Forecast</div>
-            <SourceBadge label="Forecast Model" color="var(--yellow)" />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 4 }}>
-            <div className="flex-between">
-              <span className="text-muted text-small">Planned target</span>
-              <span style={{ fontWeight: 600 }}>{fmtT(pu.planned_production_t)} t</span>
-            </div>
-            <div className="flex-between">
-              <span className="text-muted text-small">P50 expected</span>
-              <span style={{ fontWeight: 700, color: 'var(--accent)' }}>{fmtT(pu.expected_production_t)} t</span>
-            </div>
-            <div className="flex-between">
-              <span className="text-muted text-small">Expected shortfall</span>
-              <span style={{ fontWeight: 700, color: 'var(--risk-high)' }}>−{fmtT(pu.expected_shortfall_t)} t</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Risk */}
-        <div className="card" style={{ borderColor: rc }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--gap-sm)' }}>
-            <div className="section-label">Shortfall Risk</div>
-            <SourceBadge label="SHAP Attribution" color={rc} />
-          </div>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 4 }}>
-            <span style={{ fontWeight: 900, fontSize: '2rem', color: rc, lineHeight: 1 }}>
-              {fmtPct(pu.shortfall_probability)}
-            </span>
-            <span className={`badge badge--${rl.toLowerCase()}`} style={{ fontSize: '0.78rem', padding: '2px 10px' }}>
+        {/* Shortfall risk */}
+        <KpiCard
+          label="Shortfall Risk"
+          source="SHAP Attribution"
+          sourceColor={rc}
+          borderColor={rc}
+          onClick={() => onNavigate('pulse')}
+        >
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+            <BigVal value={fmtPct(pu.shortfall_probability)} color={rc} />
+            <span className={`badge badge--${rl.toLowerCase()}`} style={{ fontSize: '0.75rem', padding: '2px 9px' }}>
               {rl}
             </span>
           </div>
-          <p className="text-muted text-small" style={{ marginTop: 6 }}>
-            Probability of missing production target
-          </p>
-        </div>
+          <SubVal text="Probability of missing production target" />
+        </KpiCard>
+
+        {/* P50 forecast */}
+        <KpiCard
+          label="P50 Production Forecast"
+          source="Forecast Model"
+          sourceColor="var(--yellow)"
+          onClick={() => onNavigate('pulse')}
+        >
+          <BigVal value={`${fmtT(pu.expected_production_t)} t`} color="var(--accent)" />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 3, marginTop: 6 }}>
+            <Row label="Planned target" value={`${fmtT(pu.planned_production_t)} t`} />
+            <Row label="P10 pessimistic" value={`${fmtT(pu.p10_production_t)} t`} />
+            <Row label="P90 optimistic" value={`${fmtT(pu.p90_production_t)} t`} />
+          </div>
+        </KpiCard>
+
+        {/* Expected shortfall */}
+        <KpiCard
+          label="Expected Shortfall"
+          source="Forecast Model"
+          sourceColor="var(--risk-high)"
+          borderColor="rgba(240,136,62,.3)"
+          onClick={() => onNavigate('pulse')}
+        >
+          <BigVal value={`−${fmtT(pu.expected_shortfall_t)} t`} color="var(--risk-high)" />
+          <SubVal text={`${((pu.expected_shortfall_t / pu.planned_production_t) * 100).toFixed(1)}% below planned target · 30-day horizon`} />
+        </KpiCard>
+
+        {/* Space intelligence summary */}
+        <KpiCard
+          label="Space Intelligence"
+          source="Satellite / Synthetic EO"
+          sourceColor="var(--purple)"
+          onClick={() => onNavigate('satellite')}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 3, marginTop: 4 }}>
+            <Row label="EO anomaly targets"   value="5 flagged" color="var(--purple)" />
+            <Row label="Mean mineralisation"  value="44.6%" color="var(--accent)" />
+            <Row label="Integration-ready"    value="Sentinel-2 · Bhuvan" />
+          </div>
+          <SubVal text="Simulated EO — not real satellite imagery" italic />
+        </KpiCard>
       </div>
 
-      {/* ── Best action CTA ── */}
+      {/* ── NUDGE recommendation card ── */}
       <div
         onClick={() => onNavigate('nudge')}
         role="button"
         aria-label="View Decision Engine recommendation"
         style={{
-          background: 'rgba(88,166,255,.05)', border: '1px solid var(--accent-dim)',
+          background: 'rgba(63,185,80,.04)', border: '1px solid rgba(63,185,80,.25)',
           borderRadius: 'var(--radius-md)', padding: 'var(--gap-md)',
           cursor: 'pointer', transition: 'background 0.15s',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--gap-md)',
         }}
-        onMouseEnter={e => e.currentTarget.style.background = 'rgba(88,166,255,.1)'}
-        onMouseLeave={e => e.currentTarget.style.background = 'rgba(88,166,255,.05)'}
+        onMouseEnter={ev => ev.currentTarget.style.background = 'rgba(63,185,80,.08)'}
+        onMouseLeave={ev => ev.currentTarget.style.background = 'rgba(63,185,80,.04)'}
       >
-        <div>
-          <p style={{ fontSize: '0.68rem', color: 'var(--accent)', fontWeight: 700,
-            textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 3 }}>
-            ⚡ Decision Engine — recommended action
-          </p>
-          <p style={{ fontWeight: 700, fontSize: '1rem' }}>{n.action_name}</p>
-          <p className="text-muted text-small" style={{ marginTop: 2 }}>
-            Expected: +{fmtT(n.expected_production_gain_t)} t ·
-            Shortfall reduction: −{fmtT(n.expected_shortfall_reduction_t)} t ·
-            Derived from integrated spatial, geological and operational intelligence
-          </p>
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 'var(--gap-md)', flexWrap: 'wrap' }}>
+
+          {/* Left — label + action name */}
+          <div style={{ flex: 1, minWidth: 220 }}>
+            <p style={{
+              fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase',
+              letterSpacing: '0.07em', color: 'var(--green)', marginBottom: 4,
+            }}>
+              ⚡ Decision Engine — Recommended Action
+            </p>
+            <p style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: 4 }}>
+              {n.action_name}
+            </p>
+            <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+              Derived from integrated spatial, geological and operational intelligence
+            </p>
+          </div>
+
+          {/* Right — before/after + impact */}
+          <div style={{ display: 'flex', gap: 'var(--gap-lg)', flexShrink: 0, flexWrap: 'wrap', alignItems: 'center' }}>
+            <NudgeStat label="Current" value={`${n.baseline_value?.toFixed(2)} m/day`} />
+            <div style={{ color: 'var(--text-muted)', fontSize: '1.2rem' }}>→</div>
+            <NudgeStat label="Recommended" value={`${n.recommended_value?.toFixed(2)} m/day`} accent="var(--green)" />
+            <div style={{ width: 1, height: 40, background: 'var(--border)' }} />
+            <NudgeStat label="Production gain" value={`+${fmtT(n.expected_production_gain_t)} t`} accent="var(--green)" />
+            <NudgeStat label="Shortfall reduction" value={`−${fmtT(n.expected_shortfall_reduction_t)} t`} accent="var(--green)" />
+          </div>
+
+          <div style={{ color: 'var(--green)', fontSize: '1.3rem', alignSelf: 'center', flexShrink: 0 }}>→</div>
         </div>
-        <div style={{ color: 'var(--accent)', fontSize: '1.4rem', flexShrink: 0 }}>→</div>
       </div>
     </div>
   )
 }
 
-function SourceBadge({ label, color }) {
+/* ── small helpers ────────────────────────────────────────────── */
+
+function KpiCard({ label, source, sourceColor, borderColor, onClick, children }) {
   return (
-    <span style={{
-      fontSize: '0.62rem', fontWeight: 700, textTransform: 'uppercase',
-      letterSpacing: '0.05em', color, background: `${color}18`,
-      padding: '2px 7px', borderRadius: 10, whiteSpace: 'nowrap',
-    }}>
-      {label}
-    </span>
+    <div
+      className="card"
+      onClick={onClick}
+      role={onClick ? 'button' : undefined}
+      style={{
+        cursor: onClick ? 'pointer' : 'default',
+        borderColor: borderColor ?? 'var(--border)',
+        transition: 'border-color 0.15s',
+      }}
+      onMouseEnter={ev => onClick && (ev.currentTarget.style.borderColor = sourceColor)}
+      onMouseLeave={ev => onClick && (ev.currentTarget.style.borderColor = borderColor ?? 'var(--border)')}
+    >
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+        <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase',
+          letterSpacing: '0.06em', color: 'var(--text-muted)' }}>
+          {label}
+        </span>
+        <span style={{
+          fontSize: '0.6rem', fontWeight: 700, textTransform: 'uppercase',
+          letterSpacing: '0.04em', color: sourceColor,
+          background: `${sourceColor}15`, padding: '2px 6px', borderRadius: 8,
+        }}>
+          {source}
+        </span>
+      </div>
+      {children}
+    </div>
+  )
+}
+
+function BigVal({ value, color }) {
+  return (
+    <p style={{ fontWeight: 800, fontSize: '1.55rem', color: color ?? 'var(--text-primary)', lineHeight: 1, marginBottom: 4 }}>
+      {value}
+    </p>
+  )
+}
+
+function SubVal({ text, italic }) {
+  return (
+    <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 4,
+      fontStyle: italic ? 'italic' : 'normal', lineHeight: 1.4 }}>
+      {text}
+    </p>
+  )
+}
+
+function Row({ label, value, color }) {
+  return (
+    <div className="flex-between" style={{ fontSize: '0.78rem' }}>
+      <span style={{ color: 'var(--text-muted)' }}>{label}</span>
+      <span style={{ fontWeight: 600, color: color ?? 'var(--text-primary)' }}>{value}</span>
+    </div>
+  )
+}
+
+function NudgeStat({ label, value, accent }) {
+  return (
+    <div style={{ textAlign: 'center', minWidth: 80 }}>
+      <p style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginBottom: 3 }}>{label}</p>
+      <p style={{ fontWeight: 700, fontSize: '0.95rem', color: accent ?? 'var(--text-primary)' }}>{value}</p>
+    </div>
   )
 }
