@@ -101,11 +101,17 @@ export default function NudgeView({ nudge, nudgeCands }) {
         </p>
       </div>
 
-      {/* ─── Best action hero ─── */}
-      <div style={{ background: 'var(--bg-card-alt)', border: '2px solid var(--accent-dim)', borderRadius: 'var(--radius-lg)', padding: 'var(--gap-lg)', marginBottom: 'var(--gap-lg)' }}>
+      {/* ─── Best action hero — Stitch primary amber ─── */}
+      <div style={{
+        background: 'rgba(217,119,6,.06)',
+        border: '2px solid var(--primary-dim)',
+        borderRadius: 'var(--radius-lg)',
+        padding: 'var(--gap-lg)',
+        marginBottom: 'var(--gap-lg)',
+      }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 'var(--gap-md)', flexWrap: 'wrap' }}>
           <div style={{ flex: 1, minWidth: 280 }}>
-            <div style={{ fontSize: '0.72rem', color: 'var(--accent)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
+            <div style={{ fontSize: '0.65rem', color: 'var(--primary)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
               ★ Recommended action
             </div>
             <h2 style={{ color: 'var(--text-primary)', marginBottom: 8 }}>{ba.action_name}</h2>
@@ -119,7 +125,7 @@ export default function NudgeView({ nudge, nudgeCands }) {
               value={formatFeatureValue(ba.feature, ba.baseline_value)}
               sub={featureUnitHint(ba.feature)}
             />
-            <div style={{ display: 'flex', alignItems: 'center', fontSize: '1.5rem', color: 'var(--green)' }}>→</div>
+            <div style={{ display: 'flex', alignItems: 'center', fontSize: '1.5rem', color: 'var(--primary)' }}>→</div>
             <InterventionStat
               label="Recommended"
               value={formatFeatureValue(ba.feature, ba.recommended_value)}
@@ -207,7 +213,7 @@ function CandidateCard({ candidate: c, isBest }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
             <span style={{ fontWeight: isBest ? 700 : 600, fontSize: '0.95rem' }}>{c.action_name}</span>
             {isBest && (
-              <span style={{ fontSize: '0.7rem', background: 'var(--accent-dim)', color: 'white', padding: '2px 8px', borderRadius: 10, fontWeight: 700 }}>
+              <span style={{ fontSize: '0.65rem', background: 'var(--primary-dim)', color: '#0f141b', padding: '2px 8px', borderRadius: 'var(--radius-sm)', fontWeight: 700 }}>
                 RECOMMENDED
               </span>
             )}
@@ -235,7 +241,7 @@ function CandidateCard({ candidate: c, isBest }) {
       <div className="progress-bar-track" style={{ height: 4, marginTop: 6 }}>
         <div className="progress-bar-fill" style={{
           width: `${barW}%`,
-          background: isBest ? 'var(--accent)' : 'var(--green)',
+          background: isBest ? 'var(--primary)' : 'var(--green)',
         }} />
       </div>
     </div>
