@@ -1,12 +1,17 @@
 import React from 'react'
 
+/**
+ * Stitch Intelligence Pipeline Strip
+ * Orchestrates the 6-stage analytical pipeline:
+ * OBSERVE (EO) → INTERPRET (Prism) → ASSESS (EAR) → PREDICT (Pulse) → DECIDE (Nudge)
+ */
 const STAGES = [
-  { id: 'overview',   label: 'Mission Overview',    q: 'What does the system know?' },
-  { id: 'satellite',  label: 'Space Intelligence',  q: 'What does EO reveal?' },
-  { id: 'prism',      label: 'Resource Mapping',    q: 'Where are the mineralised zones?' },
-  { id: 'ear',        label: 'Accessibility',       q: 'What can be accessed?' },
-  { id: 'pulse',      label: 'Production Forecast', q: 'What can we produce?' },
-  { id: 'nudge',      label: 'Decision Engine',     q: 'What should we do?' },
+  { id: 'overview',  num: '01', label: 'Mission Overview',    q: 'What does the system know?' },
+  { id: 'satellite', num: '02', label: 'Space Intelligence',  q: 'What does EO reveal?', isSat: true },
+  { id: 'prism',     num: '03', label: 'Resource Mapping',    q: 'Where are the mineralised zones?' },
+  { id: 'ear',       num: '04', label: 'Accessibility',       q: 'What can be accessed?' },
+  { id: 'pulse',     num: '05', label: 'Production Forecast', q: 'What can we produce?' },
+  { id: 'nudge',     num: '06', label: 'Decision Engine',     q: 'What should we do?', isAction: true },
 ]
 
 export default function PipelineStrip({ activeStage, onSelect }) {
@@ -20,36 +25,43 @@ export default function PipelineStrip({ activeStage, onSelect }) {
         border: '1px solid var(--border)',
         borderRadius: 'var(--radius-md)',
         overflow: 'hidden',
-        overflowX: 'auto',        /* design.md §21 — horizontal scroll on mobile */
+        overflowX: 'auto',
         marginBottom: 'var(--gap-lg)',
         WebkitOverflowScrolling: 'touch',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
       }}
     >
       {STAGES.map((s, i) => {
         const active  = activeStage === s.id
-        const isSat   = s.id === 'satellite'
-        const isFinal = s.id === 'nudge'
+        const isSat   = s.isSat
+        const isFinal = s.isAction
 
-        /* Active accent: amber for decision/action stages, blue for EO, amber default */
+        // Active accent: Amber for operational decisions, Cyan for Earth Observation
         const activeColor = isSat
-          ? 'var(--accent)'           /* blue for space intelligence */
+          ? 'var(--accent-bright)'
           : isFinal
-          ? 'var(--primary)'          /* amber for decision engine */
-          : 'var(--primary)'          /* amber primary for all others */
+          ? 'var(--primary)'
+          : 'var(--primary)'
+
+        const activeBorder = isSat
+          ? 'var(--accent-dim)'
+          : 'var(--primary-dim)'
 
         const activeBg = isSat
-          ? 'rgba(147,204,255,.07)'
-          : 'rgba(217,119,6,.07)'
+          ? 'rgba(56, 189, 248, 0.08)'
+          : 'rgba(217, 119, 7, 0.08)'
 
         return (
           <React.Fragment key={s.id}>
             {i > 0 && (
-              <div style={{
-                width: 1,
-                background: 'var(--border)',
-                flexShrink: 0,
-                alignSelf: 'stretch',
-              }} />
+              <div
+                style={{
+                  width: 1,
+                  background: 'var(--border)',
+                  flexShrink: 0,
+                  alignSelf: 'stretch',
+                }}
+              />
             )}
             <button
               onClick={() => onSelect(s.id)}
@@ -57,49 +69,76 @@ export default function PipelineStrip({ activeStage, onSelect }) {
               aria-label={`Stage: ${s.label}`}
               style={{
                 flex: 1,
-                padding: '10px 8px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '10px 8px 8px',
                 border: 'none',
                 borderRadius: 0,
                 textAlign: 'center',
                 cursor: 'pointer',
+                background: active ? activeBg : 'transparent',
                 borderBottom: active
-                  ? `2px solid ${activeColor}`
-                  : '2px solid transparent',
-                backgroundColor: active ? activeBg : 'transparent',
-                transition: 'background-color 0.15s',
-                minWidth: 0,
+                  ? `3px solid ${activeBorder}`
+                  : '3px solid transparent',
+                transition: 'all 0.15s ease',
+                minWidth: 130,
+                position: 'relative',
               }}
               onMouseEnter={ev => {
-                if (!active) ev.currentTarget.style.backgroundColor = 'rgba(255,255,255,.03)'
+                if (!active) ev.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.03)'
               }}
               onMouseLeave={ev => {
                 if (!active) ev.currentTarget.style.backgroundColor = 'transparent'
               }}
             >
-              {/* Stage name */}
-              <div style={{
-                fontWeight: 600,
-                fontSize: '0.8rem',
-                color: active ? activeColor : 'var(--text-primary)',
-                letterSpacing: '-0.005em',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}>
-                {isSat && (
-                  <span style={{ marginRight: 4, fontSize: '0.7rem' }}>🛰</span>
-                )}
+              {/* Micro Step Index */}
+              <div
+                style={{
+                  fontSize: '0.58rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  color: active ? activeColor : 'var(--text-muted)',
+                  marginBottom: 3,
+                }}
+              >
+                STAGE {s.num}
+              </div>
+
+              {/* Stage Title */}
+              <div
+                style={{
+                  fontWeight: active ? 700 : 600,
+                  fontSize: '0.82rem',
+                  color: active ? activeColor : 'var(--text-primary)',
+                  letterSpacing: '-0.005em',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 4,
+                }}
+              >
+                {isSat && <span style={{ fontSize: '0.75rem' }}>🛰</span>}
+                {isFinal && <span style={{ fontSize: '0.75rem', color: 'var(--primary)' }}>⚡</span>}
                 {s.label}
               </div>
+
               {/* Sub-question */}
-              <div style={{
-                fontSize: '0.65rem',
-                color: 'var(--text-muted)',
-                marginTop: 2,
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}>
+              <div
+                style={{
+                  fontSize: '0.66rem',
+                  color: active ? 'var(--text-secondary)' : 'var(--text-muted)',
+                  marginTop: 2,
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                }}
+              >
                 {s.q}
               </div>
             </button>

@@ -1,0 +1,548 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"inverse-primary":"#006398","on-surface":"#d4e4fa","on-secondary-fixed-variant":"#004c69","tertiary-fixed-dim":"#d0bcff","secondary":"#7bd0ff","on-primary-fixed":"#001d31","primary":"#93ccff","primary-fixed":"#cce5ff","error-container":"#93000a","primary-fixed-dim":"#93ccff","outline":"#89929b","on-error":"#690005","on-primary-fixed-variant":"#004b73","tertiary-container":"#a078ff","surface-variant":"#273647","on-primary-container":"#002c47","tertiary-fixed":"#e9ddff","inverse-surface":"#d4e4fa","on-surface-variant":"#bfc7d2","tertiary":"#d0bcff","background":"#051424","surface-bright":"#2c3a4c","surface":"#051424","secondary-fixed":"#c4e7ff","on-secondary-fixed":"#001e2c","secondary-container":"#00a6e0","on-secondary":"#00354a","on-tertiary-fixed-variant":"#5516be","surface-container-highest":"#273647","outline-variant":"#3f4850","surface-container-lowest":"#010f1f","secondary-fixed-dim":"#7bd0ff","on-secondary-container":"#00374d","surface-container-high":"#1c2b3c","inverse-on-surface":"#233143","on-background":"#d4e4fa","primary-container":"#3198dc","surface-dim":"#051424","on-primary":"#003351","on-tertiary-fixed":"#23005c","surface-container":"#122131","on-error-container":"#ffdad6","surface-tint":"#93ccff","error":"#ffb4ab","surface-container-low":"#0d1c2d","on-tertiary-container":"#340080","on-tertiary":"#3c0091"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"margin-desktop":"1.5rem","space-xs":"0.25rem",margin:"1rem",gutter:"0.75rem","space-lg":"1rem","space-xl":"1.5rem","space-sm":"0.5rem","gutter-desktop":"1rem","space-md":"0.75rem"},fontFamily:{"label-telemetry":["Inter"],"headline-sm":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"display-metric-mobile":["Inter"],"body-sm":["Inter"],"body-md":["Inter"],"body-lg":["Inter"],"display-metric":["Inter"],"label-code":["Inter"]},fontSize:{"label-telemetry":["11px",{lineHeight:"14px",letterSpacing:"0.06em",fontWeight:"600"}],"headline-sm":["15px",{lineHeight:"20px",letterSpacing:"0em",fontWeight:"600"}],"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"headline-md":["18px",{lineHeight:"24px",letterSpacing:"-0.01em",fontWeight:"600"}],"display-metric-mobile":["28px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"body-sm":["12px",{lineHeight:"16px",letterSpacing:"0.01em",fontWeight:"400"}],"body-md":["13px",{lineHeight:"18px",letterSpacing:"0em",fontWeight:"400"}],"body-lg":["15px",{lineHeight:"22px",letterSpacing:"0em",fontWeight:"400"}],"display-metric":["36px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"label-code":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 w-full bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full bg-surface-container-high px-gutter-desktop py-space-xs flex items-center justify-between"><div class="flex items-center gap-space-sm"><span class="flex h-2 w-2 rounded-full bg-secondary-container"></span><span class="font-label-telemetry text-label-telemetry uppercase tracking-wider text-secondary">DEMO MODE</span><span class="font-label-code text-label-code text-on-surface-variant">— Synthetic calibrated data • Earth-observation layers are simulated for demonstration and the architecture is integration-ready for real EO feeds.</span></div><div class="hidden lg:flex items-center gap-space-md"><span class="font-label-telemetry text-label-telemetry text-outline">TELEMETRY LINK: NOMINAL</span><span class="font-label-code text-label-code text-on-surface-variant">LATENCY 14ms</span></div></div><div class="h-14 w-full px-gutter-desktop flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg shrink-0"><div class="flex items-center gap-space-sm"><img src="https://lh3.googleusercontent.com/aida/AEtjO1UP07abo0FsORTqv688KDJbY_OM--BkapSGNfzQ-FKP9a3If0NYW7gmYE5c90qx3cBrUQg947UyFvtT78X9HdlE_x0X4RN43xZhOziDgHWwWLpIDu4m_mc4_5w3OeEWG83i67VzTgkN6uZiuo5ho37ocDBHgRZIq-S2662Lu1rWIfeHGFv-TC-JMoKZ66xViSuU5a374XGmwdt5NVwHdZwwkDdNCO4IyeL4Ah-_w2uQgtpEi7Tx473cw3s" alt="OreSight Logo" class="w-8 h-8 shrink-0"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface font-bold leading-none">OreSight</span><span class="font-label-telemetry text-label-telemetry tracking-widest text-outline text-[9px] uppercase leading-none mt-1">MINING INTELLIGENCE</span></div></div></div><nav class="hidden xl:flex items-center gap-space-xs" data-active-classes="bg-surface-container-high text-secondary font-medium rounded-lg"><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="mission-overview" href="#">Mission Overview</a><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="space-intelligence" href="#">Space Intelligence</a><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="resource-mapping" href="#">Resource Mapping</a><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="accessibility" href="#">Accessibility</a><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-surface-container-high text-secondary font-medium rounded-lg" data-path="production-forecast" href="#">Production Forecast</a><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="decision-engine" href="#">Decision Engine</a></nav><div class="flex items-center gap-space-md shrink-0"><div class="hidden sm:flex items-center gap-space-xs bg-surface-container-low px-space-sm py-space-xs rounded-lg"><span class="flex h-1.5 w-1.5 rounded-full bg-secondary-container"></span><span class="font-label-telemetry text-label-telemetry text-secondary uppercase">SENTINEL-2 / ISRO READY</span></div><div class="hidden md:flex flex-col items-end text-right"><span class="font-label-code text-label-code text-on-surface tabular-nums">UTC 14:32:08.41</span><span class="font-label-telemetry text-label-telemetry text-outline text-[9px]">ORBITAL EPOCH 582.1</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-2rem)]"><div class="flex flex-col w-full">
+<!-- Context Breadcrumb & Live Simulation Bar -->
+<div class="w-full px-gutter-desktop py-space-sm bg-surface-container-lowest flex flex-wrap items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-telemetry text-label-telemetry text-outline uppercase tracking-wider">PREDICTIVE ANALYTICS</span>
+<span class="font-label-code text-label-code text-outline-variant">/</span>
+<span class="font-label-telemetry text-label-telemetry text-secondary uppercase tracking-wider">STOCHASTIC ENGINE 04</span>
+<span class="font-label-code text-label-code text-outline-variant">/</span>
+<span class="font-label-code text-label-code text-on-surface-variant">SEED: 884-JAX-ORBITAL</span>
+</div>
+<div class="flex items-center gap-space-lg">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+<span class="font-label-telemetry text-label-telemetry text-secondary">CALIBRATION: 10,000 MONTE CARLO ITERATIONS</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-space-xs rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">tune</span>
+<span class="font-label-code text-label-code text-on-surface">PULSE v4.8 ACTIVE</span>
+</div>
+</div>
+</div>
+<!-- Header Block: Title, Subtitle, & Methodological Note -->
+<div class="w-full px-gutter-desktop pt-space-xl pb-space-lg flex flex-col lg:flex-row lg:items-end justify-between gap-space-xl">
+<div class="flex flex-col max-w-3xl">
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="px-space-xs py-[2px] bg-secondary-container/20 text-secondary font-label-telemetry text-label-telemetry uppercase tracking-wider rounded">HORIZON: D+30</span>
+<span class="font-label-code text-label-code text-on-surface-variant">WINDOW: 15 OCT - 14 NOV 2025</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Production Forecast &amp; Uncertainty Analysis</h1>
+<p class="font-body-lg text-body-lg text-secondary mt-space-xs font-medium">30-Day Predictive Horizon · What can we realistically produce?</p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-lg shadow-sm flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<strong class="text-on-surface font-medium">Methodological Note:</strong> PULSE uses historical operational data, live haulage kinematics, and satellite environmental moisture indexes to forecast production and quantify uncertainty over the next 30 days.
+        </p>
+</div>
+</div>
+<!-- Quick Meta Selector / Action Controls -->
+<div class="flex items-center gap-space-sm shrink-0 self-start lg:self-end">
+<button class="px-space-md py-space-xs bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm rounded-lg shadow-sm transition-colors flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">calendar_month</span>
+<span class="">Baseline Oct Quota</span>
+</button>
+<a class="px-space-md py-space-xs bg-primary hover:bg-primary-container text-on-primary font-body-sm text-body-sm rounded-lg shadow-sm transition-colors flex items-center gap-space-xs" data-path="decision-engine" href="#">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span class="">Run Interventions</span>
+</a>
+</div>
+</div>
+<!-- Primary KPIs Bento Grid -->
+<div class="w-full px-gutter-desktop grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Planned Target -->
+<div class="p-space-lg bg-surface-container-low rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-telemetry text-label-telemetry uppercase tracking-wider">PLANNED TARGET</span>
+<span class="material-symbols-outlined text-[18px]">flag</span>
+</div>
+<div class="my-space-md">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display-metric text-display-metric text-on-surface tracking-tight">71,989</span>
+<span class="font-label-code text-label-code text-on-surface-variant">tonnes</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs bg-surface-container-lowest/40 -mx-space-lg -mb-space-lg px-space-lg py-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Contracted delivery quota</span>
+<span class="font-label-telemetry text-label-telemetry text-secondary bg-surface-container-high px-space-xs py-[2px] rounded">100.0%</span>
+</div>
+</div>
+<!-- Expected Production (P50) -->
+<div class="p-space-lg bg-surface-container-low rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between text-secondary">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-telemetry text-label-telemetry uppercase tracking-wider">EXPECTED PRODUCTION (P50)</span>
+</div>
+<span class="material-symbols-outlined text-[18px]">show_chart</span>
+</div>
+<div class="my-space-md">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display-metric text-display-metric text-secondary tracking-tight">68,593</span>
+<span class="font-label-code text-label-code text-on-surface-variant">tonnes</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs bg-surface-container-lowest/40 -mx-space-lg -mb-space-lg px-space-lg py-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Median stochastic forecast</span>
+<span class="font-label-telemetry text-label-telemetry text-secondary bg-surface-container-high px-space-xs py-[2px] rounded">95.3% ATTAINMENT</span>
+</div>
+</div>
+<!-- Expected Shortfall -->
+<div class="p-space-lg bg-surface-container-low rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between text-error">
+<span class="font-label-telemetry text-label-telemetry uppercase tracking-wider">EXPECTED SHORTFALL</span>
+<span class="material-symbols-outlined text-[18px]">trending_down</span>
+</div>
+<div class="my-space-md">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display-metric text-display-metric text-error tracking-tight">3,396</span>
+<span class="font-label-code text-label-code text-on-surface-variant">tonnes</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs bg-surface-container-lowest/40 -mx-space-lg -mb-space-lg px-space-lg py-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Deficit variance</span>
+<span class="font-label-telemetry text-label-telemetry text-error bg-error-container/30 px-space-xs py-[2px] rounded">-4.7% GAP</span>
+</div>
+</div>
+<!-- Shortfall Probability -->
+<div class="p-space-lg bg-surface-container-high rounded-xl shadow-md flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-center justify-between text-error">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+<span class="font-label-telemetry text-label-telemetry uppercase tracking-wider text-error">SHORTFALL PROBABILITY</span>
+</div>
+<span class="px-space-xs py-[2px] bg-error-container text-on-error font-label-telemetry text-label-telemetry uppercase rounded font-bold">CRITICAL</span>
+</div>
+<div class="my-space-md">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display-metric text-display-metric text-on-surface tracking-tight">88.4%</span>
+<span class="font-label-code text-label-code text-outline">CDF(Target)</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs bg-surface-container-lowest/60 -mx-space-lg -mb-space-lg px-space-lg py-space-xs">
+<span class="font-body-sm text-body-sm text-on-error-container">High probability of quota miss</span>
+<span class="material-symbols-outlined text-error text-[18px]">warning</span>
+</div>
+</div>
+</div>
+<!-- Dominant Clean Forecast Section -->
+<div class="w-full px-gutter-desktop mb-space-xl">
+<div class="w-full bg-surface-container-low rounded-xl shadow-md p-space-lg flex flex-col">
+<!-- Chart Controls & Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-space-md bg-surface-container-lowest/30 -mx-space-lg -mt-space-lg px-space-lg pt-space-lg rounded-t-xl mb-space-lg">
+<div class="flex items-center gap-space-md">
+<span class="font-headline-sm text-headline-sm text-on-surface">30-Day Forward Production Outlook</span>
+<span class="font-label-telemetry text-label-telemetry px-space-xs py-[2px] bg-surface-container-high text-on-surface-variant rounded">DAILY CUMULATIVE SIMULATION</span>
+</div>
+<!-- Legend -->
+<div class="flex flex-wrap items-center gap-space-lg font-label-code text-label-code text-on-surface-variant">
+<div class="flex items-center gap-space-xs">
+<span class="w-4 h-0.5 bg-outline border-b border-dashed border-on-surface"></span>
+<span class="">Target Line (71,989 t)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-4 h-1 bg-primary rounded-full"></span>
+<span class="text-primary font-medium">Expected P50 Median (68,593 t)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-4 h-3 bg-primary/15 rounded-sm"></span>
+<span class="">Confidence Interval (P10–P90)</span>
+</div>
+</div>
+</div>
+<!-- Main Forecast SVG Chart Container -->
+<div class="w-full relative min-h-[380px] flex flex-col justify-end">
+<!-- Y-Axis Labels and Reference Guidelines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-40">
+<div class="w-full flex items-center justify-between">
+<span class="font-label-code text-label-code text-outline">75,000 t</span>
+<div class="w-full ml-space-md h-px bg-surface-container-highest"></div>
+</div>
+<div class="w-full flex items-center justify-between">
+<span class="font-label-code text-label-code text-outline">72,000 t (Quota)</span>
+<div class="w-full ml-space-md h-px bg-outline/40"></div>
+</div>
+<div class="w-full flex items-center justify-between">
+<span class="font-label-code text-label-code text-outline">68,000 t</span>
+<div class="w-full ml-space-md h-px bg-surface-container-highest"></div>
+</div>
+<div class="w-full flex items-center justify-between">
+<span class="font-label-code text-label-code text-outline">64,000 t</span>
+<div class="w-full ml-space-md h-px bg-surface-container-highest"></div>
+</div>
+<div class="w-full flex items-center justify-between">
+<span class="font-label-code text-label-code text-outline">0 t (Start)</span>
+<div class="w-full ml-space-md h-px bg-surface-container-highest"></div>
+</div>
+</div>
+<!-- Inline Responsive SVG Data Curves & Envelope -->
+<div class="w-full h-80 pl-16 pr-4 relative">
+<svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 1000 320">
+<defs>
+<!-- Subtle monotone envelope fill -->
+<linearGradient id="envelopeGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#93ccff" stop-opacity="0.22"></stop>
+<stop offset="100%" stop-color="#93ccff" stop-opacity="0.04"></stop>
+</linearGradient>
+</defs>
+<!-- P10 to P90 Confidence Interval Shaded Area -->
+<!-- P90 upper edge: from (40, 310) up to (960, 48) [71,074t] -->
+<!-- P10 lower edge: from (960, 102) [66,322t] back to (40, 310) -->
+<path d="M 40,310 
+                     C 180,285 280,235 400,200 
+                     C 480,180 560,150 680,110 
+                     C 760,85 860,65 960,48
+                     L 960,102
+                     C 860,115 760,140 680,175
+                     C 560,205 480,225 400,240
+                     C 280,265 180,295 40,310 Z" fill="url(#envelopeGrad)"></path>
+<!-- Quota Target Line (Dashed White/Slate at approx 71,989t -> y=38) -->
+<line stroke="#bfc7d2" stroke-dasharray="5 5" stroke-opacity="0.8" stroke-width="1.8" x1="40" x2="960" y1="310" y2="38"></line>
+<circle cx="960" cy="38" fill="#bfc7d2" r="4"></circle>
+<!-- P90 Upper Optimistic Curve Line (71,074 t) -->
+<path d="M 40,310 
+                     C 180,285 280,235 400,200 
+                     C 480,180 560,150 680,110 
+                     C 760,85 860,65 960,48" fill="none" stroke="#93ccff" stroke-opacity="0.5" stroke-width="1.5"></path>
+<!-- P10 Lower Pessimistic Curve Line (66,322 t) -->
+<path d="M 40,310 
+                     C 180,295 280,265 400,240 
+                     C 480,225 560,205 680,175 
+                     C 760,140 860,115 960,102" fill="none" stroke="#93ccff" stroke-opacity="0.4" stroke-width="1.5"></path>
+<!-- P50 Expected Median Trajectory (Solid Primary Blue -> 68,593 t at y=76) -->
+<path d="M 40,310 
+                     C 180,290 280,250 400,215 
+                     C 480,195 560,175 680,140 
+                     C 760,110 860,90 960,76" fill="none" stroke="#3198dc" stroke-width="3"></path>
+<circle cx="960" cy="76" fill="#3198dc" r="5"></circle>
+<!-- Operational Milestones Guidelines -->
+<!-- Day 12 Mark (x=400) -->
+<line stroke="#ffb4ab" stroke-dasharray="2 2" stroke-opacity="0.8" stroke-width="1" x1="400" x2="400" y1="215" y2="120"></line>
+<circle cx="400" cy="215" fill="#ffb4ab" r="4"></circle>
+<!-- Day 22 Mark (x=700) -->
+<line stroke="#7bd0ff" stroke-dasharray="2 2" stroke-opacity="0.8" stroke-width="1" x1="700" x2="700" y1="135" y2="50"></line>
+<circle cx="700" cy="135" fill="#7bd0ff" r="4"></circle>
+</svg>
+<!-- Timeline Annotation 1: Day 12 Crusher Reline -->
+<div class="absolute left-[40%] top-16 -translate-x-1/2 bg-surface-container-highest p-space-xs rounded-lg shadow-md flex items-start gap-space-xs max-w-[210px] pointer-events-auto">
+<span class="material-symbols-outlined text-error text-[16px] shrink-0 mt-0.5">build</span>
+<div class="flex flex-col">
+<span class="font-label-telemetry text-label-telemetry text-error uppercase">DAY 12: CRUSHER RELINE</span>
+<span class="font-body-sm text-body-sm text-on-surface leading-tight">-420 t operational throughput drag</span>
+</div>
+</div>
+<!-- Timeline Annotation 2: Day 22 Stope 308 Blast Influx -->
+<div class="absolute left-[70%] top-4 -translate-x-1/2 bg-surface-container-highest p-space-xs rounded-lg shadow-md flex items-start gap-space-xs max-w-[220px] pointer-events-auto">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">cyclone</span>
+<div class="flex flex-col">
+<span class="font-label-telemetry text-label-telemetry text-secondary uppercase">DAY 22: STOPE 308 INFLUX</span>
+<span class="font-body-sm text-body-sm text-on-surface leading-tight">High-grade ore blasted (+310 t/d yield)</span>
+</div>
+</div>
+<!-- Right Edge Endpoint Pill Indicators -->
+<div class="absolute right-0 top-6 translate-x-4 flex flex-col gap-1 text-right pointer-events-none">
+<span class="font-label-telemetry text-label-telemetry text-on-surface bg-surface-container-high px-space-xs py-[1px] rounded shadow-sm">TARGET 71,989 t</span>
+<span class="font-label-telemetry text-label-telemetry text-secondary-fixed bg-surface-container-highest px-space-xs py-[1px] rounded shadow-sm">P90 71,074 t</span>
+<span class="font-label-telemetry text-label-telemetry text-primary bg-primary-container/30 px-space-xs py-[1px] rounded shadow-sm">P50 68,593 t</span>
+<span class="font-label-telemetry text-label-telemetry text-outline px-space-xs py-[1px] rounded shadow-sm">P10 66,322 t</span>
+</div>
+</div>
+<!-- X-Axis Timeline Markers -->
+<div class="w-full flex justify-between pl-16 pr-4 pt-space-sm text-outline font-label-code text-label-code">
+<span class="">DAY 0 (Today)</span>
+<span class="">DAY 6</span>
+<span class="text-on-surface-variant font-medium">DAY 12 (Scheduled Stop)</span>
+<span class="">DAY 18</span>
+<span class="text-on-surface-variant font-medium">DAY 22 (Blast 308)</span>
+<span class="">DAY 26</span>
+<span class="text-secondary font-semibold">DAY 30 (Final Cut)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Below-the-Chart Scenario Cards (P10 / P50 / P90 Breakdown) -->
+<div class="w-full px-gutter-desktop mb-space-xl">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- P10 Scenario -->
+<div class="p-space-lg bg-surface-container-low rounded-xl shadow-sm flex flex-col justify-between hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-[2px] bg-surface-variant text-outline font-label-telemetry text-label-telemetry rounded">P10 CASE</span>
+<span class="font-label-telemetry text-label-telemetry uppercase text-outline">CONSERVATIVE FLOOR</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]">verified</span>
+</div>
+<div class="my-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold">66,322</span>
+<span class="font-label-code text-label-code text-on-surface-variant">tonnes</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Lower-bound scenario · 90% statistical certainty of achieving or exceeding this volume.</p>
+</div>
+<div class="pt-space-sm bg-surface-container-lowest/30 -mx-space-lg -mb-space-lg px-space-lg py-space-xs text-outline font-label-code text-label-code flex items-center justify-between">
+<span class="">Cumulative Delta: -5,667 t</span>
+<span class="">Risk: Low</span>
+</div>
+</div>
+<!-- P50 Scenario (Highlighted) -->
+<div class="p-space-lg bg-surface-container rounded-xl shadow-md flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-[2px] bg-primary text-on-primary font-label-telemetry text-label-telemetry rounded font-bold">P50 BASE</span>
+<span class="font-label-telemetry text-label-telemetry uppercase text-primary">CENTRAL ESTIMATE</span>
+</div>
+<div class="flex items-center gap-1 group/p50 cursor-help" title="Expected / median forecast">
+<span class="material-symbols-outlined text-primary text-[18px]">help_outline</span>
+</div>
+</div>
+<div class="my-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-primary font-bold">68,593</span>
+<span class="font-label-code text-label-code text-on-surface-variant">tonnes</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mt-space-xs">Expected / median forecast · Most probable trajectory across calibrated simulations.</p>
+</div>
+<div class="pt-space-sm bg-surface-container-lowest/50 -mx-space-lg -mb-space-lg px-space-lg py-space-xs text-secondary font-label-code text-label-code flex items-center justify-between">
+<span class="">Target Attainment: 95.3%</span>
+<span class="font-label-telemetry text-label-telemetry text-primary uppercase">PRIMARY BASELINE</span>
+</div>
+</div>
+<!-- P90 Scenario -->
+<div class="p-space-lg bg-surface-container-low rounded-xl shadow-sm flex flex-col justify-between hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-[2px] bg-secondary-container/20 text-secondary font-label-telemetry text-label-telemetry rounded">P90 CASE</span>
+<span class="font-label-telemetry text-label-telemetry uppercase text-secondary">OPTIMISTIC CEILING</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[18px]">north_east</span>
+</div>
+<div class="my-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold">71,074</span>
+<span class="font-label-code text-label-code text-on-surface-variant">tonnes</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Upper-bound scenario · Optimistic equipment uptime, zero blast deferrals, low rain.</p>
+</div>
+<div class="pt-space-sm bg-surface-container-lowest/30 -mx-space-lg -mb-space-lg px-space-lg py-space-xs text-outline font-label-code text-label-code flex items-center justify-between">
+<span class="">Gap to Quota: -915 t</span>
+<span class="">Likelihood: 10%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Risk Explanation Section: "Why is production at risk?" -->
+<div class="w-full px-gutter-desktop mb-space-xl">
+<div class="w-full bg-surface-container-low rounded-xl shadow-md p-space-lg flex flex-col">
+<!-- Section Header & Dual Attribution Legend -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pb-space-md mb-space-lg bg-surface-container-lowest/30 -mx-space-lg -mt-space-lg px-space-lg pt-space-lg rounded-t-xl">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface">Why is production at risk?</span>
+<span class="px-space-xs py-[2px] bg-surface-container text-on-surface-variant font-label-telemetry text-label-telemetry uppercase rounded">SHAP MODEL ATTRIBUTION</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">
+<span class="text-on-surface-variant font-medium">Disclaimer:</span> These are model attribution signals, not proof of causality.
+          </p>
+</div>
+<!-- Legend Categorization -->
+<div class="flex items-center gap-space-lg font-label-code text-label-code">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-sm bg-primary"></span>
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Actionable</span>
+<span class="text-on-surface-variant text-[10px]">Mine operational levers</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-sm bg-tertiary"></span>
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Contextual</span>
+<span class="text-on-surface-variant text-[10px]">Environmental &amp; weather factors</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Ranked Impact Horizontal Bar Visualization -->
+<div class="w-full flex flex-col gap-space-md">
+<!-- Item 1: Rainfall (Contextual - Purple) -->
+<div class="p-space-md bg-surface-container rounded-lg shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md hover:bg-surface-container-high transition-colors">
+<div class="w-full md:w-64 shrink-0 flex items-center justify-between md:justify-start gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">Rainfall</span>
+</div>
+<span class="px-space-xs py-[1px] bg-tertiary/10 text-tertiary font-label-telemetry text-label-telemetry uppercase rounded">CONTEXTUAL</span>
+</div>
+<div class="flex-1 flex items-center gap-space-md">
+<div class="w-full bg-surface-container-lowest h-6 rounded-lg overflow-hidden flex relative">
+<div class="h-full bg-tertiary rounded-lg transition-all duration-500 flex items-center justify-end pr-space-xs" style="width: 83.8%;">
+<span class="font-label-telemetry text-label-telemetry text-on-tertiary-container font-bold">41.9 impact</span>
+</div>
+</div>
+</div>
+<div class="w-full md:w-48 shrink-0 text-right md:text-right font-body-sm text-body-sm text-on-surface-variant">
+            Monsoon surge over haul ramp C
+          </div>
+</div>
+<!-- Item 2: Fleet Availability (Actionable - Blue) -->
+<div class="p-space-md bg-surface-container rounded-lg shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md hover:bg-surface-container-high transition-colors">
+<div class="w-full md:w-64 shrink-0 flex items-center justify-between md:justify-start gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">Fleet Availability</span>
+</div>
+<span class="px-space-xs py-[1px] bg-primary/10 text-primary font-label-telemetry text-label-telemetry uppercase rounded">ACTIONABLE</span>
+</div>
+<div class="flex-1 flex items-center gap-space-md">
+<div class="w-full bg-surface-container-lowest h-6 rounded-lg overflow-hidden flex relative">
+<div class="h-full bg-primary rounded-lg transition-all duration-500 flex items-center justify-end pr-space-xs" style="width: 48.4%;">
+<span class="font-label-telemetry text-label-telemetry text-on-primary font-bold">24.2 impact</span>
+</div>
+</div>
+</div>
+<div class="w-full md:w-48 shrink-0 text-right md:text-right font-body-sm text-body-sm text-on-surface-variant">
+            3 CAT 793F trucks in overhaul
+          </div>
+</div>
+<!-- Item 3: Development Progress (Actionable - Blue) -->
+<div class="p-space-md bg-surface-container rounded-lg shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md hover:bg-surface-container-high transition-colors">
+<div class="w-full md:w-64 shrink-0 flex items-center justify-between md:justify-start gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">Development Progress</span>
+</div>
+<span class="px-space-xs py-[1px] bg-primary/10 text-primary font-label-telemetry text-label-telemetry uppercase rounded">ACTIONABLE</span>
+</div>
+<div class="flex-1 flex items-center gap-space-md">
+<div class="w-full bg-surface-container-lowest h-6 rounded-lg overflow-hidden flex relative">
+<div class="h-full bg-primary rounded-lg transition-all duration-500 flex items-center justify-end pr-space-xs" style="width: 35%;">
+<span class="font-label-telemetry text-label-telemetry text-on-primary font-bold">17.5 impact</span>
+</div>
+</div>
+</div>
+<div class="w-full md:w-48 shrink-0 text-right md:text-right font-body-sm text-body-sm text-on-surface-variant">
+            Decline advance lagging 42m
+          </div>
+</div>
+<!-- Item 4: Blast Scheduling Delays (Actionable - Blue) -->
+<div class="p-space-md bg-surface-container rounded-lg shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md hover:bg-surface-container-high transition-colors">
+<div class="w-full md:w-64 shrink-0 flex items-center justify-between md:justify-start gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">Blast Scheduling Delays</span>
+</div>
+<span class="px-space-xs py-[1px] bg-primary/10 text-primary font-label-telemetry text-label-telemetry uppercase rounded">ACTIONABLE</span>
+</div>
+<div class="flex-1 flex items-center gap-space-md">
+<div class="w-full bg-surface-container-lowest h-6 rounded-lg overflow-hidden flex relative">
+<div class="h-full bg-primary rounded-lg transition-all duration-500 flex items-center justify-end pr-space-xs" style="width: 34%;">
+<span class="font-label-telemetry text-label-telemetry text-on-primary font-bold">17.0 impact</span>
+</div>
+</div>
+</div>
+<div class="w-full md:w-48 shrink-0 text-right md:text-right font-body-sm text-body-sm text-on-surface-variant">
+            Bench 14 ground vibration checks
+          </div>
+</div>
+<!-- Item 5: Soil Moisture (Contextual - Purple) -->
+<div class="p-space-md bg-surface-container rounded-lg shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md hover:bg-surface-container-high transition-colors">
+<div class="w-full md:w-64 shrink-0 flex items-center justify-between md:justify-start gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">Soil Moisture</span>
+</div>
+<span class="px-space-xs py-[1px] bg-tertiary/10 text-tertiary font-label-telemetry text-label-telemetry uppercase rounded">CONTEXTUAL</span>
+</div>
+<div class="flex-1 flex items-center gap-space-md">
+<div class="w-full bg-surface-container-lowest h-6 rounded-lg overflow-hidden flex relative">
+<div class="h-full bg-tertiary rounded-lg transition-all duration-500 flex items-center justify-end pr-space-xs" style="width: 31.4%;">
+<span class="font-label-telemetry text-label-telemetry text-on-tertiary-container font-bold">15.7 impact</span>
+</div>
+</div>
+</div>
+<div class="w-full md:w-48 shrink-0 text-right md:text-right font-body-sm text-body-sm text-on-surface-variant">
+            Pit rim saturation index 0.78
+          </div>
+</div>
+<!-- Item 6: Equipment Downtime (Actionable - Blue) -->
+<div class="p-space-md bg-surface-container rounded-lg shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md hover:bg-surface-container-high transition-colors">
+<div class="w-full md:w-64 shrink-0 flex items-center justify-between md:justify-start gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">Equipment Downtime</span>
+</div>
+<span class="px-space-xs py-[1px] bg-primary/10 text-primary font-label-telemetry text-label-telemetry uppercase rounded">ACTIONABLE</span>
+</div>
+<div class="flex-1 flex items-center gap-space-md">
+<div class="w-full bg-surface-container-lowest h-6 rounded-lg overflow-hidden flex relative">
+<div class="h-full bg-primary rounded-lg transition-all duration-500 flex items-center justify-end pr-space-xs" style="width: 20.6%;">
+<span class="font-label-telemetry text-label-telemetry text-on-primary font-bold">10.3 impact</span>
+</div>
+</div>
+</div>
+<div class="w-full md:w-48 shrink-0 text-right md:text-right font-body-sm text-body-sm text-on-surface-variant">
+            Primary gyratory mantle wear
+          </div>
+</div>
+</div>
+<!-- Actionable Link Callout to Decision Engine -->
+<div class="mt-space-xl p-space-lg bg-surface-container-high rounded-xl shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[24px]">psychology</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">51.5% of production drag is directly actionable</span>
+<span class="px-space-xs py-[1px] bg-secondary text-on-secondary font-label-telemetry text-label-telemetry uppercase rounded font-bold">OPTIMIZATION READY</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+              Fleet rescheduling and shifting blast sequences around forecasted rainfall windows can recover up to 2,840 t of the expected 3,396 t shortfall.
+            </p>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<a class="w-full sm:w-auto px-space-xl py-space-sm bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-headline-sm rounded-lg shadow-md transition-all flex items-center justify-center gap-space-xs font-semibold" data-path="decision-engine" href="#">
+<span class="">Open Decision Engine</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Geotechnical Telemetry Mini-Strip -->
+<div class="w-full px-gutter-desktop mb-space-xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+<div class="p-space-md bg-surface-container-low rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-telemetry text-label-telemetry text-outline uppercase">HAUL ROAD SLIP INDEX</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">0.42 μ (ELEVATED)</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[22px]">speed</span>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-telemetry text-label-telemetry text-outline uppercase">DRILL PATTERN YIELD</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">98.1% ACCURACY</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[22px]">target</span>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-telemetry text-label-telemetry text-outline uppercase">STOCKPILE BUFFER CAPACITY</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">14,200 t (3.2 DAYS)</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[22px]">inventory_2</span>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-telemetry text-label-telemetry text-outline uppercase">MODEL DRIFT FACTOR</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-semibold">1.1% (NOMINAL)</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[22px]">check_circle</span>
+</div>
+</div>
+</div>
+</div></main><footer class="w-full bg-surface-container-lowest py-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full px-gutter-desktop flex flex-wrap items-center justify-between gap-space-sm"><div class="flex items-center gap-space-md"><span class="font-label-telemetry text-label-telemetry uppercase text-secondary flex items-center gap-1.5"><span class="inline-block w-1.5 h-1.5 rounded-full bg-secondary"></span>SYS_SYNC: LOCKED</span><span class="font-label-code text-label-code text-on-surface-variant">PIPELINE: SAR_INTERFEROMETRY_STABLE</span></div><div class="flex items-center gap-space-lg"><span class="font-label-telemetry text-label-telemetry uppercase text-outline">COMPLIANCE: JORC 2012 / UNFC 2009 READY</span><span class="font-label-code text-label-code text-on-surface-variant">© 2025 OreSight EO Core</span></div></div></footer>
+
+</body></html>

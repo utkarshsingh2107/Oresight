@@ -1,0 +1,626 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"inverse-primary":"#006398","on-surface":"#d4e4fa","on-secondary-fixed-variant":"#004c69","tertiary-fixed-dim":"#d0bcff","secondary":"#7bd0ff","on-primary-fixed":"#001d31","primary":"#93ccff","primary-fixed":"#cce5ff","error-container":"#93000a","primary-fixed-dim":"#93ccff","outline":"#89929b","on-error":"#690005","on-primary-fixed-variant":"#004b73","tertiary-container":"#a078ff","surface-variant":"#273647","on-primary-container":"#002c47","tertiary-fixed":"#e9ddff","inverse-surface":"#d4e4fa","on-surface-variant":"#bfc7d2","tertiary":"#d0bcff","background":"#051424","surface-bright":"#2c3a4c","surface":"#051424","secondary-fixed":"#c4e7ff","on-secondary-fixed":"#001e2c","secondary-container":"#00a6e0","on-secondary":"#00354a","on-tertiary-fixed-variant":"#5516be","surface-container-highest":"#273647","outline-variant":"#3f4850","surface-container-lowest":"#010f1f","secondary-fixed-dim":"#7bd0ff","on-secondary-container":"#00374d","surface-container-high":"#1c2b3c","inverse-on-surface":"#233143","on-background":"#d4e4fa","primary-container":"#3198dc","surface-dim":"#051424","on-primary":"#003351","on-tertiary-fixed":"#23005c","surface-container":"#122131","on-error-container":"#ffdad6","surface-tint":"#93ccff","error":"#ffb4ab","surface-container-low":"#0d1c2d","on-tertiary-container":"#340080","on-tertiary":"#3c0091"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"margin-desktop":"1.5rem","space-xs":"0.25rem",margin:"1rem",gutter:"0.75rem","space-lg":"1rem","space-xl":"1.5rem","space-sm":"0.5rem","gutter-desktop":"1rem","space-md":"0.75rem"},fontFamily:{"label-telemetry":["Inter"],"headline-sm":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"display-metric-mobile":["Inter"],"body-sm":["Inter"],"body-md":["Inter"],"body-lg":["Inter"],"display-metric":["Inter"],"label-code":["Inter"]},fontSize:{"label-telemetry":["11px",{lineHeight:"14px",letterSpacing:"0.06em",fontWeight:"600"}],"headline-sm":["15px",{lineHeight:"20px",letterSpacing:"0em",fontWeight:"600"}],"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"headline-md":["18px",{lineHeight:"24px",letterSpacing:"-0.01em",fontWeight:"600"}],"display-metric-mobile":["28px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"body-sm":["12px",{lineHeight:"16px",letterSpacing:"0.01em",fontWeight:"400"}],"body-md":["13px",{lineHeight:"18px",letterSpacing:"0em",fontWeight:"400"}],"body-lg":["15px",{lineHeight:"22px",letterSpacing:"0em",fontWeight:"400"}],"display-metric":["36px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"label-code":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 w-full bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full bg-surface-container-high px-gutter-desktop py-space-xs flex items-center justify-between"><div class="flex items-center gap-space-sm"><span class="flex h-2 w-2 rounded-full bg-secondary-container"></span><span class="font-label-telemetry text-label-telemetry uppercase tracking-wider text-secondary">DEMO MODE</span><span class="font-label-code text-label-code text-on-surface-variant">— Synthetic calibrated data • Earth-observation layers are simulated for demonstration and the architecture is integration-ready for real EO feeds.</span></div><div class="hidden lg:flex items-center gap-space-md"><span class="font-label-telemetry text-label-telemetry text-outline">TELEMETRY LINK: NOMINAL</span><span class="font-label-code text-label-code text-on-surface-variant">LATENCY 14ms</span></div></div><div class="h-14 w-full px-gutter-desktop flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg shrink-0"><div class="flex items-center gap-space-sm"><img src="https://lh3.googleusercontent.com/aida/AEtjO1UP07abo0FsORTqv688KDJbY_OM--BkapSGNfzQ-FKP9a3If0NYW7gmYE5c90qx3cBrUQg947UyFvtT78X9HdlE_x0X4RN43xZhOziDgHWwWLpIDu4m_mc4_5w3OeEWG83i67VzTgkN6uZiuo5ho37ocDBHgRZIq-S2662Lu1rWIfeHGFv-TC-JMoKZ66xViSuU5a374XGmwdt5NVwHdZwwkDdNCO4IyeL4Ah-_w2uQgtpEi7Tx473cw3s" alt="OreSight Logo" class="w-8 h-8 object-contain inline-block shrink-0"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface font-bold leading-none">OreSight</span><span class="font-label-telemetry text-label-telemetry tracking-widest text-outline text-[9px] uppercase leading-none mt-1">MINING INTELLIGENCE</span></div></div></div><nav class="hidden xl:flex items-center gap-space-xs" data-active-classes="bg-surface-container-high text-secondary font-medium rounded-lg"><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="mission-overview" href="#">Mission Overview</a><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="space-intelligence" href="#">Space Intelligence</a><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-surface-container-high text-secondary font-medium rounded-lg" data-path="resource-mapping" href="#">Resource Mapping</a><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="accessibility" href="#">Accessibility</a><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="production-forecast" href="#">Production Forecast</a><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="decision-engine" href="#">Decision Engine</a></nav><div class="flex items-center gap-space-md shrink-0"><div class="hidden sm:flex items-center gap-space-xs bg-surface-container-low px-space-sm py-space-xs rounded-lg"><span class="flex h-1.5 w-1.5 rounded-full bg-secondary-container"></span><span class="font-label-telemetry text-label-telemetry text-secondary uppercase">SENTINEL-2 / ISRO READY</span></div><div class="hidden md:flex flex-col items-end text-right"><span class="font-label-code text-label-code text-on-surface tabular-nums">UTC 14:32:08.41</span><span class="font-label-telemetry text-label-telemetry text-outline text-[9px]">ORBITAL EPOCH 582.1</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-2rem)]"><div class="flex flex-col w-full">
+<!-- Sub-Header & Methodological Clarification Scrim -->
+<section class="w-full bg-surface-container-lowest px-gutter-desktop py-space-lg shadow-sm">
+<div class="max-w-[1720px] mx-auto flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-xs py-0.5 bg-primary-container/20 text-primary font-label-telemetry text-label-telemetry rounded">VOXEL ENGINE V4.2</span>
+<span class="text-outline font-label-code text-label-code">SECTOR: TUKUR-KALAHARI CONCESSION</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-bold">Resource Mapping</h1>
+<p class="font-headline-sm text-headline-sm text-secondary">3D Spatial Resource Model · Where is mineralisation?</p>
+</div>
+<!-- Methodological Transparency Callout -->
+<div class="max-w-2xl bg-surface-container-low p-space-md rounded-xl flex items-start gap-space-md shadow-sm">
+<span class="material-symbols-outlined text-secondary shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">info</span>
+<div class="space-y-1">
+<span class="font-label-telemetry text-label-telemetry uppercase text-secondary tracking-wider block">METHODOLOGICAL CLARITY</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Earth observation provides surface spatial context, while borehole assays provide subsurface grade evidence. Ordinary Kriging interpolates borehole-derived grades across the 3D block model.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- KPI Executive Telemetry Strip -->
+<section class="w-full px-gutter-desktop py-space-md bg-surface">
+<div class="max-w-[1720px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- KPI 1 -->
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-20 h-20 bg-secondary/5 rounded-full pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-telemetry text-label-telemetry uppercase text-outline">TOTAL RESOURCE</span>
+<span class="material-symbols-outlined text-outline text-[18px]">view_in_ar</span>
+</div>
+<div class="my-space-xs">
+<div class="font-display-metric text-display-metric text-on-surface font-bold tracking-tight">48.27 <span class="font-headline-sm text-headline-sm text-secondary font-normal">Mt</span></div>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          Spatially modelled mineral resource
+        </div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-20 h-20 bg-primary/5 rounded-full pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-telemetry text-label-telemetry uppercase text-outline">TOTAL MODELLED BLOCKS</span>
+<span class="material-symbols-outlined text-outline text-[18px]">grid_3x3</span>
+</div>
+<div class="my-space-xs">
+<div class="font-display-metric text-display-metric text-on-surface font-bold tracking-tight">2,240 <span class="font-headline-sm text-headline-sm text-outline font-normal">blocks</span></div>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="font-label-code text-label-code text-secondary font-semibold">10m × 10m × 5m</span> voxel dimensions
+        </div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-20 h-20 bg-secondary-container/10 rounded-full pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-telemetry text-label-telemetry uppercase text-outline">MINERALISED BLOCKS</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">layers</span>
+</div>
+<div class="my-space-xs">
+<div class="font-display-metric text-display-metric text-secondary font-bold tracking-tight">498 <span class="font-headline-sm text-headline-sm text-outline font-normal">blocks</span></div>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+          Meeting cutoff · <span class="font-label-code text-label-code text-secondary font-medium">22.2%</span> of body
+        </div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-20 h-20 bg-primary/10 rounded-full pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-telemetry text-label-telemetry uppercase text-outline">AVERAGE MN GRADE</span>
+<span class="material-symbols-outlined text-primary text-[18px]">analytics</span>
+</div>
+<div class="my-space-xs">
+<div class="font-display-metric text-display-metric text-primary font-bold tracking-tight">25.246% <span class="font-headline-sm text-headline-sm text-secondary font-normal">Mn</span></div>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="font-label-code text-label-code text-on-surface">Cutoff applied: 20% Mn</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Central Subterranean 3D Resource Viewport Area -->
+<section class="w-full px-gutter-desktop py-space-sm">
+<div class="max-w-[1720px] mx-auto bg-surface-container-lowest rounded-xl overflow-hidden shadow-xl flex flex-col xl:flex-row">
+<!-- Interactive Spatial Canvas (Simulated WebGL Isometric Voxel Matrix) -->
+<div class="relative flex-1 min-h-[560px] xl:min-h-[720px] bg-surface-container-lowest flex flex-col justify-between p-space-md select-none overflow-hidden">
+<!-- Viewport Top Toolbar -->
+<div class="relative z-20 flex flex-wrap items-center justify-between gap-space-md bg-surface-container/80 backdrop-blur-md p-space-sm rounded-lg shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="flex h-2 w-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-telemetry text-label-telemetry uppercase text-on-surface tracking-wider">VOXEL MODEL: ACTIVE</span>
+<span class="font-label-code text-label-code text-outline ml-space-xs">EPSG:32734 / UTM ZONE 34S</span>
+</div>
+<div class="flex items-center gap-space-xs flex-wrap">
+<button class="flex items-center gap-1 px-space-sm py-space-xs rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-code text-label-code transition-colors" id="btn-rotate">
+<span class="material-symbols-outlined text-[15px] text-secondary">3d_rotation</span>
+<span class="">Rotate 3D</span>
+</button>
+<button class="flex items-center gap-1 px-space-sm py-space-xs rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-code text-label-code transition-colors" id="btn-ortho">
+<span class="material-symbols-outlined text-[15px]">view_in_ar</span>
+<span id="proj-mode-label" class="">Perspective</span>
+</button>
+<button class="flex items-center gap-1 px-space-sm py-space-xs rounded bg-surface-container-high hover:bg-surface-bright text-on-surface-variant hover:text-on-surface font-label-code text-label-code transition-colors" id="btn-reset">
+<span class="material-symbols-outlined text-[15px]">restart_alt</span>
+<span class="">Reset View</span>
+</button>
+</div>
+</div>
+<!-- Dynamic Isometric Wireframe & Block Engine (SVG Canvas Representation) -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-auto cursor-grab active:cursor-grabbing overflow-hidden" id="canvas-container">
+<!-- Background Axis Grid -->
+<svg class="absolute inset-0 w-full h-full opacity-15 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="24" id="iso-sub-grid" patternUnits="userSpaceOnUse" width="40">
+<path class="text-outline" d="M 0 12 L 20 0 L 40 12 L 20 24 Z" fill="none" stroke="currentColor" stroke-width="0.75"></path>
+</pattern>
+</defs>
+<rect fill="url(#iso-sub-grid)" height="100%" width="100%"></rect>
+</svg>
+<!-- Subterranean 3D Isometric Body SVG with Voxels -->
+<svg class="w-full max-w-4xl h-auto select-none transition-transform duration-300" id="iso-svg" viewBox="0 0 900 600">
+<defs>
+<!-- Gradients for realistic isometric faces -->
+<linearGradient id="waste-top" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#273647"></stop><stop offset="100%" stop-color="#1c2b3c"></stop></linearGradient>
+<linearGradient id="waste-left" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#1c2b3c"></stop><stop offset="100%" stop-color="#122131"></stop></linearGradient>
+<linearGradient id="waste-right" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#152435"></stop><stop offset="100%" stop-color="#0d1c2d"></stop></linearGradient>
+<linearGradient id="low-top" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#3198dc"></stop><stop offset="100%" stop-color="#006398"></stop></linearGradient>
+<linearGradient id="low-left" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#006398"></stop><stop offset="100%" stop-color="#00354a"></stop></linearGradient>
+<linearGradient id="low-right" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#004c69"></stop><stop offset="100%" stop-color="#002c47"></stop></linearGradient>
+<linearGradient id="payable-top" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#93ccff"></stop><stop offset="100%" stop-color="#3198dc"></stop></linearGradient>
+<linearGradient id="payable-left" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#3198dc"></stop><stop offset="100%" stop-color="#004b73"></stop></linearGradient>
+<linearGradient id="payable-right" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#006398"></stop><stop offset="100%" stop-color="#003351"></stop></linearGradient>
+<linearGradient id="high-top" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#c4e7ff"></stop><stop offset="100%" stop-color="#7bd0ff"></stop></linearGradient>
+<linearGradient id="high-left" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#7bd0ff"></stop><stop offset="100%" stop-color="#00a6e0"></stop></linearGradient>
+<linearGradient id="high-right" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#3198dc"></stop><stop offset="100%" stop-color="#006398"></stop></linearGradient>
+</defs>
+<!-- Coordinate Wireframe Box (Subsurface Spatial Cage) -->
+<g class="stroke-outline/30 fill-none" stroke-dasharray="3,3" stroke-width="0.8">
+<!-- Top Plane (-240mRL) -->
+<path d="M 450 70 L 780 180 L 450 290 L 120 180 Z"></path>
+<!-- Bottom Plane (-680mRL) -->
+<path d="M 450 270 L 780 380 L 450 490 L 120 380 Z"></path>
+<!-- Vertical Corner Pillars -->
+<path d="M 120 180 L 120 380"></path>
+<path d="M 780 180 L 780 380"></path>
+<path d="M 450 70 L 450 270"></path>
+<path d="M 450 290 L 450 490"></path>
+</g>
+<!-- Elevation Axis Ticks -->
+<g class="font-label-telemetry text-[9px] fill-outline">
+<text x="790" y="185">-240m RL</text>
+<text x="790" y="250">-380m RL</text>
+<text class="fill-secondary font-bold" id="marker-active-slice" x="790" y="315">-480m RL (Active Slicer)</text>
+<text x="790" y="385">-680m RL</text>
+</g>
+<!-- Subterranean Borehole Trace Injections -->
+<g class="stroke-secondary/40 fill-none" stroke-width="1.2">
+<!-- BH-01 -->
+<path d="M 330 110 L 330 420" stroke-dasharray="4,2"></path>
+<circle class="fill-secondary" cx="330" cy="110" r="3"></circle>
+<text class="font-label-code text-[8px] fill-on-surface-variant stroke-none" x="310" y="100">BH-1402</text>
+<!-- BH-02 -->
+<path d="M 450 140 L 470 450" stroke-dasharray="4,2"></path>
+<circle class="fill-secondary" cx="450" cy="140" r="3"></circle>
+<text class="font-label-code text-[8px] fill-on-surface-variant stroke-none" x="440" y="130">BH-1403</text>
+<!-- BH-03 -->
+<path d="M 580 120 L 560 410" stroke-dasharray="4,2"></path>
+<circle class="fill-secondary" cx="580" cy="120" r="3"></circle>
+<text class="font-label-code text-[8px] fill-on-surface-variant stroke-none" x="590" y="115">BH-1407</text>
+</g>
+<!-- Active Slice Plane Indicator Plane (-480m RL) -->
+<g id="slicer-plane-svg">
+<polygon class="fill-secondary/10 stroke-secondary/60" points="120,315 450,225 780,315 450,405" stroke-dasharray="2,2" stroke-width="1"></polygon>
+</g>
+<!-- VOXEL MESH: Clustered 3D Blocks with Depth Sorting -->
+<!-- Layer -380m (Upper Barren & Low Grade Cap) -->
+<g class="voxel-layer transition-opacity duration-300" id="layer-upper">
+<!-- Waste Block (350, 200) -->
+<g class="cursor-pointer hover:brightness-125 transition-all" onclick="selectBlock('MN-B-07119', '1380E / 8790N', '-380 mRL', '12.8% Mn', 'Siliceous Siltstone', '2.84 t/m³', '0.089')">
+<polygon fill="url(#waste-top)" points="350,195 385,178 420,195 385,212"></polygon>
+<polygon fill="url(#waste-left)" points="350,195 385,212 385,236 350,219"></polygon>
+<polygon fill="url(#waste-right)" points="385,212 420,195 420,219 385,236"></polygon>
+</g>
+<g class="cursor-pointer hover:brightness-125 transition-all" onclick="selectBlock('MN-B-07120', '1400E / 8790N', '-380 mRL', '17.4% Mn', 'Manganiferous Shale', '3.02 t/m³', '0.062')">
+<polygon fill="url(#low-top)" points="420,195 455,178 490,195 455,212"></polygon>
+<polygon fill="url(#low-left)" points="420,195 455,212 455,236 420,219"></polygon>
+<polygon fill="url(#low-right)" points="455,212 490,195 490,219 455,236"></polygon>
+</g>
+</g>
+<!-- Layer -480m (Active Target High-Grade Sliced Body) -->
+<g class="voxel-layer transition-opacity duration-300" id="layer-mid">
+<!-- Barren Margin Block -->
+<g class="cursor-pointer hover:brightness-125 transition-all" onclick="selectBlock('MN-B-08488', '1360E / 8820N', '-480 mRL', '14.1% Mn', 'Banded Chert', '2.79 t/m³', '0.078')">
+<polygon fill="url(#waste-top)" points="280,265 315,248 350,265 315,282"></polygon>
+<polygon fill="url(#waste-left)" points="280,265 315,282 315,306 280,289"></polygon>
+<polygon fill="url(#waste-right)" points="315,282 350,265 350,289 315,306"></polygon>
+</g>
+<!-- Low Grade Halo -->
+<g class="cursor-pointer hover:brightness-125 transition-all" onclick="selectBlock('MN-B-08490', '1380E / 8820N', '-480 mRL', '18.9% Mn', 'Ferruginous Shale', '3.12 t/m³', '0.051')">
+<polygon fill="url(#low-top)" points="350,265 385,248 420,265 385,282"></polygon>
+<polygon fill="url(#low-left)" points="350,265 385,282 385,306 350,289"></polygon>
+<polygon fill="url(#low-right)" points="385,282 420,265 420,289 385,306"></polygon>
+</g>
+<!-- Mineralised Payable Core -->
+<g class="cursor-pointer hover:brightness-125 transition-all" onclick="selectBlock('MN-B-08491', '1400E / 8820N', '-480 mRL', '23.8% Mn', 'Braunitic Ore', '3.38 t/m³', '0.041')">
+<polygon fill="url(#payable-top)" points="420,265 455,248 490,265 455,282"></polygon>
+<polygon fill="url(#payable-left)" points="420,265 455,282 455,306 420,289"></polygon>
+<polygon fill="url(#payable-right)" points="455,282 490,265 490,289 455,306"></polygon>
+</g>
+<!-- High Grade Core (Selected Exemplar #MN-B-08492) -->
+<g class="cursor-pointer transition-all animate-pulse" id="selected-voxel-group" onclick="selectBlock('MN-B-08492', '1420E / 8820N', '-480 mRL', '28.4% Mn', 'Massive Manganite / Pyrolusite', '3.42 t/m³', '0.038')">
+<polygon fill="url(#high-top)" points="490,265 525,248 560,265 525,282"></polygon>
+<polygon fill="url(#high-left)" points="490,265 525,282 525,306 490,289"></polygon>
+<polygon fill="url(#high-right)" points="525,282 560,265 560,289 525,306"></polygon>
+<polygon fill="none" points="490,265 525,248 560,265 525,282" stroke="#ffffff" stroke-width="1.5"></polygon>
+</g>
+<!-- High Grade Continuity -->
+<g class="cursor-pointer hover:brightness-125 transition-all" onclick="selectBlock('MN-B-08493', '1440E / 8820N', '-480 mRL', '27.1% Mn', 'Cryptomelane Ore', '3.39 t/m³', '0.042')">
+<polygon fill="url(#high-top)" points="560,265 595,248 630,265 595,282"></polygon>
+<polygon fill="url(#high-left)" points="560,265 595,282 595,306 560,289"></polygon>
+<polygon fill="url(#high-right)" points="595,282 630,265 630,289 595,306"></polygon>
+</g>
+<!-- Payable Boundary Extension -->
+<g class="cursor-pointer hover:brightness-125 transition-all" onclick="selectBlock('MN-B-08494', '1460E / 8820N', '-480 mRL', '21.5% Mn', 'Oolitic Manganite', '3.21 t/m³', '0.049')">
+<polygon fill="url(#payable-top)" points="630,265 665,248 700,265 665,282"></polygon>
+<polygon fill="url(#payable-left)" points="630,265 665,282 665,306 630,289"></polygon>
+<polygon fill="url(#payable-right)" points="665,282 700,265 700,289 665,306"></polygon>
+</g>
+<!-- Lateral Row (Y-Offset) -->
+<g class="cursor-pointer hover:brightness-125 transition-all" onclick="selectBlock('MN-B-08512', '1400E / 8840N', '-480 mRL', '26.8% Mn', 'Pyrolusite Lode', '3.40 t/m³', '0.039')">
+<polygon fill="url(#high-top)" points="385,282 420,265 455,282 420,299"></polygon>
+<polygon fill="url(#high-left)" points="385,282 420,299 420,323 385,306"></polygon>
+<polygon fill="url(#high-right)" points="420,299 455,282 455,306 420,323"></polygon>
+</g>
+<g class="cursor-pointer hover:brightness-125 transition-all" onclick="selectBlock('MN-B-08513', '1420E / 8840N', '-480 mRL', '29.3% Mn', 'Massive Manganite', '3.47 t/m³', '0.035')">
+<polygon fill="url(#high-top)" points="455,282 490,265 525,282 490,299"></polygon>
+<polygon fill="url(#high-left)" points="455,282 490,299 490,323 455,306"></polygon>
+<polygon fill="url(#high-right)" points="490,299 525,282 525,306 490,323"></polygon>
+</g>
+<g class="cursor-pointer hover:brightness-125 transition-all" onclick="selectBlock('MN-B-08514', '1440E / 8840N', '-480 mRL', '24.2% Mn', 'Braunite Shale', '3.31 t/m³', '0.044')">
+<polygon fill="url(#payable-top)" points="525,282 560,265 595,282 560,299"></polygon>
+<polygon fill="url(#payable-left)" points="525,282 560,299 560,323 525,306"></polygon>
+<polygon fill="url(#payable-right)" points="560,299 595,282 595,306 560,323"></polygon>
+</g>
+</g>
+<!-- Layer -580m (Deep Sub-Seam Footwall) -->
+<g class="voxel-layer transition-opacity duration-300 opacity-80" id="layer-lower">
+<g class="cursor-pointer hover:brightness-125 transition-all" onclick="selectBlock('MN-B-09601', '1400E / 8820N', '-580 mRL', '21.0% Mn', 'Lower Carbonate Mn', '3.25 t/m³', '0.065')">
+<polygon fill="url(#payable-top)" points="420,335 455,318 490,335 455,352"></polygon>
+<polygon fill="url(#payable-left)" points="420,335 455,352 455,376 420,359"></polygon>
+<polygon fill="url(#payable-right)" points="455,352 490,335 490,376 455,352"></polygon>
+</g>
+<g class="cursor-pointer hover:brightness-125 transition-all" onclick="selectBlock('MN-B-09602', '1420E / 8820N', '-580 mRL', '19.4% Mn', 'Manganiferous Dolomite', '3.08 t/m³', '0.071')">
+<polygon fill="url(#low-top)" points="490,335 525,318 560,335 525,352"></polygon>
+<polygon fill="url(#low-left)" points="490,335 525,352 525,376 490,359"></polygon>
+<polygon fill="url(#low-right)" points="525,352 560,335 560,376 525,352"></polygon>
+</g>
+</g>
+</svg>
+<!-- North / Strike-Dip Orientation Compass Widget -->
+<div class="absolute top-16 left-6 pointer-events-none flex flex-col items-center">
+<div class="relative w-12 h-12 flex items-center justify-center bg-surface-container/60 rounded-full backdrop-blur-sm shadow-sm">
+<svg class="w-9 h-9" viewBox="0 0 40 40">
+<!-- Isometric Compass -->
+<path class="fill-secondary" d="M 20 6 L 25 20 L 20 17 L 15 20 Z"></path>
+<path class="fill-outline" d="M 20 34 L 25 20 L 20 23 L 15 20 Z"></path>
+<text class="font-label-telemetry text-[7px] fill-secondary font-bold" x="18" y="5">N</text>
+</svg>
+</div>
+<span class="font-label-code text-[10px] text-outline mt-1">DIP 14° NW</span>
+</div>
+<!-- Bottom Left Interactive Color Ramp / Legend -->
+<div class="absolute bottom-6 left-6 z-20 bg-surface-container/90 backdrop-blur-md p-space-sm rounded-lg max-w-xs space-y-space-xs shadow-md">
+<span class="font-label-telemetry text-label-telemetry text-on-surface uppercase block">GRADE SCALE (% MN)</span>
+<div class="space-y-1.5 font-label-code text-label-code">
+<div class="flex items-center gap-space-sm">
+<span class="w-3.5 h-3 rounded bg-surface-variant shrink-0"></span>
+<span class="text-on-surface-variant">&lt; 15% Mn</span>
+<span class="text-outline text-body-sm ml-auto">Barren / Waste</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="w-3.5 h-3 rounded bg-primary-container shrink-0"></span>
+<span class="text-on-surface-variant">15 – 20% Mn</span>
+<span class="text-outline text-body-sm ml-auto">Low Grade</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="w-3.5 h-3 rounded bg-primary shrink-0"></span>
+<span class="text-on-surface-variant">20 – 25% Mn</span>
+<span class="text-secondary text-body-sm font-semibold ml-auto">Payable</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="w-3.5 h-3 rounded bg-secondary shrink-0"></span>
+<span class="text-on-surface font-semibold">&gt; 25% Mn</span>
+<span class="text-secondary text-body-sm font-bold ml-auto">High Grade</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Slice Plane Slider Control Ribbon -->
+<div class="relative z-20 w-full bg-surface-container/90 backdrop-blur-md p-space-sm rounded-lg flex flex-col md:flex-row items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-sm w-full md:w-auto">
+<span class="material-symbols-outlined text-secondary text-[20px]">height</span>
+<div class="flex flex-col">
+<span class="font-label-telemetry text-label-telemetry uppercase text-on-surface">ELEVATION SLICER</span>
+<span class="font-label-code text-label-code text-outline">-240m to -680m mRL</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md flex-1 max-w-xl w-full px-space-xs">
+<span class="font-label-code text-label-code text-outline whitespace-nowrap">-240m</span>
+<input class="w-full h-1.5 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none" id="elevation-slider" max="680" min="240" step="20" type="range" value="480">
+<span class="font-label-code text-label-code text-outline whitespace-nowrap">-680m</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-telemetry text-label-telemetry text-outline">CURRENT:</span>
+<span class="px-space-sm py-1 bg-surface-container-high text-secondary font-label-code text-label-code rounded font-bold" id="slider-elevation-val">-480 mRL</span>
+</div>
+</div>
+</div>
+<!-- Right Inspection Dock: Interactive Block Inspector -->
+<aside class="w-full xl:w-96 bg-surface-container p-space-lg flex flex-col justify-between shadow-inner">
+<div class="space-y-space-md">
+<!-- Inspector Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">view_in_ar</span>
+<span class="font-label-telemetry text-label-telemetry uppercase text-on-surface font-bold tracking-wider">BLOCK INSPECTOR</span>
+</div>
+<span class="px-space-xs py-0.5 bg-secondary/10 text-secondary font-label-code text-[10px] rounded uppercase font-semibold">SELECTED VOXEL</span>
+</div>
+<!-- Active Selected Block Metadata Card -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-sm shadow-sm">
+<div class="flex items-baseline justify-between">
+<span class="font-label-telemetry text-label-telemetry text-outline">BLOCK IDENTIFIER</span>
+<span class="font-label-code text-headline-sm text-secondary font-bold" id="inspect-id">#MN-B-08492</span>
+</div>
+<div class="space-y-1">
+<span class="font-label-telemetry text-label-telemetry text-outline block">COORDINATES &amp; LEVEL</span>
+<div class="flex items-center justify-between font-label-code text-label-code text-on-surface">
+<span id="inspect-coords" class="">1420E / 8820N</span>
+<span class="text-secondary font-semibold" id="inspect-elev">-480 mRL</span>
+</div>
+</div>
+</div>
+<!-- Assayed Grade & Kriging Variance Metrics -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-container-low p-space-md rounded-xl shadow-sm">
+<span class="font-label-telemetry text-label-telemetry uppercase text-outline block">ESTIMATED GRADE</span>
+<span class="font-display-metric text-headline-lg text-primary font-bold block my-1" id="inspect-grade">28.4%</span>
+<span class="font-label-code text-[11px] text-secondary">Payable High Core</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl shadow-sm">
+<span class="font-label-telemetry text-label-telemetry uppercase text-outline block">KRIGING VARIANCE</span>
+<span class="font-display-metric text-headline-lg text-on-surface font-bold block my-1" id="inspect-var">0.038</span>
+<span class="font-label-code text-[11px] text-primary">Low error σ²</span>
+</div>
+</div>
+<!-- Lithological Spec Detail -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs shadow-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-telemetry text-label-telemetry uppercase text-outline">LITHOLOGY CLASSIFICATION</span>
+<span class="material-symbols-outlined text-outline text-[16px]">science</span>
+</div>
+<p class="font-headline-sm text-body-lg text-on-surface font-medium" id="inspect-litho">Massive Manganite / Pyrolusite</p>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-body-sm text-body-sm text-outline">Calculated Bulk Density:</span>
+<span class="font-label-code text-label-code text-on-surface font-semibold" id="inspect-density">3.42 t/m³</span>
+</div>
+</div>
+<!-- Micro Spatial Semivariogram Sparkline -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs shadow-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-telemetry text-label-telemetry uppercase text-outline">LOCAL SPATIAL SEMIVARIOGRAM γ(h)</span>
+<span class="font-label-code text-label-code text-secondary">Range a = 62.5m</span>
+</div>
+<div class="h-16 w-full flex items-end pt-2">
+<svg class="w-full h-full" viewBox="0 0 240 60">
+<!-- Fitted Spherical Model Curve -->
+<path class="text-primary" d="M 0 55 C 30 50, 60 20, 120 12 L 240 12" fill="none" stroke="currentColor" stroke-width="2"></path>
+<!-- Experimental Sample Points -->
+<circle class="fill-secondary" cx="20" cy="52" r="2.5"></circle>
+<circle class="fill-secondary" cx="45" cy="38" r="2.5"></circle>
+<circle class="fill-secondary" cx="75" cy="24" r="2.5"></circle>
+<circle class="fill-secondary" cx="105" cy="15" r="2.5"></circle>
+<circle class="fill-secondary" cx="150" cy="12" r="2.5"></circle>
+<circle class="fill-secondary" cx="195" cy="11" r="2.5"></circle>
+<!-- Sill Line -->
+<line class="text-outline" stroke="currentColor" stroke-dasharray="2,2" stroke-width="0.8" x1="0" x2="240" y1="12" y2="12"></line>
+</svg>
+</div>
+<div class="flex justify-between font-label-code text-[10px] text-outline pt-1">
+<span class="">Nugget C₀ = 0.005</span>
+<span class="">Sill C = 0.042</span>
+</div>
+</div>
+</div>
+<!-- Block Actions Footer -->
+<div class="pt-space-md space-y-space-xs">
+<button class="w-full py-space-sm px-space-md bg-secondary hover:bg-secondary-container text-on-secondary rounded font-label-code text-label-code font-bold flex items-center justify-center gap-space-xs transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">biotech</span>
+<span class="">Download Assay Intercept Trace</span>
+</button>
+<div class="text-center font-label-code text-[10px] text-outline">
+            STATION ID: KAL-GEO-449 · JORC 2012 COMPLIANT
+          </div>
+</div>
+</aside>
+</div>
+</section>
+<!-- Lower Synthesis Section: Geostatistical Integration Architecture -->
+<section class="w-full px-gutter-desktop py-space-xl">
+<div class="max-w-[1720px] mx-auto space-y-space-lg">
+<!-- Section Title & Meta -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm">
+<div>
+<span class="font-label-telemetry text-label-telemetry uppercase text-secondary tracking-widest block">GEOSTATISTICAL FRAMEWORK</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Geostatistical Integration Architecture</h2>
+</div>
+<div class="flex items-center gap-space-sm text-outline font-label-code text-label-code">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="">ESTIMATION SCHEME: 3D ELLIPSOIDAL SEARCH SEARCH RADIUS (80m × 80m × 20m)</span>
+</div>
+</div>
+<!-- 3-Stage Visual Workflow Chain -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-md relative">
+<!-- Step 1: Borehole Assay Stage -->
+<div class="bg-surface-container p-space-lg rounded-xl flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-0.5 bg-surface-container-high font-label-telemetry text-label-telemetry text-primary rounded">STAGE 01</span>
+<span class="font-label-code text-label-code text-secondary font-bold">12,840 Samples</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Borehole &amp; Core Assay Data</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Diamond drill and reverse circulation (RC) assay intervals composited to uniform 2.0m downhole intervals with strict QA/QC duplicate benchmarks.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between">
+<span class="font-label-code text-label-code text-outline">Standard Core Diameter:</span>
+<span class="font-label-code text-label-code text-on-surface font-semibold">HQ / NQ2 Wireline</span>
+</div>
+</div>
+<!-- Step 2: Ordinary Kriging Spatial Model -->
+<div class="bg-surface-container p-space-lg rounded-xl flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-0.5 bg-surface-container-high font-label-telemetry text-label-telemetry text-secondary rounded">STAGE 02</span>
+<span class="font-label-code text-label-code text-secondary font-bold">Spatial Semivariogram γ(h)</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Ordinary Kriging</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Linear unbiased interpolation weighting samples based on spatial covariance, resolving regionalised anisotropic trends along preferential strike.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low p-space-sm rounded-lg space-y-1">
+<span class="font-label-telemetry text-[10px] text-secondary uppercase font-semibold">EXPLANATORY DEFINITION</span>
+<p class="font-body-sm text-[11px] text-on-surface-variant leading-tight">
+              Ordinary Kriging: Estimates values between known borehole measurements using spatial relationships.
+            </p>
+</div>
+</div>
+<!-- Step 3: Block Model & JORC Resource -->
+<div class="bg-surface-container p-space-lg rounded-xl flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-0.5 bg-surface-container-high font-label-telemetry text-label-telemetry text-tertiary rounded">STAGE 03</span>
+<span class="font-label-code text-label-code text-tertiary font-bold">JORC 2012 Model</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">3D Block Model &amp; Resource</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Populated parent voxels classified into compliant reserve buckets based on sample count, kriging estimation variance, and distance to nearest informing drillhole.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between">
+<span class="font-label-code text-label-code text-outline">Volume Interpolated:</span>
+<span class="font-label-code text-label-code text-tertiary font-bold">14.11 Million m³</span>
+</div>
+</div>
+</div>
+<!-- JORC (2012) Confidence Classification Strip -->
+<div class="bg-surface-container p-space-lg rounded-xl space-y-space-md shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<span class="font-label-telemetry text-label-telemetry uppercase text-secondary tracking-wider">CODE REPORTING COMPLIANCE</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">JORC (2012) Confidence Classification</h3>
+</div>
+<div class="flex items-center gap-space-md font-label-code text-label-code text-outline">
+<span class="">TOTAL CLASSIFIED: 498 BLOCKS</span>
+</div>
+</div>
+<!-- Multi-segment Resource Ratio Bar -->
+<div class="w-full h-3 rounded-full bg-surface-container-lowest overflow-hidden flex">
+<div class="h-full bg-secondary" style="width: 58%;" title="Measured: 58%"></div>
+<div class="h-full bg-primary" style="width: 31%;" title="Indicated: 31%"></div>
+<div class="h-full bg-surface-variant" style="width: 11%;" title="Inferred: 11%"></div>
+</div>
+<!-- JORC Breakdown Detail Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md pt-space-xs">
+<!-- Measured -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">Measured Resource</span>
+<span class="font-label-code text-headline-sm text-on-surface font-bold">58%</span>
+</div>
+<div class="font-label-code text-label-code text-on-surface">289 blocks</div>
+<div class="flex items-center gap-space-xs text-outline font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[15px] text-secondary">verified</span>
+<span class="">Drill spacing ≤ 25m · High Confidence</span>
+</div>
+</div>
+<!-- Indicated -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Indicated Resource</span>
+<span class="font-label-code text-headline-sm text-on-surface font-bold">31%</span>
+</div>
+<div class="font-label-code text-label-code text-on-surface">154 blocks</div>
+<div class="flex items-center gap-space-xs text-outline font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[15px] text-primary">done</span>
+<span class="">Drill spacing 25m–50m · Mineable Grade</span>
+</div>
+</div>
+<!-- Inferred -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface-variant font-bold">Inferred Resource</span>
+<span class="font-label-code text-headline-sm text-on-surface font-bold">11%</span>
+</div>
+<div class="font-label-code text-label-code text-on-surface">55 blocks</div>
+<div class="flex items-center gap-space-xs text-outline font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[15px] text-outline">help_outline</span>
+<span class="">Drill spacing &gt; 50m · Geological Continuity</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Client Script -->
+<script>
+    // State Variables
+    let isOrtho = false;
+    let rotationAngle = 0;
+
+    // Element references
+    const slider = document.getElementById('elevation-slider');
+    const sliderVal = document.getElementById('slider-elevation-val');
+    const markerSlice = document.getElementById('marker-active-slice');
+    const isoSvg = document.getElementById('iso-svg');
+    const layerUpper = document.getElementById('layer-upper');
+    const layerLower = document.getElementById('layer-lower');
+    const projLabel = document.getElementById('proj-mode-label');
+
+    // Elevation Slicer Dynamics
+    if (slider) {
+      slider.addEventListener('input', (e) => {
+        const val = e.target.value;
+        sliderVal.innerText = `-${val} mRL`;
+        markerSlice.innerText = `-${val}m RL (Active Slicer)`;
+
+        // Adjust visibility according to slice plane cut
+        if (val < 400) {
+          layerUpper.style.opacity = '1';
+          layerLower.style.opacity = '0.15';
+        } else if (val > 540) {
+          layerUpper.style.opacity = '0.2';
+          layerLower.style.opacity = '1';
+        } else {
+          layerUpper.style.opacity = '0.5';
+          layerLower.style.opacity = '0.7';
+        }
+      });
+    }
+
+    // Block Selector Hook
+    window.selectBlock = function(id, coords, elev, grade, litho, density, variance) {
+      document.getElementById('inspect-id').innerText = id;
+      document.getElementById('inspect-coords').innerText = coords;
+      document.getElementById('inspect-elev').innerText = elev;
+      document.getElementById('inspect-grade').innerText = grade;
+      document.getElementById('inspect-litho').innerText = litho;
+      document.getElementById('inspect-density').innerText = density;
+      document.getElementById('inspect-var').innerText = variance;
+    };
+
+    // Rotate View Micro-interaction
+    const rotateBtn = document.getElementById('btn-rotate');
+    if (rotateBtn) {
+      rotateBtn.addEventListener('click', () => {
+        rotationAngle = (rotationAngle + 45) % 360;
+        isoSvg.style.transform = `rotate(${rotationAngle}deg)`;
+      });
+    }
+
+    // Orthographic / Perspective Toggle
+    const orthoBtn = document.getElementById('btn-ortho');
+    if (orthoBtn) {
+      orthoBtn.addEventListener('click', () => {
+        isOrtho = !isOrtho;
+        projLabel.innerText = isOrtho ? 'Orthographic' : 'Perspective';
+        isoSvg.style.transform = isOrtho ? 'scale(1.08) skewX(-2deg)' : 'scale(1) skewX(0deg)';
+      });
+    }
+
+    // Reset View
+    const resetBtn = document.getElementById('btn-reset');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        rotationAngle = 0;
+        isOrtho = false;
+        projLabel.innerText = 'Perspective';
+        isoSvg.style.transform = 'none';
+        slider.value = 480;
+        slider.dispatchEvent(new Event('input'));
+      });
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest py-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full px-gutter-desktop flex flex-wrap items-center justify-between gap-space-sm"><div class="flex items-center gap-space-md"><span class="font-label-telemetry text-label-telemetry uppercase text-secondary flex items-center gap-1.5"><span class="inline-block w-1.5 h-1.5 rounded-full bg-secondary"></span>SYS_SYNC: LOCKED</span><span class="font-label-code text-label-code text-on-surface-variant">PIPELINE: SAR_INTERFEROMETRY_STABLE</span></div><div class="flex items-center gap-space-lg"><span class="font-label-telemetry text-label-telemetry uppercase text-outline">COMPLIANCE: JORC 2012 / UNFC 2009 READY</span><span class="font-label-code text-label-code text-on-surface-variant">© 2025 OreSight EO Core</span></div></div></footer>
+
+</body></html>

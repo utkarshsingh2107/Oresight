@@ -5,12 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OreSight — Space-Enabled Mine Intelligence</title>
     <meta name="description" content="Space-enabled mine intelligence: Earth observation, geological resource mapping, production forecasting, risk analysis and prescriptive decision support." />
-    <!-- Inter — Stitch "Industrial Precision" design system font -->
+    <!-- Inter — Stitch design system font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Material Symbols Outlined from Stitch -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='50' rx='42' ry='18' stroke='%2338bdf8' stroke-width='2' stroke-dasharray='4 2' transform='rotate(-28 50 50)' opacity='0.85' fill='none'/%3E%3Ccircle cx='82' cy='33' r='3' fill='%2338bdf8'/%3E%3Cpolygon points='50,22 74,36 50,50 26,36' fill='%23d97706' stroke='%23f59e0b' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpolygon points='26,36 50,50 50,78 26,64' fill='%2392400e' stroke='%23f59e0b' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpolygon points='50,50 74,36 74,64 50,78' fill='%23b45309' stroke='%23f59e0b' stroke-width='1.5' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='50' r='7' stroke='%23ffffff' stroke-width='1.5' fill='none'/%3E%3Ccircle cx='50' cy='50' r='2.5' fill='%23f59e0b'/%3E%3C/svg%3E" />
+    <!-- Stitch Tailwind Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#006398",
+              "on-surface": "#d4e4fa",
+              "on-secondary-fixed-variant": "#004c69",
+              "tertiary-fixed-dim": "#d0bcff",
+              "secondary": "#7bd0ff",
+              "on-primary-fixed": "#001d31",
+              "primary": "#93ccff",
+              "primary-fixed": "#cce5ff",
+              "error-container": "#93000a",
+              "primary-fixed-dim": "#93ccff",
+              "outline": "#89929b",
+              "on-error": "#690005",
+              "on-primary-fixed-variant": "#004b73",
+              "tertiary-container": "#a078ff",
+              "surface-variant": "#273647",
+              "on-primary-container": "#002c47",
+              "tertiary-fixed": "#e9ddff",
+              "inverse-surface": "#d4e4fa",
+              "on-surface-variant": "#bfc7d2",
+              "tertiary": "#d0bcff",
+              "background": "#051424",
+              "surface-bright": "#2c3a4c",
+              "surface": "#051424",
+              "secondary-fixed": "#c4e7ff",
+              "on-secondary-fixed": "#001e2c",
+              "secondary-container": "#00a6e0",
+              "on-secondary": "#00354a",
+              "on-tertiary-fixed-variant": "#5516be",
+              "surface-container-highest": "#273647",
+              "outline-variant": "#3f4850",
+              "surface-container-lowest": "#010f1f",
+              "secondary-fixed-dim": "#7bd0ff",
+              "on-secondary-container": "#00374d",
+              "surface-container-high": "#1c2b3c",
+              "inverse-on-surface": "#233143",
+              "on-background": "#d4e4fa",
+              "primary-container": "#3198dc",
+              "surface-dim": "#051424",
+              "on-primary": "#003351",
+              "on-tertiary-fixed": "#23005c",
+              "surface-container": "#122131",
+              "on-error-container": "#ffdad6",
+              "surface-tint": "#93ccff",
+              "error": "#ffb4ab",
+              "surface-container-low": "#0d1c2d",
+              "on-tertiary-container": "#340080",
+              "on-tertiary": "#3c0091"
+            },
+            borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" },
+            spacing: { "margin-desktop": "1.5rem", "space-xs": "0.25rem", margin: "1rem", gutter: "0.75rem", "space-lg": "1rem", "space-xl": "1.5rem", "space-sm": "0.5rem", "gutter-desktop": "1rem", "space-md": "0.75rem" },
+            fontFamily: {
+              "label-telemetry": ["Inter", "sans-serif"],
+              "headline-sm": ["Inter", "sans-serif"],
+              "headline-lg": ["Inter", "sans-serif"],
+              "headline-md": ["Inter", "sans-serif"],
+              "display-metric-mobile": ["Inter", "sans-serif"],
+              "body-sm": ["Inter", "sans-serif"],
+              "body-md": ["Inter", "sans-serif"],
+              "body-lg": ["Inter", "sans-serif"],
+              "display-metric": ["Inter", "sans-serif"],
+              "label-code": ["Inter", "monospace"]
+            },
+            fontSize: {
+              "label-telemetry": ["11px", { lineHeight: "14px", letterSpacing: "0.06em", fontWeight: "600" }],
+              "headline-sm": ["15px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "600" }],
+              "headline-lg": ["24px", { lineHeight: "32px", letterSpacing: "-0.015em", fontWeight: "600" }],
+              "headline-md": ["18px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }],
+              "display-metric-mobile": ["28px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+              "body-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "400" }],
+              "body-md": ["13px", { lineHeight: "18px", letterSpacing: "0em", fontWeight: "400" }],
+              "body-lg": ["15px", { lineHeight: "22px", letterSpacing: "0em", fontWeight: "400" }],
+              "display-metric": ["36px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "600" }],
+              "label-code": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "500" }]
+            }
+          }
+        }
+      };
+    </script>
   </head>
-  <body>
+  <body class="bg-surface font-body-md text-on-surface antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

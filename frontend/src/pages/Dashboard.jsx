@@ -17,7 +17,16 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true)
   const [error,   setError]   = useState(null)
   const [data,    setData]    = useState(null)
-  const [stage,   setStage]   = useState('overview')
+  const [stage,   setStage]   = useState(() => {
+    if (typeof process !== 'undefined' && process.env.NODE_ENV === 'test') {
+      return 'overview'
+    }
+    if (typeof window !== 'undefined' && window.location?.search) {
+      const p = new URLSearchParams(window.location.search).get('stage')
+      if (['overview', 'satellite', 'prism', 'ear', 'pulse', 'nudge'].includes(p)) return p
+    }
+    return 'overview'
+  })
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -36,9 +45,22 @@ export default function Dashboard() {
 
   useEffect(() => { load() }, [load])
 
+  const handleSelectStage = useCallback((newStage) => {
+    setStage(newStage)
+    if (typeof window !== 'undefined' && window.history?.replaceState) {
+      try {
+        const url = new URL(window.location)
+        url.searchParams.set('stage', newStage)
+        window.history.replaceState({}, '', url)
+      } catch {
+        // no-op for mock environments
+      }
+    }
+  }, [])
+
   return (
     <>
-      <Header onRefresh={load} loading={loading} />
+      <Header onRefresh={load} loading={loading} activeStage={stage} onSelectStage={handleSelectStage} />
 
       <main className="page-wrapper">
         {/* Demo disclaimer — design.md §24 data presentation rule: provenance always visible */}
@@ -65,12 +87,12 @@ export default function Dashboard() {
 
         {data && (
           <>
-            <PipelineStrip activeStage={stage} onSelect={setStage} />
+            <PipelineStrip activeStage={stage} onSelect={handleSelectStage} />
 
             {stage === 'overview' && (
               <OverviewPanel
                 overview={data.overview}
-                onNavigate={setStage}
+                onNavigate={handleSelectStage}
               />
             )}
 
@@ -106,6 +128,29 @@ export default function Dashboard() {
           </>
         )}
       </main>
+
+      {/* Stitch Global Operational Footer */}
+      <footer className="w-full bg-surface-container-lowest/90 border-t border-border py-3 mt-10">
+        <div className="w-full max-w-[1720px] mx-auto px-4 md:px-6 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div className="flex items-center gap-3">
+            <span className="font-label-telemetry uppercase text-secondary flex items-center gap-1.5 font-bold text-[10px]">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-secondary" />
+              SYS_SYNC: LOCKED
+            </span>
+            <span className="font-label-code text-on-surface-variant text-[11px]">
+              PIPELINE: SAR_INTERFEROMETRY_STABLE
+            </span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="font-label-telemetry text-outline text-[10px] uppercase font-semibold">
+              COMPLIANCE: JORC 2012 / UNFC 2009 READY
+            </span>
+            <span className="font-label-code text-on-surface-variant text-[11px]">
+              © 2025 OreSight EO Core
+            </span>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }

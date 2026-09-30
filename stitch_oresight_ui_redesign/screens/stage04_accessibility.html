@@ -1,0 +1,597 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"inverse-primary":"#006398","on-surface":"#d4e4fa","on-secondary-fixed-variant":"#004c69","tertiary-fixed-dim":"#d0bcff","secondary":"#7bd0ff","on-primary-fixed":"#001d31","primary":"#93ccff","primary-fixed":"#cce5ff","error-container":"#93000a","primary-fixed-dim":"#93ccff","outline":"#89929b","on-error":"#690005","on-primary-fixed-variant":"#004b73","tertiary-container":"#a078ff","surface-variant":"#273647","on-primary-container":"#002c47","tertiary-fixed":"#e9ddff","inverse-surface":"#d4e4fa","on-surface-variant":"#bfc7d2","tertiary":"#d0bcff","background":"#051424","surface-bright":"#2c3a4c","surface":"#051424","secondary-fixed":"#c4e7ff","on-secondary-fixed":"#001e2c","secondary-container":"#00a6e0","on-secondary":"#00354a","on-tertiary-fixed-variant":"#5516be","surface-container-highest":"#273647","outline-variant":"#3f4850","surface-container-lowest":"#010f1f","secondary-fixed-dim":"#7bd0ff","on-secondary-container":"#00374d","surface-container-high":"#1c2b3c","inverse-on-surface":"#233143","on-background":"#d4e4fa","primary-container":"#3198dc","surface-dim":"#051424","on-primary":"#003351","on-tertiary-fixed":"#23005c","surface-container":"#122131","on-error-container":"#ffdad6","surface-tint":"#93ccff","error":"#ffb4ab","surface-container-low":"#0d1c2d","on-tertiary-container":"#340080","on-tertiary":"#3c0091"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"margin-desktop":"1.5rem","space-xs":"0.25rem",margin:"1rem",gutter:"0.75rem","space-lg":"1rem","space-xl":"1.5rem","space-sm":"0.5rem","gutter-desktop":"1rem","space-md":"0.75rem"},fontFamily:{"label-telemetry":["Inter"],"headline-sm":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"display-metric-mobile":["Inter"],"body-sm":["Inter"],"body-md":["Inter"],"body-lg":["Inter"],"display-metric":["Inter"],"label-code":["Inter"]},fontSize:{"label-telemetry":["11px",{lineHeight:"14px",letterSpacing:"0.06em",fontWeight:"600"}],"headline-sm":["15px",{lineHeight:"20px",letterSpacing:"0em",fontWeight:"600"}],"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"headline-md":["18px",{lineHeight:"24px",letterSpacing:"-0.01em",fontWeight:"600"}],"display-metric-mobile":["28px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"body-sm":["12px",{lineHeight:"16px",letterSpacing:"0.01em",fontWeight:"400"}],"body-md":["13px",{lineHeight:"18px",letterSpacing:"0em",fontWeight:"400"}],"body-lg":["15px",{lineHeight:"22px",letterSpacing:"0em",fontWeight:"400"}],"display-metric":["36px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"label-code":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 w-full bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full bg-surface-container-high px-gutter-desktop py-space-xs flex items-center justify-between"><div class="flex items-center gap-space-sm"><span class="flex h-2 w-2 rounded-full bg-secondary-container"></span><span class="font-label-telemetry text-label-telemetry uppercase tracking-wider text-secondary">DEMO MODE</span><span class="font-label-code text-label-code text-on-surface-variant">— Synthetic calibrated data • Earth-observation layers are simulated for demonstration and the architecture is integration-ready for real EO feeds.</span></div><div class="hidden lg:flex items-center gap-space-md"><span class="font-label-telemetry text-label-telemetry text-outline">TELEMETRY LINK: NOMINAL</span><span class="font-label-code text-label-code text-on-surface-variant">LATENCY 14ms</span></div></div><div class="h-14 w-full px-gutter-desktop flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg shrink-0"><div class="flex items-center gap-space-sm"><img src="https://lh3.googleusercontent.com/aida/AEtjO1UP07abo0FsORTqv688KDJbY_OM--BkapSGNfzQ-FKP9a3If0NYW7gmYE5c90qx3cBrUQg947UyFvtT78X9HdlE_x0X4RN43xZhOziDgHWwWLpIDu4m_mc4_5w3OeEWG83i67VzTgkN6uZiuo5ho37ocDBHgRZIq-S2662Lu1rWIfeHGFv-TC-JMoKZ66xViSuU5a374XGmwdt5NVwHdZwwkDdNCO4IyeL4Ah-_w2uQgtpEi7Tx473cw3s" alt="OreSight Logo" class="w-8 h-8 object-contain inline-block shrink-0"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface font-bold leading-none">OreSight</span><span class="font-label-telemetry text-label-telemetry tracking-widest text-outline text-[9px] uppercase leading-none mt-1">MINING INTELLIGENCE</span></div></div></div><nav class="hidden xl:flex items-center gap-space-xs" data-active-classes="bg-surface-container-high text-secondary font-medium rounded-lg"><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="mission-overview" href="#">Mission Overview</a><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="space-intelligence" href="#">Space Intelligence</a><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="resource-mapping" href="#">Resource Mapping</a><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-surface-container-high text-secondary font-medium rounded-lg" data-path="accessibility" href="#">Accessibility</a><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="production-forecast" href="#">Production Forecast</a><a class="px-space-md py-space-xs font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors rounded-lg" data-path="decision-engine" href="#">Decision Engine</a></nav><div class="flex items-center gap-space-md shrink-0"><div class="hidden sm:flex items-center gap-space-xs bg-surface-container-low px-space-sm py-space-xs rounded-lg"><span class="flex h-1.5 w-1.5 rounded-full bg-secondary-container"></span><span class="font-label-telemetry text-label-telemetry text-secondary uppercase">SENTINEL-2 / ISRO READY</span></div><div class="hidden md:flex flex-col items-end text-right"><span class="font-label-code text-label-code text-on-surface tabular-nums">UTC 14:32:08.41</span><span class="font-label-telemetry text-label-telemetry text-outline text-[9px]">ORBITAL EPOCH 582.1</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-2rem)]"><div class="flex flex-col w-full">
+<!-- Dynamic Spatial Filter Shell -->
+<div class="w-full px-gutter md:px-margin-desktop py-space-lg flex flex-col gap-space-xl max-w-[1720px] mx-auto">
+<!-- Header Section with Operational Context & Definition Banner -->
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-2.5 h-2.5 rounded-full bg-secondary shadow-sm"></div>
+<span class="font-label-telemetry text-label-telemetry uppercase text-secondary tracking-widest">LAYER 04 // OPERATIONAL FEASIBILITY</span>
+<span class="font-label-code text-label-code text-on-surface-variant">• GEO-BLOCK FILTER ENGINE ACTIVE</span>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-high px-space-md py-space-xs rounded-lg shadow-sm">
+<span class="font-label-telemetry text-label-telemetry text-outline uppercase">CURRENT BENCHMARK RULESET:</span>
+<span class="font-label-code text-label-code text-primary font-medium">JORC-2012 / CLAUSE 49 MINEABILITY</span>
+</div>
+</div>
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code text-secondary font-semibold uppercase">Question 04: "What can be accessed?"</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">
+            Accessibility &amp; Operational Constraints
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+            Mineability Filter · What part of the modelled resource can realistically be accessed under active subterranean constraints?
+          </p>
+</div>
+<!-- Definition Callout -->
+<div class="xl:max-w-md w-full bg-surface-container-high/70 backdrop-blur-md p-space-md rounded-xl shadow-md">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-headline-md shrink-0 mt-0.5">verified_user</span>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-telemetry text-label-telemetry uppercase text-secondary font-bold">Standard Definition: Accessibility</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                How much of the modelled resource can be reached under current operational, geotechnical, and environmental constraints.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Top Core Metrics Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-gutter">
+<!-- Metric 1 -->
+<div class="bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between min-w-0 transition-transform hover:-translate-y-0.5 duration-200">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-telemetry text-label-telemetry uppercase text-on-surface-variant tracking-wider truncate">Modelled Resource</span>
+<span class="material-symbols-outlined text-outline text-headline-sm">layers</span>
+</div>
+<div class="my-space-sm">
+<span class="font-display-metric text-display-metric text-on-surface tracking-tight">48.27</span>
+<span class="font-headline-sm text-headline-sm text-outline ml-1">Mt</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+<span class="font-label-code text-label-code text-on-surface-variant truncate">Declared in-situ reserve</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between min-w-0 transition-transform hover:-translate-y-0.5 duration-200">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-telemetry text-label-telemetry uppercase text-secondary tracking-wider truncate">Accessible Resource</span>
+<span class="material-symbols-outlined text-secondary text-headline-sm">check_circle</span>
+</div>
+<div class="my-space-sm">
+<span class="font-display-metric text-display-metric text-secondary tracking-tight">32.74</span>
+<span class="font-headline-sm text-headline-sm text-secondary/70 ml-1">Mt</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-code text-label-code text-secondary font-medium truncate">67.8% net extraction yield</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between min-w-0 transition-transform hover:-translate-y-0.5 duration-200">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-telemetry text-label-telemetry uppercase text-on-surface-variant tracking-wider truncate">Accessibility Ratio</span>
+<span class="material-symbols-outlined text-primary text-headline-sm">speed</span>
+</div>
+<div class="my-space-sm">
+<span class="font-display-metric text-display-metric text-on-surface tracking-tight">67.8%</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-telemetry text-label-telemetry uppercase px-space-xs py-0.5 rounded bg-surface-container-high text-primary font-bold">PASS</span>
+<span class="font-label-code text-label-code text-on-surface-variant truncate">Benchmark: ≥65.0%</span>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between min-w-0 transition-transform hover:-translate-y-0.5 duration-200">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-telemetry text-label-telemetry uppercase text-on-surface-variant tracking-wider truncate">Accessible Blocks</span>
+<span class="material-symbols-outlined text-secondary text-headline-sm">grid_view</span>
+</div>
+<div class="my-space-sm">
+<span class="font-display-metric text-display-metric text-on-surface tracking-tight">339</span>
+<span class="font-body-md text-body-md text-outline ml-1">blks</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-code text-label-code text-on-surface-variant truncate">Cleared for drilling</span>
+</div>
+</div>
+<!-- Metric 5 -->
+<div class="bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between min-w-0 transition-transform hover:-translate-y-0.5 duration-200">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-telemetry text-label-telemetry uppercase text-error tracking-wider truncate">Restricted / Locked</span>
+<span class="material-symbols-outlined text-error text-headline-sm">lock</span>
+</div>
+<div class="my-space-sm">
+<span class="font-display-metric text-display-metric text-error tracking-tight">159</span>
+<span class="font-body-md text-body-md text-error/70 ml-1">blks</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span class="font-label-code text-label-code text-error truncate">-15.53 Mt active barriers</span>
+</div>
+</div>
+</div>
+<!-- Transformation Visualizer & Waterfall Bridge -->
+<div class="bg-surface-container rounded-xl p-space-lg shadow-xl flex flex-col gap-space-lg">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-headline-md">filter_alt</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">In-Situ to Cleared Extraction Pipeline</span>
+<span class="font-label-telemetry text-label-telemetry text-outline uppercase tracking-wider">Volumetric Yield Step Analysis</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-space-xs rounded-lg">
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant uppercase">BARRIER DELTA:</span>
+<span class="font-label-code text-label-code text-error font-bold">-15.53 Mt (-32.2%)</span>
+</div>
+</div>
+<!-- Transformation Diagram -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md items-center py-space-xs">
+<!-- Stage 1 -->
+<div class="lg:col-span-3 bg-surface-container-high p-space-md rounded-xl flex flex-col gap-space-xs shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-telemetry text-label-telemetry text-outline uppercase">Input Stage 01</span>
+<span class="font-label-code text-label-code text-on-surface-variant font-semibold">100.0%</span>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">Modelled Resource</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold">48.27</span>
+<span class="font-body-md text-body-md text-outline">Mt in-situ</span>
+</div>
+<span class="font-label-code text-label-code text-on-surface-variant">498 geostatistical block units</span>
+</div>
+<!-- Connector 1 -->
+<div class="lg:col-span-1 flex items-center justify-center">
+<div class="hidden lg:flex items-center justify-center w-8 h-8 rounded-full bg-surface-container-highest text-secondary shadow-sm">
+<span class="material-symbols-outlined text-headline-sm">arrow_forward</span>
+</div>
+<div class="lg:hidden flex items-center justify-center py-space-xs text-secondary">
+<span class="material-symbols-outlined text-headline-sm">arrow_downward</span>
+</div>
+</div>
+<!-- Stage 2 (Filter) -->
+<div class="lg:col-span-4 bg-surface-container-high p-space-md rounded-xl flex flex-col gap-space-xs shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-telemetry text-label-telemetry text-error uppercase">Active Impediments</span>
+<span class="font-label-code text-label-code text-error font-semibold">-32.2% Total</span>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">Filtration Constraints</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-error font-bold">-15.53</span>
+<span class="font-body-md text-body-md text-error/80">Mt locked</span>
+</div>
+<span class="font-label-code text-label-code text-on-surface-variant">Pillar locks, heading lags &amp; hydrologic buffers</span>
+</div>
+<!-- Connector 2 -->
+<div class="lg:col-span-1 flex items-center justify-center">
+<div class="hidden lg:flex items-center justify-center w-8 h-8 rounded-full bg-surface-container-highest text-secondary shadow-sm">
+<span class="material-symbols-outlined text-headline-sm">arrow_forward</span>
+</div>
+<div class="lg:hidden flex items-center justify-center py-space-xs text-secondary">
+<span class="material-symbols-outlined text-headline-sm">arrow_downward</span>
+</div>
+</div>
+<!-- Stage 3 (Yield) -->
+<div class="lg:col-span-3 bg-primary-container/20 p-space-md rounded-xl flex flex-col gap-space-xs shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-telemetry text-label-telemetry text-secondary uppercase font-bold">Final Mineable Product</span>
+<span class="font-label-code text-label-code text-secondary font-bold">67.8% Yield</span>
+</div>
+<span class="font-headline-md text-headline-md text-secondary font-bold">Accessible Ore</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-secondary font-bold">32.74</span>
+<span class="font-body-md text-body-md text-secondary/80">Mt ready</span>
+</div>
+<span class="font-label-code text-label-code text-on-surface-variant">339 production blocks scheduled</span>
+</div>
+</div>
+<!-- Segmented Waterfall Bar -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex justify-between items-center text-label-telemetry font-label-telemetry uppercase text-outline">
+<span class="">Yield Balance Allocation</span>
+<span class="">100% Total Geological Mass</span>
+</div>
+<div class="h-6 w-full rounded-lg bg-surface-container-lowest overflow-hidden flex shadow-sm">
+<!-- Accessible (67.8%) -->
+<div class="h-full bg-secondary transition-all hover:opacity-90 flex items-center justify-center cursor-help" style="width: 67.8%" title="Net Deliverable Mineable Ore: 32.74 Mt (67.8%)">
+<span class="font-label-telemetry text-label-telemetry text-on-secondary truncate px-1">Accessible 32.74 Mt (67.8%)</span>
+</div>
+<!-- Crown & Rib Pillars (14.1%) -->
+<div class="h-full bg-error transition-all hover:opacity-90 flex items-center justify-center cursor-help" style="width: 14.1%" title="Geotechnical Crown &amp; Rib Pillars: -6.82 Mt (-14.1%)">
+<span class="font-label-telemetry text-label-telemetry text-on-error truncate px-1">-14.1%</span>
+</div>
+<!-- Heading Lag (10.6%) -->
+<div class="h-full bg-primary-container transition-all hover:opacity-90 flex items-center justify-center cursor-help" style="width: 10.6%" title="Heading Advance Lag: -5.11 Mt (-10.6%)">
+<span class="font-label-telemetry text-label-telemetry text-on-surface truncate px-1">-10.6%</span>
+</div>
+<!-- Sump Stand-off (7.5%) -->
+<div class="h-full bg-surface-variant transition-all hover:opacity-90 flex items-center justify-center cursor-help" style="width: 7.5%" title="Hydrological &amp; Sump Stand-offs: -3.60 Mt (-7.5%)">
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant truncate px-1">-7.5%</span>
+</div>
+</div>
+<!-- Legend / Waterfall breakdown metrics -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm pt-space-xs">
+<div class="flex items-center gap-space-xs bg-surface-container-high/50 p-space-sm rounded-lg">
+<div class="w-3 h-3 rounded bg-secondary shrink-0"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-code text-label-code text-on-surface font-semibold truncate">Deliverable Mineable Ore</span>
+<span class="font-label-telemetry text-label-telemetry text-secondary">32.74 Mt (67.8%)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-high/50 p-space-sm rounded-lg">
+<div class="w-3 h-3 rounded bg-error shrink-0"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-code text-label-code text-on-surface font-semibold truncate">Crown &amp; Rib Pillars</span>
+<span class="font-label-telemetry text-label-telemetry text-error">-6.82 Mt (-14.1%)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-high/50 p-space-sm rounded-lg">
+<div class="w-3 h-3 rounded bg-primary-container shrink-0"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-code text-label-code text-on-surface font-semibold truncate">Heading Advance Lag</span>
+<span class="font-label-telemetry text-label-telemetry text-primary">-5.11 Mt (-10.6%)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-high/50 p-space-sm rounded-lg">
+<div class="w-3 h-3 rounded bg-surface-variant shrink-0"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-code text-label-code text-on-surface font-semibold truncate">Hydrological Stand-offs</span>
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant">-3.60 Mt (-7.5%)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 3 Major Operational Constraint Panels -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">Active Constraint Threshold Inspections</h2>
+<span class="font-label-telemetry text-label-telemetry text-outline uppercase tracking-wider">3 CRITICAL CHECKS</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Constraint 1: Development -->
+<div class="bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-telemetry text-label-telemetry uppercase text-outline">Constraint 01 // Physical</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-variant text-primary font-label-telemetry text-label-telemetry uppercase font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> RESTRICTED
+              </span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Development Readiness</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Can the active stoping area be developed?</p>
+</div>
+<!-- Micro Visualization / Progress Gauge -->
+<div class="flex flex-col gap-space-xs bg-surface-container-high p-space-md rounded-lg">
+<div class="flex justify-between items-center font-label-code text-label-code">
+<span class="text-on-surface-variant">Heading Advance Rate:</span>
+<span class="text-on-surface font-bold tabular-nums">18.5 m/d <span class="text-outline font-normal">/ 19.2 m/d req</span></span>
+</div>
+<div class="w-full bg-surface-container-lowest h-2 rounded overflow-hidden">
+<div class="bg-primary h-full rounded" style="width: 96.3%"></div>
+</div>
+<div class="flex justify-between text-label-telemetry font-label-telemetry text-outline">
+<span class="">RATE: 96.3%</span>
+<span class="text-error font-medium">-0.7 m/d DEFICIT</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg">
+<span class="font-label-code text-label-code text-on-surface-variant">Capacity Impact:</span>
+<span class="font-label-code text-label-code text-error font-semibold">-5.11 Mt lag across 8 stopes</span>
+</div>
+</div>
+<!-- Constraint 2: Fleet Availability -->
+<div class="bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-telemetry text-label-telemetry uppercase text-outline">Constraint 02 // Logistics</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-variant text-primary font-label-telemetry text-label-telemetry uppercase font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> RESTRICTED
+              </span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Equipment Fleet Allocation</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Is the required loading &amp; hauling fleet available?</p>
+</div>
+<!-- Micro Visualization / Gauge -->
+<div class="flex flex-col gap-space-xs bg-surface-container-high p-space-md rounded-lg">
+<div class="flex justify-between items-center font-label-code text-label-code">
+<span class="text-on-surface-variant">Fleet Availability:</span>
+<span class="text-on-surface font-bold tabular-nums">92.9% <span class="text-outline font-normal">/ 95.7% req</span></span>
+</div>
+<div class="w-full bg-surface-container-lowest h-2 rounded overflow-hidden">
+<div class="bg-primary h-full rounded" style="width: 92.9%"></div>
+</div>
+<div class="flex justify-between text-label-telemetry font-label-telemetry text-outline">
+<span class="">OPERATIONAL FLEET</span>
+<span class="text-error font-medium">-2.8% SHORTFALL</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg">
+<span class="font-label-code text-label-code text-on-surface-variant">Primary Factor:</span>
+<span class="font-label-code text-label-code text-secondary font-medium">3 CAT haulers in scheduled rebuild</span>
+</div>
+</div>
+<!-- Constraint 3: Weather & Hydrology -->
+<div class="bg-surface-container p-space-lg rounded-xl shadow-md flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-telemetry text-label-telemetry uppercase text-outline">Constraint 03 // Environment</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-variant text-secondary font-label-telemetry text-label-telemetry uppercase font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> NOMINAL
+              </span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Hydrology &amp; Drainage</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Are environmental &amp; hydro-geological conditions safe?</p>
+</div>
+<!-- Micro Visualization / Headroom -->
+<div class="flex flex-col gap-space-xs bg-surface-container-high p-space-md rounded-lg">
+<div class="flex justify-between items-center font-label-code text-label-code">
+<span class="text-on-surface-variant">Sublevel Inflow:</span>
+<span class="text-secondary font-bold tabular-nums">210 L/s <span class="text-outline font-normal">/ 380 L/s cap</span></span>
+</div>
+<div class="w-full bg-surface-container-lowest h-2 rounded overflow-hidden">
+<div class="bg-secondary h-full rounded" style="width: 55.2%"></div>
+</div>
+<div class="flex justify-between text-label-telemetry font-label-telemetry text-secondary">
+<span class="">HEADROOM: 94.3%</span>
+<span class="text-outline">STABLE DRAWDOWN</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg">
+<span class="font-label-code text-label-code text-on-surface-variant">Subsurface Safety:</span>
+<span class="font-label-code text-label-code text-secondary font-semibold">170 L/s surplus capacity</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sublevel Stope Accessibility Register & Spatial Context Panel -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter">
+<!-- Stope Register Table (8 Cols) -->
+<div class="xl:col-span-8 bg-surface-container rounded-xl p-space-lg shadow-xl flex flex-col gap-space-md min-w-0">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-headline-md">table_view</span>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Sublevel Stope Accessibility Register</h3>
+<span class="font-label-telemetry text-label-telemetry text-outline uppercase tracking-wider">Active Mining Horizon Inventory</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-space-xs bg-surface-container-high hover:bg-surface-variant text-on-surface rounded-lg font-label-code text-label-code transition-colors flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">file_download</span> Export CSV
+            </button>
+</div>
+</div>
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-high text-on-surface-variant font-label-telemetry text-label-telemetry uppercase tracking-wider">
+<th class="py-space-sm px-space-md rounded-l-lg">Horizon / Stope ID</th>
+<th class="py-space-sm px-space-md">Extraction Status</th>
+<th class="py-space-sm px-space-md text-right">Tonnage (Mt)</th>
+<th class="py-space-sm px-space-md">Geotechnical / Operational Reason</th>
+<th class="py-space-sm px-space-md text-right rounded-r-lg">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-high/60 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-code text-label-code text-on-surface font-bold">ST-420-ALL</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="font-label-telemetry text-label-telemetry uppercase px-space-xs py-0.5 rounded bg-surface-variant text-secondary font-semibold">
+                    ACCESSIBLE
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right font-headline-sm text-headline-sm text-on-surface font-semibold tabular-nums">
+                  11.64
+                </td>
+<td class="py-space-md px-space-md font-body-sm text-body-sm text-on-surface-variant">
+                  Heading fully developed; ventilation circuit verified
+                </td>
+<td class="py-space-md px-space-md text-right">
+<span class="font-label-telemetry text-label-telemetry text-secondary uppercase font-semibold">DRILL_READY</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-high/60 transition-colors bg-surface-container-low/40">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-code text-label-code text-on-surface font-bold">ST-480-01</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="font-label-telemetry text-label-telemetry uppercase px-space-xs py-0.5 rounded bg-surface-variant text-secondary font-semibold">
+                    ACCESSIBLE
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right font-headline-sm text-headline-sm text-on-surface font-semibold tabular-nums">
+                  7.14
+                </td>
+<td class="py-space-md px-space-md font-body-sm text-body-sm text-on-surface-variant">
+                  Blast ticket cleared; collar tie-ins validated
+                </td>
+<td class="py-space-md px-space-md text-right">
+<span class="font-label-telemetry text-label-telemetry text-secondary uppercase font-semibold">DRILL_READY</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-high/60 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-code text-label-code text-on-surface font-bold">ST-480-02</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="font-label-telemetry text-label-telemetry uppercase px-space-xs py-0.5 rounded bg-surface-variant text-secondary font-semibold">
+                    ACCESSIBLE
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right font-headline-sm text-headline-sm text-on-surface font-semibold tabular-nums">
+                  6.98
+                </td>
+<td class="py-space-md px-space-md font-body-sm text-body-sm text-on-surface-variant">
+                  Paste backfill cured (UCS &gt; 1.4 MPa); crown intact
+                </td>
+<td class="py-space-md px-space-md text-right">
+<span class="font-label-telemetry text-label-telemetry text-secondary uppercase font-semibold">DRAW_OPEN</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-high/60 transition-colors bg-surface-container-low/40">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-code text-label-code text-primary font-bold">ST-540-01</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="font-label-telemetry text-label-telemetry uppercase px-space-xs py-0.5 rounded bg-surface-variant text-primary font-semibold">
+                    RESTRICTED
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right font-headline-sm text-headline-sm text-primary font-semibold tabular-nums">
+                  2.45
+                </td>
+<td class="py-space-md px-space-md font-body-sm text-body-sm text-on-surface-variant">
+                  Decline heading lag (trailing 48m from planned sill)
+                </td>
+<td class="py-space-md px-space-md text-right">
+<span class="font-label-telemetry text-label-telemetry text-primary uppercase font-semibold">ADV_PENDING</span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-high/60 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-code text-label-code text-error font-bold">L-600-SUMP</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="font-label-telemetry text-label-telemetry uppercase px-space-xs py-0.5 rounded bg-surface-variant text-error font-semibold">
+                    RESTRICTED
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right font-headline-sm text-headline-sm text-error font-semibold tabular-nums">
+                  3.60
+                </td>
+<td class="py-space-md px-space-md font-body-sm text-body-sm text-on-surface-variant">
+                  Stand-off exclusion buffer active (primary dewatering hub)
+                </td>
+<td class="py-space-md px-space-md text-right">
+<span class="font-label-telemetry text-label-telemetry text-error uppercase font-semibold">BARRIER_LOCK</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs text-on-surface-variant font-label-code text-label-code">
+<span class="">Showing 5 of 18 defined stope horizons</span>
+<span class="text-secondary font-medium">Yield Compliance Rate: 67.8% (Target: ≥65.0%)</span>
+</div>
+</div>
+<!-- Spatial Micro-Cross-Section Viewport (4 Cols) -->
+<div class="xl:col-span-4 bg-surface-container rounded-xl p-space-lg shadow-xl flex flex-col justify-between gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-headline-sm">architecture</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Subsurface Cross-Section</span>
+</div>
+<span class="font-label-telemetry text-label-telemetry text-outline uppercase">ISOMETRIC Z-LOOK</span>
+</div>
+<!-- Visual representation of mine levels -->
+<div class="relative w-full h-64 bg-surface-container-lowest rounded-xl overflow-hidden shadow-inner flex flex-col justify-between p-space-md">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none"></div>
+<!-- Stope wireframe schematic layers -->
+<div class="relative z-10 flex flex-col gap-space-sm h-full justify-around">
+<!-- Level 420 -->
+<div class="flex items-center justify-between gap-space-sm bg-surface-container-high/80 px-space-sm py-1.5 rounded">
+<span class="font-label-code text-label-code text-on-surface font-semibold">Level -420m</span>
+<div class="h-2 flex-1 mx-space-sm bg-surface-container rounded overflow-hidden">
+<div class="h-full bg-secondary" style="width: 100%"></div>
+</div>
+<span class="font-label-telemetry text-label-telemetry text-secondary uppercase font-bold">CLEARED</span>
+</div>
+<!-- Level 480 -->
+<div class="flex items-center justify-between gap-space-sm bg-surface-container-high/80 px-space-sm py-1.5 rounded">
+<span class="font-label-code text-label-code text-on-surface font-semibold">Level -480m</span>
+<div class="h-2 flex-1 mx-space-sm bg-surface-container rounded overflow-hidden">
+<div class="h-full bg-secondary" style="width: 92%"></div>
+</div>
+<span class="font-label-telemetry text-label-telemetry text-secondary uppercase font-bold">CLEARED</span>
+</div>
+<!-- Level 540 -->
+<div class="flex items-center justify-between gap-space-sm bg-surface-container-high/80 px-space-sm py-1.5 rounded">
+<span class="font-label-code text-label-code text-on-surface font-semibold">Level -540m</span>
+<div class="h-2 flex-1 mx-space-sm bg-surface-container rounded overflow-hidden">
+<div class="h-full bg-primary" style="width: 44%"></div>
+</div>
+<span class="font-label-telemetry text-label-telemetry text-primary uppercase font-bold">HEADING_LAG</span>
+</div>
+<!-- Level 600 -->
+<div class="flex items-center justify-between gap-space-sm bg-surface-container-high/80 px-space-sm py-1.5 rounded">
+<span class="font-label-code text-label-code text-on-surface font-semibold">Level -600m</span>
+<div class="h-2 flex-1 mx-space-sm bg-surface-container rounded overflow-hidden">
+<div class="h-full bg-error" style="width: 15%"></div>
+</div>
+<span class="font-label-telemetry text-label-telemetry text-error uppercase font-bold">SUMP_EXCL</span>
+</div>
+</div>
+<div class="relative z-10 flex items-center justify-between font-label-telemetry text-label-telemetry text-outline pt-space-xs">
+<span class="">GRID: NAD83 / UTM 18N</span>
+<span class="text-secondary font-bold">339 BLOCKS ACTIVE</span>
+</div>
+</div>
+<div class="bg-surface-container-high p-space-md rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary">tune</span>
+<div class="flex flex-col">
+<span class="font-label-code text-label-code text-on-surface font-semibold">Filter Sensitivity Profile</span>
+<span class="font-label-telemetry text-label-telemetry text-outline">STRICT RISK CAP (JORC 2012)</span>
+</div>
+</div>
+<button class="bg-primary text-on-primary font-label-telemetry text-label-telemetry uppercase px-space-md py-space-xs rounded-lg font-bold hover:bg-primary/90 transition-colors shadow-sm">
+            Recalibrate
+          </button>
+</div>
+</div>
+</div>
+<!-- Telemetry Diagnostic Baseline Status Bar -->
+<div class="w-full bg-surface-container-low p-space-md rounded-xl flex flex-wrap items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-lg flex-wrap">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-telemetry text-label-telemetry text-secondary uppercase font-bold">GEOTECH STABILITY:</span>
+<span class="font-label-code text-label-code text-on-surface">CROWN STRESS INDEX 0.72 [NOMINAL]</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-telemetry text-label-telemetry text-secondary uppercase font-bold">VENTILATION:</span>
+<span class="font-label-code text-label-code text-on-surface">CIRCUIT BALANCE 100% REGULATED</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm font-label-code text-label-code text-on-surface-variant">
+<span class="">LAST AUDIT: 12 MIN AGO</span>
+<span class="">•</span>
+<span class="text-secondary font-medium">FILTER LOG ID: FLTR-8921-X</span>
+</div>
+</div>
+</div>
+</div></main><footer class="w-full bg-surface-container-lowest py-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full px-gutter-desktop flex flex-wrap items-center justify-between gap-space-sm"><div class="flex items-center gap-space-md"><span class="font-label-telemetry text-label-telemetry uppercase text-secondary flex items-center gap-1.5"><span class="inline-block w-1.5 h-1.5 rounded-full bg-secondary"></span>SYS_SYNC: LOCKED</span><span class="font-label-code text-label-code text-on-surface-variant">PIPELINE: SAR_INTERFEROMETRY_STABLE</span></div><div class="flex items-center gap-space-lg"><span class="font-label-telemetry text-label-telemetry uppercase text-outline">COMPLIANCE: JORC 2012 / UNFC 2009 READY</span><span class="font-label-code text-label-code text-on-surface-variant">© 2025 OreSight EO Core</span></div></div></footer>
+
+</body></html>

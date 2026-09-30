@@ -20,6 +20,14 @@ build/
 .env
 .env.*
 !.env.example
+.agents/
+.gemini/
+*.zip
+code.html
+/screen*.png
+/stage*.png
+/browser_verification.png
+
 
 # OS
 .DS_Store
