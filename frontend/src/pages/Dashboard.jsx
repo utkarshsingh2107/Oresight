@@ -41,11 +41,15 @@ export default function Dashboard() {
       <Header onRefresh={load} loading={loading} />
 
       <main className="page-wrapper">
-        {/* Demo disclaimer */}
+        {/* Demo disclaimer — design.md §24 data presentation rule: provenance always visible */}
         <div role="note" aria-label="Demo disclaimer" style={{
-          background: 'rgba(210,153,34,.06)', border: '1px solid rgba(210,153,34,.2)',
-          borderRadius: 'var(--radius-sm)', padding: '6px 14px',
-          fontSize: '0.75rem', color: 'rgba(210,153,34,.85)', marginBottom: 'var(--gap-md)',
+          background: 'rgba(245,158,11,.06)',
+          border: '1px solid rgba(245,158,11,.22)',
+          borderRadius: 'var(--radius-sm)',
+          padding: '6px 14px',
+          fontSize: '0.75rem',
+          color: 'rgba(245,158,11,.85)',
+          marginBottom: 'var(--gap-md)',
           display: 'flex', alignItems: 'center', gap: 8,
         }}>
           <span>⚠</span>

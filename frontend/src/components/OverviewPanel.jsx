@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { fmtT, fmtPct } from '../utils/labels.js'
+import { getSatellite } from '../services/api.js'
 
 /* Stitch semantic risk colours (updated palette) */
 const RISK_COLORS = {
@@ -18,6 +19,14 @@ export default function OverviewPanel({ overview, onNavigate }) {
   const rl = overview.risk_level
   const n  = overview.nudge
   const rc = RISK_COLORS[rl] ?? 'var(--risk-critical)'
+
+  // Lazy-load satellite summary for the Space Intelligence KPI card
+  const [eoStats, setEoStats] = useState(null)
+  useEffect(() => {
+    getSatellite()
+      .then(s => setEoStats(s))
+      .catch(() => setEoStats(null))
+  }, [])
 
   return (
     <div className="stage-view">
@@ -170,11 +179,12 @@ export default function OverviewPanel({ overview, onNavigate }) {
           label="Space Intelligence"
           source="Synthetic EO"
           sourceColor="var(--purple)"
+          ariaLabel="View Space Intelligence"
           onClick={() => onNavigate('satellite')}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 4 }}>
-            <KpiRow label="EO anomaly targets"  value="5 flagged"            color="var(--purple)" />
-            <KpiRow label="Mean EO signal"       value="44.6%"               color="var(--accent)" />
+            <KpiRow label="EO anomaly targets"  value={eoStats ? `${eoStats.surface_targets} flagged` : '—'} color="var(--purple)" />
+            <KpiRow label="Mean EO signal"       value={eoStats ? `${(eoStats.mean_mineralisation * 100).toFixed(1)}%` : '—'} color="var(--accent)" />
             <KpiRow label="Integration-ready"    value="Sentinel-2 · Bhuvan" />
           </div>
           <MetricSub text="Simulated EO — not real satellite imagery" italic />
@@ -280,12 +290,13 @@ function ChainOp({ op }) {
 }
 
 /* Stitch Command KPI Metric Card */
-function KpiCard({ label, source, sourceColor, borderColor, onClick, children }) {
+function KpiCard({ label, source, sourceColor, borderColor, ariaLabel, onClick, children }) {
   return (
     <div
       className="card"
       onClick={onClick}
       role={onClick ? 'button' : undefined}
+      aria-label={onClick ? (ariaLabel ?? `View ${label}`) : undefined}
       style={{
         cursor: onClick ? 'pointer' : 'default',
         borderColor: borderColor ?? 'var(--border)',

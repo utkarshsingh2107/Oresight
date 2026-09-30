@@ -20,7 +20,9 @@ export default function PipelineStrip({ activeStage, onSelect }) {
         border: '1px solid var(--border)',
         borderRadius: 'var(--radius-md)',
         overflow: 'hidden',
+        overflowX: 'auto',        /* design.md §21 — horizontal scroll on mobile */
         marginBottom: 'var(--gap-lg)',
+        WebkitOverflowScrolling: 'touch',
       }}
     >
       {STAGES.map((s, i) => {
