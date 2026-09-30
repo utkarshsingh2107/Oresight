@@ -1,13 +1,15 @@
+/**
+ * OverviewPanel — Mission Overview
+ * Executive command summary. Answers 4 questions in ≤10 s.
+ * All values from /api/overview. Space Intelligence KPI from /api/satellite.
+ */
 import React, { useEffect, useState } from 'react'
 import { fmtT, fmtPct } from '../utils/labels.js'
 import { getSatellite } from '../services/api.js'
 
-/* Stitch semantic risk colours (updated palette) */
-const RISK_COLORS = {
-  LOW:      'var(--risk-low)',
-  MEDIUM:   'var(--risk-medium)',
-  HIGH:     'var(--risk-high)',
-  CRITICAL: 'var(--risk-critical)',
+const RISK_COLOR = {
+  LOW: 'var(--risk-low)', MEDIUM: 'var(--risk-medium)',
+  HIGH: 'var(--risk-high)', CRITICAL: 'var(--risk-critical)',
 }
 
 export default function OverviewPanel({ overview, onNavigate }) {
@@ -18,283 +20,137 @@ export default function OverviewPanel({ overview, onNavigate }) {
   const pu = overview.pulse
   const rl = overview.risk_level
   const n  = overview.nudge
-  const rc = RISK_COLORS[rl] ?? 'var(--risk-critical)'
+  const rc = RISK_COLOR[rl] ?? 'var(--risk-critical)'
 
-  // Lazy-load satellite summary for the Space Intelligence KPI card
   const [eoStats, setEoStats] = useState(null)
   useEffect(() => {
-    getSatellite()
-      .then(s => setEoStats(s))
-      .catch(() => setEoStats(null))
+    getSatellite().then(setEoStats).catch(() => setEoStats(null))
   }, [])
 
   return (
     <div className="stage-view">
 
       {/* ── Hero ── */}
-      <div style={{ marginBottom: 'var(--gap-lg)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-          <span style={{ fontSize: '1.2rem' }}>🛰</span>
-          <h1 style={{ marginBottom: 0 }}>Space-Enabled Mine Intelligence</h1>
-        </div>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', maxWidth: 680, lineHeight: 1.65 }}>
-          Integrates Earth-observation data, geological evidence and operational AI to identify
-          resources, assess accessibility, forecast production and support mine decisions.
+      <div className="stage-header">
+        <h1>Space-Enabled Mine Intelligence</h1>
+        <p>
+          Integrates Earth-observation data, geological evidence and operational AI
+          to identify resources, assess accessibility, forecast production and support decisions.
         </p>
       </div>
 
-      {/* ── Evidence chain — compact single card ── */}
-      <div className="card" style={{ marginBottom: 'var(--gap-lg)', background: 'var(--bg-card-alt)' }}>
-        <div style={{ display: 'flex', alignItems: 'stretch', flexWrap: 'wrap' }}>
-
-          <EvidenceBlock
-            icon="🛰" label="SPACE INTELLIGENCE" color="var(--purple)"
-            desc="Satellite spectral indicators · Terrain / DEM · Spatial anomaly detection"
-            note="Surface spatial context"
-          />
-
-          <ChainOp op="+" />
-
-          <EvidenceBlock
-            icon="⛏" label="GEOLOGICAL VALIDATION" color="var(--green)"
-            desc="Boreholes · Assays · Kriging · 3D block model"
-            note="Subsurface grade evidence"
-          />
-
-          <ChainOp op="→" />
-
-          <EvidenceBlock
-            icon="📦" label="RESOURCE INTELLIGENCE" color="var(--primary)"
-            desc="Spatially modelled mineral resource · Accessible reserve · Production forecast"
-            note="Integrated output"
-            highlight
-          />
-        </div>
-        <p style={{
-          marginTop: 10, paddingTop: 8,
-          borderTop: '1px solid var(--border-light)',
-          fontSize: '0.68rem', color: 'var(--text-muted)',
-          textAlign: 'center', fontStyle: 'italic',
-        }}>
-          Satellite observations provide surface indicators and spatial context only —
-          subsurface resource estimation is supported by borehole and assay data.
-        </p>
+      {/* ── Evidence chain ── */}
+      <div className="evidence-flow" style={{ marginBottom: 'var(--gap-lg)' }}>
+        <EvidenceBlock icon="🛰" label="Space Intelligence" color="var(--purple)"
+          lines={['Satellite spectral indicators', 'Terrain / DEM analysis', 'Anomaly detection']}
+          note="Surface spatial context" />
+        <div className="evidence-flow__op">+</div>
+        <EvidenceBlock icon="⛏" label="Geological Validation" color="var(--green)"
+          lines={['Boreholes + assays', 'Ordinary Kriging', '3D block model']}
+          note="Subsurface grade evidence" />
+        <div className="evidence-flow__op">→</div>
+        <EvidenceBlock icon="📦" label="Resource Intelligence" color="var(--primary)"
+          lines={['Modelled mineral resource', 'Accessible resource', 'Production forecast']}
+          note="Integrated pipeline output" highlight />
       </div>
 
-      {/* ── 6 KPI cards — Stitch Command KPI Metric Cards ── */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: 'var(--gap-md)',
-        marginBottom: 'var(--gap-lg)',
-      }}>
-
-        {/* Geological resource */}
-        <KpiCard
-          label="Geological Resource"
-          source="Borehole + Kriging"
-          sourceColor="var(--accent)"
-          onClick={() => onNavigate('prism')}
-        >
-          <MetricValue value={`${(p.declared_reserve_t / 1e6).toFixed(2)} Mt`} color="var(--accent)" />
-          <MetricSub text={`${p.ore_blocks} mineralised blocks · avg Mn ${p.average_mn_pct}%`} />
+      {/* ── 6 KPI cards ── */}
+      <div className="grid-3 mb-lg">
+        <KpiCard label="Geological Resource" source="Borehole + Kriging" sourceColor="var(--accent)"
+          onClick={() => onNavigate('prism')} aria-label="View Resource Mapping">
+          <div className="metric-value" style={{ color: 'var(--accent)' }}>
+            {(p.declared_reserve_t / 1e6).toFixed(2)} Mt
+          </div>
+          <div className="metric-sub">{p.ore_blocks} mineralised blocks · avg Mn {p.average_mn_pct}%</div>
         </KpiCard>
 
-        {/* Accessible resource */}
-        <KpiCard
-          label="Accessible Resource"
-          source="EAR Analysis"
-          sourceColor="var(--green)"
-          onClick={() => onNavigate('ear')}
-        >
-          <MetricValue value={`${(e.effective_accessible_reserve_t / 1e6).toFixed(2)} Mt`} color="var(--green)" />
-          <div style={{ marginTop: 6 }}>
-            <div style={{
-              background: 'var(--border-light)',
-              borderRadius: 2, height: 4, overflow: 'hidden',
-            }}>
-              <div style={{
-                width: `${(e.accessibility_ratio * 100).toFixed(1)}%`,
-                height: '100%',
-                background: 'var(--green)',
-                borderRadius: 2,
-                transition: 'width 0.6s ease',
-              }} />
+        <KpiCard label="Accessible Resource" source="EAR Analysis" sourceColor="var(--green)"
+          onClick={() => onNavigate('ear')} aria-label="View Accessibility">
+          <div className="metric-value" style={{ color: 'var(--green)' }}>
+            {(e.effective_accessible_reserve_t / 1e6).toFixed(2)} Mt
+          </div>
+          <div style={{ marginTop: 8 }}>
+            <div className="progress-bar-track" style={{ height: 4 }}>
+              <div className="progress-bar-fill"
+                style={{ width: `${(e.accessibility_ratio * 100).toFixed(1)}%`, background: 'var(--green)' }} />
             </div>
-            <MetricSub text={`${(e.accessibility_ratio * 100).toFixed(1)}% of modelled resource accessible`} />
+            <div className="metric-sub">{(e.accessibility_ratio * 100).toFixed(1)}% accessible</div>
           </div>
         </KpiCard>
 
-        {/* Shortfall risk */}
-        <KpiCard
-          label="Shortfall Risk"
-          source="SHAP Attribution"
-          sourceColor={rc}
-          borderColor={rc}
-          onClick={() => onNavigate('pulse')}
-        >
+        <KpiCard label="Shortfall Risk" source="SHAP Attribution" sourceColor={rc}
+          borderColor={`${rc}60`} onClick={() => onNavigate('pulse')} aria-label="View Production Forecast">
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-            <MetricValue value={fmtPct(pu.shortfall_probability)} color={rc} />
-            <span
-              className={`badge badge--${rl.toLowerCase()}`}
-              style={{ fontSize: '0.68rem', padding: '2px 7px' }}
-            >
-              {rl}
-            </span>
+            <div className="metric-value" style={{ color: rc }}>{fmtPct(pu.shortfall_probability)}</div>
+            <span className={`badge badge--${rl.toLowerCase()}`}>{rl}</span>
           </div>
-          <MetricSub text="Probability of missing production target" />
+          <div className="metric-sub">probability of missing target</div>
         </KpiCard>
 
-        {/* P50 forecast */}
-        <KpiCard
-          label="P50 Production Forecast"
-          source="Forecast Model"
-          sourceColor="var(--yellow)"
-          onClick={() => onNavigate('pulse')}
-        >
-          <MetricValue value={`${fmtT(pu.expected_production_t)} t`} color="var(--accent)" />
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 3, marginTop: 6 }}>
-            <KpiRow label="Planned target"  value={`${fmtT(pu.planned_production_t)} t`} />
-            <KpiRow label="P10 pessimistic" value={`${fmtT(pu.p10_production_t)} t`} />
-            <KpiRow label="P90 optimistic"  value={`${fmtT(pu.p90_production_t)} t`} />
+        <KpiCard label="P50 Production Forecast" source="Forecast Model" sourceColor="var(--yellow)"
+          onClick={() => onNavigate('pulse')} aria-label="View Production Forecast">
+          <div className="metric-value" style={{ color: 'var(--accent)' }}>
+            {fmtT(pu.expected_production_t)} t
+          </div>
+          <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 3 }}>
+            <StatRowInline label="Planned" value={`${fmtT(pu.planned_production_t)} t`} />
+            <StatRowInline label="P10" value={`${fmtT(pu.p10_production_t)} t`} />
+            <StatRowInline label="P90" value={`${fmtT(pu.p90_production_t)} t`} />
           </div>
         </KpiCard>
 
-        {/* Expected shortfall */}
-        <KpiCard
-          label="Expected Shortfall"
-          source="Forecast Model"
-          sourceColor="var(--risk-high)"
-          borderColor="rgba(255,183,125,.25)"
-          onClick={() => onNavigate('pulse')}
-        >
-          <MetricValue value={`−${fmtT(pu.expected_shortfall_t)} t`} color="var(--risk-high)" />
-          <MetricSub
-            text={`${((pu.expected_shortfall_t / pu.planned_production_t) * 100).toFixed(1)}% below planned · 30-day horizon`}
-          />
+        <KpiCard label="Expected Shortfall" source="Forecast Model" sourceColor="var(--risk-high)"
+          borderColor="rgba(255,183,125,.2)" onClick={() => onNavigate('pulse')} aria-label="View Production Forecast">
+          <div className="metric-value" style={{ color: 'var(--risk-high)' }}>
+            −{fmtT(pu.expected_shortfall_t)} t
+          </div>
+          <div className="metric-sub">
+            {((pu.expected_shortfall_t / pu.planned_production_t) * 100).toFixed(1)}% below planned · 30-day horizon
+          </div>
         </KpiCard>
 
-        {/* Space intelligence summary */}
-        <KpiCard
-          label="Space Intelligence"
-          source="Synthetic EO"
-          sourceColor="var(--purple)"
-          ariaLabel="View Space Intelligence"
-          onClick={() => onNavigate('satellite')}
-        >
+        <KpiCard label="Space Intelligence" source="Synthetic EO" sourceColor="var(--purple)"
+          onClick={() => onNavigate('satellite')} aria-label="View Space Intelligence">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 4 }}>
-            <KpiRow label="EO anomaly targets"  value={eoStats ? `${eoStats.surface_targets} flagged` : '—'} color="var(--purple)" />
-            <KpiRow label="Mean EO signal"       value={eoStats ? `${(eoStats.mean_mineralisation * 100).toFixed(1)}%` : '—'} color="var(--accent)" />
-            <KpiRow label="Integration-ready"    value="Sentinel-2 · Bhuvan" />
+            <StatRowInline label="EO targets" value={eoStats ? `${eoStats.surface_targets} flagged` : '—'}
+              valueColor="var(--purple)" />
+            <StatRowInline label="Mean EO signal" value={eoStats ? `${(eoStats.mean_mineralisation * 100).toFixed(1)}%` : '—'}
+              valueColor="var(--accent)" />
+            <StatRowInline label="Data" value="Simulated DEMO-01" />
           </div>
-          <MetricSub text="Simulated EO — not real satellite imagery" italic />
         </KpiCard>
       </div>
 
-      {/* ── NUDGE recommendation — Stitch primary amber CTA ── */}
-      <div
-        role="button"
-        aria-label="View Decision Engine recommendation"
-        onClick={() => onNavigate('nudge')}
-        style={{
-          background: 'rgba(217,119,6,.06)',
-          border: '1px solid rgba(217,119,6,.3)',
-          borderRadius: 'var(--radius-md)',
-          padding: 'var(--gap-md)',
-          cursor: 'pointer',
-          transition: 'background 0.15s, border-color 0.15s',
-          display: 'flex',
-          alignItems: 'flex-start',
-          justifyContent: 'space-between',
-          gap: 'var(--gap-md)',
-          flexWrap: 'wrap',
-        }}
-        onMouseEnter={ev => {
-          ev.currentTarget.style.background    = 'rgba(217,119,6,.11)'
-          ev.currentTarget.style.borderColor   = 'rgba(217,119,6,.5)'
-        }}
-        onMouseLeave={ev => {
-          ev.currentTarget.style.background    = 'rgba(217,119,6,.06)'
-          ev.currentTarget.style.borderColor   = 'rgba(217,119,6,.3)'
-        }}
-      >
-        {/* Action label + name */}
-        <div style={{ flex: 1, minWidth: 200 }}>
-          <p style={{
-            fontSize: '0.65rem', fontWeight: 700,
-            textTransform: 'uppercase', letterSpacing: '0.07em',
-            color: 'var(--primary)', marginBottom: 5,
-          }}>
-            ⚡ Decision Engine — Recommended Action
-          </p>
-          <p style={{ fontWeight: 700, fontSize: '1.05rem', color: 'var(--text-primary)', marginBottom: 4 }}>
-            {n.action_name}
-          </p>
-          <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-            Derived from integrated spatial, geological and operational intelligence
-          </p>
-        </div>
-
-        {/* Before → After + impact stats */}
-        <div style={{
-          display: 'flex', gap: 'var(--gap-md)',
-          flexShrink: 0, flexWrap: 'wrap', alignItems: 'center',
-        }}>
-          <NudgeStat label="Current"          value={`${Number(n.baseline_value).toFixed(2)} m/day`} />
-          <span style={{ color: 'var(--primary)', fontSize: '1.1rem' }}>→</span>
-          <NudgeStat label="Recommended"      value={`${Number(n.recommended_value).toFixed(2)} m/day`} accent="var(--primary)" />
-          <div style={{ width: 1, height: 36, background: 'var(--border)' }} />
-          <NudgeStat label="Production gain"       value={`+${fmtT(n.expected_production_gain_t)} t`}       accent="var(--green)" />
-          <NudgeStat label="Shortfall reduction"   value={`−${fmtT(n.expected_shortfall_reduction_t)} t`}   accent="var(--green)" />
-        </div>
-
-        <span style={{ color: 'var(--primary)', fontSize: '1.2rem', alignSelf: 'center', flexShrink: 0 }}>→</span>
-      </div>
+      {/* ── NUDGE CTA ── */}
+      <NudgeCta nudge={n} onNavigate={onNavigate} />
     </div>
   )
 }
 
 /* ── Sub-components ─────────────────────────────────────────── */
 
-function EvidenceBlock({ icon, label, color, desc, note, highlight }) {
+function EvidenceBlock({ icon, label, color, lines, note, highlight }) {
   return (
-    <div style={{
-      flex: 1, minWidth: 160, padding: '12px 14px',
-      background: highlight ? `rgba(217,119,6,.05)` : 'transparent',
-      borderRight: '1px solid var(--border-light)',
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 6 }}>
+    <div className="evidence-flow__block"
+      style={{ background: highlight ? 'rgba(217,119,6,.04)' : 'transparent' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 8 }}>
         <span style={{ fontSize: '0.95rem' }}>{icon}</span>
-        <span style={{ fontSize: '0.68rem', fontWeight: 700, color, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          {label}
-        </span>
+        <span style={{ fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase',
+          letterSpacing: '0.06em', color }}>{label}</span>
       </div>
-      <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: 5 }}>
-        {desc}
-      </p>
-      <p style={{ fontSize: '0.67rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>{note}</p>
+      {lines.map(l => (
+        <div key={l} style={{ fontSize: '0.78rem', color: 'var(--text-secondary)',
+          lineHeight: 1.6 }}>{l}</div>
+      ))}
+      <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontStyle: 'italic',
+        marginTop: 6 }}>{note}</div>
     </div>
   )
 }
 
-function ChainOp({ op }) {
+function KpiCard({ label, source, sourceColor, borderColor, onClick, children, 'aria-label': ariaLabel }) {
   return (
-    <div style={{
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      padding: '0 10px', color: 'var(--text-muted)',
-      fontWeight: 300, fontSize: '1.1rem', flexShrink: 0,
-    }}>
-      {op}
-    </div>
-  )
-}
-
-/* Stitch Command KPI Metric Card */
-function KpiCard({ label, source, sourceColor, borderColor, ariaLabel, onClick, children }) {
-  return (
-    <div
-      className="card"
-      onClick={onClick}
+    <div className="card" onClick={onClick}
       role={onClick ? 'button' : undefined}
       aria-label={onClick ? (ariaLabel ?? `View ${label}`) : undefined}
       style={{
@@ -305,88 +161,86 @@ function KpiCard({ label, source, sourceColor, borderColor, ariaLabel, onClick, 
       onMouseEnter={ev => onClick && (ev.currentTarget.style.borderColor = sourceColor)}
       onMouseLeave={ev => onClick && (ev.currentTarget.style.borderColor = borderColor ?? 'var(--border)')}
     >
-      {/* Stitch KPI top row: micro-label + source badge */}
-      <div className="flex-between" style={{ marginBottom: 8 }}>
-        <span style={{
-          fontSize: '0.65rem', fontWeight: 600,
-          textTransform: 'uppercase', letterSpacing: '0.06em',
-          color: 'var(--text-secondary)',
-        }}>
-          {label}
+      <div className="flex-between mb-sm">
+        <span className="metric-label">{label}</span>
+        <span className="source-chip" style={{ color: sourceColor,
+          background: `${sourceColor}18`, border: `1px solid ${sourceColor}30` }}>
+          {source}
         </span>
-        <SourceChip label={source} color={sourceColor} />
       </div>
       {children}
     </div>
   )
 }
 
-/* Stitch numeric-metric token */
-function MetricValue({ value, color }) {
+function StatRowInline({ label, value, valueColor }) {
   return (
-    <p style={{
-      fontSize: '1.5rem', fontWeight: 700, lineHeight: 1,
-      letterSpacing: '-0.02em',
-      color: color ?? 'var(--text-primary)',
-      marginBottom: 4,
-      fontVariantNumeric: 'tabular-nums',
-    }}>
-      {value}
-    </p>
-  )
-}
-
-function MetricSub({ text, italic }) {
-  return (
-    <p style={{
-      fontSize: '0.7rem', color: 'var(--text-muted)',
-      marginTop: 4, lineHeight: 1.4,
-      fontStyle: italic ? 'italic' : 'normal',
-    }}>
-      {text}
-    </p>
-  )
-}
-
-function KpiRow({ label, value, color }) {
-  return (
-    <div className="flex-between" style={{ fontSize: '0.75rem' }}>
+    <div className="flex-between" style={{ fontSize: '0.78rem' }}>
       <span style={{ color: 'var(--text-muted)' }}>{label}</span>
-      <span style={{ fontWeight: 600, color: color ?? 'var(--text-primary)', fontVariantNumeric: 'tabular-nums' }}>
-        {value}
-      </span>
+      <span style={{ fontWeight: 600, color: valueColor ?? 'var(--text-primary)',
+        fontVariantNumeric: 'tabular-nums' }}>{value}</span>
     </div>
   )
 }
 
-/* Stitch Telemetry Advisory chip */
-function SourceChip({ label, color }) {
+function NudgeCta({ nudge: n, onNavigate }) {
+  if (!n?.action_name) return null
   return (
-    <span style={{
-      fontSize: '0.58rem', fontWeight: 700,
-      textTransform: 'uppercase', letterSpacing: '0.05em',
-      color, background: `${color}15`,
-      border: `1px solid ${color}30`,
-      padding: '2px 6px',
-      borderRadius: 'var(--radius-sm)',
-      whiteSpace: 'nowrap',
-    }}>
-      {label}
-    </span>
+    <div role="button" aria-label="View Decision Engine recommendation"
+      onClick={() => onNavigate('nudge')}
+      style={{
+        background: 'rgba(217,119,6,.05)',
+        border: '1px solid rgba(217,119,6,.3)',
+        borderRadius: 'var(--radius-md)',
+        padding: 'var(--gap-md) var(--gap-lg)',
+        cursor: 'pointer',
+        transition: 'background 0.15s, border-color 0.15s',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 'var(--gap-lg)',
+        flexWrap: 'wrap',
+      }}
+      onMouseEnter={ev => {
+        ev.currentTarget.style.background = 'rgba(217,119,6,.09)'
+        ev.currentTarget.style.borderColor = 'rgba(217,119,6,.5)'
+      }}
+      onMouseLeave={ev => {
+        ev.currentTarget.style.background = 'rgba(217,119,6,.05)'
+        ev.currentTarget.style.borderColor = 'rgba(217,119,6,.3)'
+      }}
+    >
+      <div style={{ flex: 1, minWidth: 180 }}>
+        <div style={{ fontSize: '0.62rem', fontWeight: 700, textTransform: 'uppercase',
+          letterSpacing: '0.08em', color: 'var(--primary)', marginBottom: 5 }}>
+          ⚡ Decision Engine — Recommended Action
+        </div>
+        <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: 3 }}>{n.action_name}</div>
+        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
+          Derived from integrated spatial, geological and operational intelligence
+        </div>
+      </div>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-md)', flexWrap: 'wrap' }}>
+        <NudgeStat label="Current" value={`${Number(n.baseline_value).toFixed(2)} m/day`} />
+        <span style={{ color: 'var(--primary)', fontSize: '1rem' }}>→</span>
+        <NudgeStat label="Recommended" value={`${Number(n.recommended_value).toFixed(2)} m/day`} color="var(--primary)" />
+        <div style={{ width: 1, height: 32, background: 'var(--border)' }} />
+        <NudgeStat label="Production gain" value={`+${fmtT(n.expected_production_gain_t)} t`} color="var(--green)" />
+        <NudgeStat label="Shortfall reduction" value={`−${fmtT(n.expected_shortfall_reduction_t)} t`} color="var(--green)" />
+      </div>
+
+      <span style={{ color: 'var(--primary)', fontSize: '1.1rem', flexShrink: 0 }}>→</span>
+    </div>
   )
 }
 
-function NudgeStat({ label, value, accent }) {
+function NudgeStat({ label, value, color }) {
   return (
-    <div style={{ textAlign: 'center', minWidth: 80 }}>
-      <p style={{ fontSize: '0.65rem', color: 'var(--text-muted)', marginBottom: 3 }}>{label}</p>
-      <p style={{
-        fontWeight: 700, fontSize: '0.9rem',
-        color: accent ?? 'var(--text-primary)',
-        fontVariantNumeric: 'tabular-nums',
-      }}>
-        {value}
-      </p>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ fontSize: '0.62rem', color: 'var(--text-muted)', marginBottom: 2 }}>{label}</div>
+      <div style={{ fontWeight: 700, fontSize: '0.88rem',
+        color: color ?? 'var(--text-primary)', fontVariantNumeric: 'tabular-nums' }}>{value}</div>
     </div>
   )
 }

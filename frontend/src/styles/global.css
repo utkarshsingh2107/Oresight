@@ -1,89 +1,88 @@
 /* ===================================================================
-   OreSight Global Styles — Stitch "Industrial Precision" design system
-   Visual token migration: amber primary · Inter font · 4px radius
-   All existing class names and layout rules preserved.
+   OreSight — Stitch "Industrial Precision" Design System
+   Full implementation per design.md
    =================================================================== */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── Design tokens ───────────────────────────────────────────── */
 :root {
-  /* ── Canvas & surface ── */
-  --bg-page:          #0f141b;   /* Stitch: surface / base canvas */
-  --bg-card:          #171c23;   /* Stitch: surface-container-low */
-  --bg-card-alt:      #1b2027;   /* Stitch: surface-container */
+  /* Canvas */
+  --bg-page:        #0f141b;
+  --bg-card:        #171c23;
+  --bg-card-alt:    #1b2027;
 
-  /* ── Borders ── */
-  --border:           #30353d;   /* Stitch: outline-variant */
-  --border-light:     #252a32;   /* Stitch: surface-container-high */
-  --border-active:    #484f58;   /* Stitch: focus / active border */
+  /* Borders */
+  --border:         #30353d;
+  --border-light:   #252a32;
+  --border-active:  #484f58;
 
-  /* ── Text ── */
-  --text-primary:     #dee2ec;   /* Stitch: on-surface */
-  --text-secondary:   #8b949e;   /* Stitch: muted / supporting */
-  --text-muted:       #484f58;   /* Stitch: disabled / ghost */
+  /* Text */
+  --text-primary:   #dee2ec;
+  --text-secondary: #8b949e;
+  --text-muted:     #484f58;
 
-  /* ── Brand primary — Stitch amber (replaces blue as primary CTA) ── */
-  --primary:          #ffb77d;   /* Stitch: primary */
-  --primary-dim:      #d97707;   /* Stitch: primary-container */
-  --primary-dark:     #b45309;   /* Active / pressed state */
+  /* Amber — primary CTA / recommendations */
+  --primary:        #ffb77d;
+  --primary-dim:    #d97707;
+  --primary-dark:   #b45309;
 
-  /* ── Technical secondary — blue retained for spatial / EO / forecast ── */
-  --accent:           #93ccff;   /* Stitch: secondary */
-  --accent-dim:       #3198dc;   /* Stitch: secondary-container */
+  /* Blue — data / EO / spatial / forecast */
+  --accent:         #93ccff;
+  --accent-dim:     #3198dc;
 
-  /* ── Semantic ── */
-  --green:            #4ae176;   /* Stitch: tertiary */
-  --green-dim:        #00a74b;   /* Stitch: tertiary-container */
-  --yellow:           #f59e0b;   /* Stitch: caution */
-  --orange:           #ffb77d;   /* Stitch: primary (warm amber) */
-  --red:              #ef4444;   /* Stitch: critical hazard */
-  --purple:           #bc8cff;   /* Retained — EO / space intelligence indicators */
+  /* Semantic */
+  --green:          #4ae176;
+  --green-dim:      #00a74b;
+  --yellow:         #f59e0b;
+  --orange:         #ffb77d;
+  --red:            #ef4444;
+  --purple:         #bc8cff;
 
-  /* ── Risk levels ── */
-  --risk-low:         #4ae176;
-  --risk-medium:      #f59e0b;
-  --risk-high:        #ffb77d;
-  --risk-critical:    #ef4444;
+  /* Risk */
+  --risk-low:       #4ae176;
+  --risk-medium:    #f59e0b;
+  --risk-high:      #ffb77d;
+  --risk-critical:  #ef4444;
 
-  /* ── Spacing (4px base) ── */
-  --gap-xs:  4px;
-  --gap-sm:  8px;
-  --gap-md:  16px;
-  --gap-lg:  24px;
-  --gap-xl:  40px;
+  /* Spacing — 4 px base */
+  --gap-xs: 4px;
+  --gap-sm: 8px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+  --gap-xl: 40px;
 
-  /* ── Border radius — Stitch: 4px disciplined edge geometry ── */
-  --radius-sm:  4px;
-  --radius-md:  4px;
-  --radius-lg:  6px;
+  /* Radius — 4 px disciplined edge, NO full pills */
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
 
   font-size: 14px;
 }
 
+/* ── Base ────────────────────────────────────────────────────── */
 html, body { height: 100%; }
 
 body {
-  /* Stitch: Inter exclusively across all roles */
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--bg-page);
   color: var(--text-primary);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  /* Stitch: tabular figures for all numeric readouts */
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: tabular-nums;   /* all numbers fixed-width */
 }
 
-/* ── Type scale ── */
-h1 { font-size: 1.6rem;  font-weight: 700; letter-spacing: -0.02em; }
-h2 { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.015em; }
-h3 { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.01em; }
-h4 { font-size: 0.9rem;  font-weight: 600; text-transform: uppercase;
-     letter-spacing: 0.04em; color: var(--text-secondary); }
+/* ── Typography ──────────────────────────────────────────────── */
+h1 { font-size: 1.5rem;  font-weight: 700; letter-spacing: -0.02em;  line-height: 1.2; }
+h2 { font-size: 1.2rem;  font-weight: 600; letter-spacing: -0.015em; line-height: 1.25; }
+h3 { font-size: 1rem;    font-weight: 600; letter-spacing: -0.01em;  line-height: 1.3; }
+h4 { font-size: 0.875rem;font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-secondary); }
+p  { color: var(--text-primary); }
 
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* ── Buttons — Stitch primary (amber) + secondary (slate) ── */
+/* ── Buttons ─────────────────────────────────────────────────── */
 button {
   cursor: pointer;
   border: 1px solid var(--border);
@@ -94,53 +93,48 @@ button {
   font-size: 0.85rem;
   font-family: inherit;
   font-weight: 500;
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  transition: background 0.15s, border-color 0.15s;
 }
-button:hover        { background: var(--border-light); border-color: var(--border-active); }
-button:active       { opacity: 0.85; }
-button:disabled     { opacity: 0.45; cursor: not-allowed; }
+button:hover    { background: var(--border-light); border-color: var(--border-active); }
+button:active   { opacity: 0.85; }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
 
-/* Primary action button (amber) */
 button.btn-primary {
-  background: var(--primary-dim);
-  border-color: var(--primary);
-  color: #0f141b;
-  font-weight: 700;
+  background: var(--primary-dim); border-color: var(--primary);
+  color: #0f141b; font-weight: 700;
 }
-button.btn-primary:hover { background: var(--primary); border-color: var(--primary); }
+button.btn-primary:hover { background: var(--primary); }
 
-/* ── Layout ── */
+/* ── Layout ──────────────────────────────────────────────────── */
 .page-wrapper { max-width: 1400px; margin: 0 auto; padding: 0 var(--gap-lg) var(--gap-xl); }
-.section      { margin-bottom: var(--gap-xl); }
-.section-title { margin-bottom: var(--gap-md); }
 
 .grid-2    { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-md); }
-.grid-3    { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-md); }
-.grid-4    { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap-md); }
-.grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--gap-md); }
+.grid-3    { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--gap-md); }
+.grid-4    { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--gap-md); }
+.grid-auto { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: var(--gap-md); }
 
-/* ── Cards — Stitch Z1 panel tier ── */
+/* ── Cards ───────────────────────────────────────────────────── */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);   /* 4px — Stitch disciplined edge */
+  border-radius: var(--radius-md);
   padding: var(--gap-md);
 }
 .card--highlight { border-color: var(--primary-dim); }
 .card--critical  { border-color: var(--risk-critical); }
 .card--success   { border-color: var(--green-dim); }
+.card--accent    { border-color: var(--accent-dim); }
 
-/* ── Badges — Stitch square-edged status chips ── */
+/* ── Badges — square-edged per Stitch spec ───────────────────── */
 .badge {
   display: inline-block;
   padding: 2px 7px;
-  border-radius: var(--radius-sm);   /* 4px — NOT pill shape per Stitch spec */
+  border-radius: var(--radius-sm);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.03em;
   font-family: inherit;
 }
-/* Stitch semantic badge colours */
 .badge--low      { background: rgba(74,225,118,.12);  border: 1px solid rgba(74,225,118,.35);  color: var(--risk-low); }
 .badge--medium   { background: rgba(245,158,11,.12);  border: 1px solid rgba(245,158,11,.35);  color: var(--risk-medium); }
 .badge--high     { background: rgba(255,183,125,.12); border: 1px solid rgba(255,183,125,.35); color: var(--risk-high); }
@@ -148,43 +142,78 @@ button.btn-primary:hover { background: var(--primary); border-color: var(--prima
 .badge--action   { background: rgba(147,204,255,.12); border: 1px solid rgba(147,204,255,.35); color: var(--accent); }
 .badge--context  { background: rgba(188,140,255,.12); border: 1px solid rgba(188,140,255,.25); color: var(--purple); }
 .badge--feasible { background: rgba(74,225,118,.12);  border: 1px solid rgba(74,225,118,.35);  color: var(--risk-low); }
+.badge--amber    { background: rgba(217,119,6,.15);   border: 1px solid rgba(217,119,6,.35);   color: var(--primary); }
 
-/* ── Divider ── */
-.divider { border: none; border-top: 1px solid var(--border); margin: var(--gap-lg) 0; }
-
-/* ── Utilities ── */
-.text-muted   { color: var(--text-secondary); }
-.text-small   { font-size: 0.8rem; }
-.text-right   { text-align: right; }
-.mt-sm        { margin-top: var(--gap-sm); }
-.mt-md        { margin-top: var(--gap-md); }
-.flex-row     { display: flex; align-items: center; gap: var(--gap-sm); }
-.flex-between { display: flex; align-items: center; justify-content: space-between; }
-
-/* ── Section label — micro-metadata (Stitch label-sm) ── */
+/* ── Section label — micro-metadata ─────────────────────────── */
 .section-label {
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   color: var(--text-secondary);
   margin-bottom: var(--gap-sm);
 }
 
-/* ── Numeric metrics — Stitch numeric-metric token ── */
-.big-number {
-  font-size: 2rem;
+/* ── Stage heading strip ─────────────────────────────────────── */
+.stage-header {
+  margin-bottom: var(--gap-lg);
+}
+.stage-header .stage-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+.stage-header h2 {
+  margin-bottom: 6px;
+}
+.stage-header p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  max-width: 680px;
+  line-height: 1.6;
+}
+
+/* ── Metric / KPI display ────────────────────────────────────── */
+.metric-value {
+  font-size: 1.75rem;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
 }
+.metric-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+.metric-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  line-height: 1.4;
+}
 
-/* ── Progress bars ── */
+/* ── Source chip ─────────────────────────────────────────────── */
+.source-chip {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+/* ── Progress bars ───────────────────────────────────────────── */
 .progress-bar-track {
   background: var(--border-light);
   border-radius: 2px;
-  height: 8px;
+  height: 6px;
   overflow: hidden;
   flex: 1;
 }
@@ -194,25 +223,50 @@ button.btn-primary:hover { background: var(--primary); border-color: var(--prima
   transition: width 0.6s ease;
 }
 
-/* ── Stage view fade-in ── */
-.stage-view { animation: fadeIn 0.15s ease; }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+/* ── Divider ─────────────────────────────────────────────────── */
+.divider { border: none; border-top: 1px solid var(--border); margin: var(--gap-lg) 0; }
 
-/* ── Pills (SHAP actionable / contextual tags) ── */
+/* ── Utility ─────────────────────────────────────────────────── */
+.text-secondary { color: var(--text-secondary); }
+.text-muted     { color: var(--text-secondary); }
+.text-small     { font-size: 0.8rem; }
+.text-xs        { font-size: 0.72rem; }
+.text-right     { text-align: right; }
+.text-center    { text-align: center; }
+.font-mono      { font-family: 'SFMono-Regular', Consolas, monospace; }
+.tabular        { font-variant-numeric: tabular-nums; }
+.italic         { font-style: italic; }
+.uppercase      { text-transform: uppercase; }
+.mt-xs  { margin-top: var(--gap-xs); }
+.mt-sm  { margin-top: var(--gap-sm); }
+.mt-md  { margin-top: var(--gap-md); }
+.mt-lg  { margin-top: var(--gap-lg); }
+.mb-sm  { margin-bottom: var(--gap-sm); }
+.mb-md  { margin-bottom: var(--gap-md); }
+.mb-lg  { margin-bottom: var(--gap-lg); }
+
+.flex-row     { display: flex; align-items: center; gap: var(--gap-sm); }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-start   { display: flex; align-items: flex-start; gap: var(--gap-sm); }
+.flex-wrap    { flex-wrap: wrap; }
+.flex-1       { flex: 1; }
+.gap-sm       { gap: var(--gap-sm); }
+.gap-md       { gap: var(--gap-md); }
+.gap-lg       { gap: var(--gap-lg); }
+
+/* ── Pills (SHAP) ────────────────────────────────────────────── */
 .pill {
   display: inline-flex; align-items: center; gap: 4px;
   padding: 2px 8px;
-  border-radius: var(--radius-sm);   /* 4px — consistent with Stitch */
-  font-size: 0.72rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.68rem;
   font-weight: 600;
+  letter-spacing: 0.02em;
 }
 .pill--actionable { background: rgba(147,204,255,.12); color: var(--accent); }
 .pill--contextual { background: rgba(188,140,255,.12); color: var(--purple); }
 
-/* ── Candidate cards (NUDGE) ── */
+/* ── Candidate cards (NUDGE) ─────────────────────────────────── */
 .candidate-card {
   background: var(--bg-card-alt);
   border: 1px solid var(--border-light);
@@ -227,33 +281,130 @@ button.btn-primary:hover { background: var(--primary); border-color: var(--prima
   border-color: var(--primary-dim);
 }
 
-/* ── Before/after comparison (NUDGE) ── */
+/* ── Before/after grid ───────────────────────────────────────── */
 .before-after {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: var(--gap-md);
+  align-items: start;
+}
+.arrow-col {
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green); font-size: 1.4rem;
+  padding-top: 28px;
+}
+
+/* ── Stage view animation ────────────────────────────────────── */
+.stage-view { animation: fadeIn 0.12s ease; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Evidence flow strip ─────────────────────────────────────── */
+.evidence-flow {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-card);
+  margin-bottom: var(--gap-lg);
+}
+.evidence-flow__block {
+  flex: 1;
+  padding: var(--gap-md);
+  border-right: 1px solid var(--border);
+}
+.evidence-flow__block:last-child { border-right: none; }
+.evidence-flow__op {
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 10px;
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 300;
+  flex-shrink: 0;
+  background: var(--bg-card);
+}
+
+/* ── Stat row ────────────────────────────────────────────────── */
+.stat-row {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.82rem;
 }
-.before-after .arrow-col {
+.stat-row:last-child { border-bottom: none; }
+.stat-row__label { color: var(--text-secondary); }
+.stat-row__value { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* ── Pipeline flow (Decision Engine) ────────────────────────── */
+.pipeline-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-card-alt);
+  margin-bottom: var(--gap-lg);
+}
+.pipeline-flow__step {
+  padding: 14px 10px;
   text-align: center;
-  color: var(--green);
-  font-size: 1.8rem;
-  line-height: 1;
+  border-right: 1px solid var(--border-light);
+}
+.pipeline-flow__step:last-child {
+  border-right: none;
+  background: rgba(217,119,6,.06);
+}
+.pipeline-flow__phase {
+  font-size: 0.6rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+.pipeline-flow__icon  { font-size: 1.2rem; margin-bottom: 4px; }
+.pipeline-flow__title { font-size: 0.8rem; font-weight: 600; margin-bottom: 2px; }
+.pipeline-flow__sub   { font-size: 0.68rem; color: var(--text-muted); }
+
+/* ── Constraint strip ────────────────────────────────────────── */
+.constraint-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-md);
+  margin-bottom: var(--gap-lg);
 }
 
-/* ── Stat block ── */
-.stat-block            { display: flex; flex-direction: column; gap: 2px; }
-.stat-block .stat-value{ font-size: 1.5rem; font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
-.stat-block .stat-label{ font-size: 0.78rem; color: var(--text-secondary); }
+/* ── Stat block ──────────────────────────────────────────────── */
+.stat-block { display: flex; flex-direction: column; gap: 2px; }
+.stat-block .stat-value { font-size: 1.5rem; font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+.stat-block .stat-label { font-size: 0.78rem; color: var(--text-secondary); }
 
-/* ── Flow arrow ── */
-.flow-arrow { text-align: center; color: var(--text-muted); font-size: 1.5rem; line-height: 1; margin: var(--gap-sm) 0; }
+/* ── Disclaimer strip ────────────────────────────────────────── */
+.disclaimer {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.5;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-light);
+  margin-top: var(--gap-md);
+  text-align: center;
+}
 
-/* ── Responsive ── */
-@media (max-width: 1100px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 768px)  {
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .grid-4  { grid-template-columns: repeat(2,1fr); }
+  .pipeline-flow { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 768px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .page-wrapper { padding: 0 var(--gap-md) var(--gap-xl); }
   .before-after { grid-template-columns: 1fr; }
-  .before-after .arrow-col { transform: rotate(90deg); }
+  .arrow-col { transform: rotate(0deg); padding-top: 0; }
+  .constraint-strip { grid-template-columns: 1fr; }
+  .evidence-flow { flex-direction: column; }
+  .evidence-flow__op { padding: 6px 0; }
+  .pipeline-flow { grid-template-columns: repeat(2,1fr); }
 }
